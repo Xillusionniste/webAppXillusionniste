@@ -69,15 +69,16 @@ var truc = angular.module('appliController', ['dataService'])
         */
     };
 
-    $scope.addTwentyFive = function(focusedPlayer){
+    $scope.addTwentyFive = function(){
+        var index = $scope.focusedPlayer;
         var endReached = false;
-        var lastTotal = players[focusedPlayer].points[1];
+        var lastTotal = $scope.players[index].points[1];
         var total = +lastTotal + +25;
-        players[focusedPlayer].points[0] = lastTotal;
-        players[focusedPlayer].points[1] = total;
+        $scope.players[index].points[0] = lastTotal;
+        $scope.players[index].points[1] = total;
         if (endReached) alert("200 Atteint !");
-        showButtons = false;
-        focusedPlayer = null;
+        $scope.showButtons = false;
+        $scope.focusedPlayer = null;
         lessthantenService.players = $scope.players;
         if ($scope.sortingEnabled) {$scope.sortPlayers();}
     };
