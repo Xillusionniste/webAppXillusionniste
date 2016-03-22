@@ -9,11 +9,15 @@ var truc = angular.module('appliController', ['dataService'])
     $scope.players = [];
 	$scope.sortingEnabled = lessthantenService.sortingEnabled;
     $scope.showButtons = false;
+    $scope.showPointsInput = false;
+    $scope.addPointsButtonClicked = false;
     $scope.focusedPlayer = null;
     $scope.setSelected = function (focusedPlayer) {
         $scope.focusedPlayer = focusedPlayer;
         $scope.showButtons = true;
     };
+    $scope.currentPlayerName = null;
+    $scope.newPoints = -1;
 
     $scope.addPlayerLessThanTen = function() {
         var newPlayer = prompt("Nouveau joueur : ");
@@ -53,20 +57,36 @@ var truc = angular.module('appliController', ['dataService'])
 		lessthantenService.sortPlayers();
     };
 
-    $scope.addZero = function(focusedPlayer){
-        
-        /*
-        var newPoints = -1;
-        var lastTotal;
-        var total;
+    $scope.addZero = function(){
+        $scope.showPointsInput = true;
+        var index = $scope.focusedPlayer;
         var endReached = false;
-        newPoints = 0;
-        lastTotal               = players[i].points[1];
-        total                   = +lastTotal + +newPoints;
-        players[i].points[0]    = lastTotal;
-        players[i].points[1]    = total;
+        var lastTotal = -1;
+        var total = -1;
+        for (var i=0; i<players.length ; i++) {
+            if (i != $scope.focusedPlayer) {
+                $scope.currentPlayerName = $scope.players[i].name;
+                lastTotal = $scope.players[i].points[1];
+                while(!$scope.addPointsButtonClicked){}
+
+                total = +lastTotal + $scope.newPoints;
+                $scope.players[i].points[0] = lastTotal;
+                $scope.players[i].points[1] = total;
+                $scope.addPointsButtonClicked = false;
+            }
+        }   
+
+        $scope.showPointsInput = false;
+        $scope.showButtons = false;
+        $scope.focusedPlayer = null;
+
+        for (i=0; i<$scope.players.length; i++) {
+                if ($scope.players[i].points[1] >= 200) {endReached = true;}
+        }
+
         if (endReached) alert("200 Atteint !");
-        */
+        lessthantenService.players = $scope.players;
+        if ($scope.sortingEnabled) {$scope.sortPlayers();}
     };
 
     $scope.addTwentyFive = function(){

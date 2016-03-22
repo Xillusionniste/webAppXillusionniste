@@ -101,19 +101,18 @@ angular.module('dataService', [])
                 }
             }
         },
-	
-	sortPlayers : function() {
-		for (var i = players.length-1; i>=0; i--) {
-			var temp;
-			for (var j=players.length-1; j>=0; j--) {
-				if (players[j].points[1] < players[i].points[1]) {
-					temp = players[j];
-					players[j] = players[i];
-					players[i] = temp;
-				}
-			}
-		}
-	}		
+    	sortPlayers : function() {
+    		for (var i = players.length-1; i>=0; i--) {
+    			var temp;
+    			for (var j=players.length-1; j>=0; j--) {
+    				if (players[j].points[1] < players[i].points[1]) {
+    					temp = players[j];
+    					players[j] = players[i];
+    					players[i] = temp;
+    				}
+    			}
+    		}
+    	}		
     }
 })
 .service('presidentService', function($window){

@@ -26,8 +26,6 @@
                 Total
                 <add-points-all-button></add-points-all-button>
             </th>
-            <th>
-            </th>
         </tr>
         <tr ng-repeat="player in players">
             <td ng-click="setSelected($index)" ng-class="{selected: $index === focusedPlayer}">
@@ -37,9 +35,6 @@
             <td style="vertical-align: middle;">{{player.points[0]}}</td>
             <td  style="vertical-align: middle;" class="bold">
             {{player.points[1]}}</td>
-            <td>
-                <input type="number"><a class="btn btn-primary">Ajouter</a>
-            </td>
         </tr>
     </table>
 
@@ -52,4 +47,10 @@
     <a class="btn btn-primary" ng-click="addZero()">+0</a>
     <a class="btn btn-primary" ng-click="addTwentyFive()">+25</a>
     <a class="btn btn-primary" ng-click="addFifty()">+50</a>
+
+    <div ng-show=showPointsInput>
+    Entrer les points de {{currentPlayerName}} :
+    <input type="number" ng-model="newPoints">
+    <a class="btn btn-primary" ng-click="addPointsButtonClicked = true;">+</a>
+    </div>
 </div>
