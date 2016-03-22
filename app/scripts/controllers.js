@@ -8,9 +8,11 @@ var truc = angular.module('appliController', ['dataService'])
 .controller('lessthantenController', ['$scope','$window','lessthantenService', function($scope,$window,lessthantenService) {
     $scope.players = [];
 	$scope.sortingEnabled = lessthantenService.sortingEnabled;
+    $scope.showButtons = false;
     $scope.focusedPlayer = null;
     $scope.setSelected = function (focusedPlayer) {
         $scope.focusedPlayer = focusedPlayer;
+        $scope.showButtons = true;
     };
 
     $scope.addPlayerLessThanTen = function() {

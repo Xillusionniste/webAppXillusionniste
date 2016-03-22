@@ -6,7 +6,7 @@
     	<md-switch ng-model="sortingEnabled" aria-label="Switch 1">
 		Classement auto des joueurs
         </md-switch>
-        <div ng-hide=true>
+        <div ng-show=showButtons>
             <a class="btn btn-primary" ng-click="addZero()">+0</a>
             <a class="btn btn-primary" ng-click="addTwentyFive()">+25</a>
             <a class="btn btn-primary" ng-click="addFifty()">+50</a>
