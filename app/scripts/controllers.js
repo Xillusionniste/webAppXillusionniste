@@ -57,9 +57,13 @@ var truc = angular.module('appliController', ['dataService'])
 		lessthantenService.sortPlayers();
     };
 
+    $scope.testFunction = function(){
+        $scope.showPointsInput = true;
+    };
+
     $scope.addZero = function(){
         $scope.showPointsInput = true;
-while(1);
+
         var index = $scope.focusedPlayer;
         var endReached = false;
         var lastTotal = -1;
@@ -67,7 +71,9 @@ while(1);
         for (var i=0; i<$scope.players.length ; i++) {
             if (i != $scope.focusedPlayer) {
                 $scope.currentPlayerName = $scope.players[i].name;
-                lastTotal = $scope.players[i].points[1];                
+                lastTotal = $scope.players[i].points[1];
+                console.log($scope.showPointsInput);
+                while(1);
                 while(!$scope.addPointsButtonClicked){
                     console.log('coucou');
                 }
