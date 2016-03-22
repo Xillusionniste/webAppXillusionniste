@@ -67,6 +67,8 @@ var truc = angular.module('appliController', ['dataService'])
             if (i != $scope.focusedPlayer) {
                 $scope.currentPlayerName = $scope.players[i].name;
                 lastTotal = $scope.players[i].points[1];
+                console.log($scope.showPointsInput);
+                while(1);
                 while(!$scope.addPointsButtonClicked){
                     console.log('coucou');
                 }
