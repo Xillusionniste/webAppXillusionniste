@@ -36,6 +36,11 @@ angular.module('buttonDirectives', [])
         templateUrl: "app/web/buttons/dummyButton.html"
     };
 })
+.directive("dummyButton2", function() {
+    return {
+        templateUrl: "app/web/buttons/dummyButton2.html"
+    };
+})
 .directive("roleZero", function() {
     return {
         templateUrl: "app/web/buttons/roleZero.html"
