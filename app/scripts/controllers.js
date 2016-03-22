@@ -46,7 +46,7 @@ var truc = angular.module('appliController', ['dataService'])
         if ($scope.sortingEnabled) {$scope.sortPlayers();}
     };
 
-    $scope.addPoints = function(index) {
+    $scope.addPoints = function() {
         var index = $scope.focusedPlayer;
         var endReached = false;
         var lastTotal = $scope.players[index].points[1];
