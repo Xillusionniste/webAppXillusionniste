@@ -76,6 +76,7 @@ var truc = angular.module('appliController', ['dataService'])
         var total = +lastTotal + +25;
         $scope.players[index].points[0] = lastTotal;
         $scope.players[index].points[1] = total;
+        if ($scope.players[index].points[1] >= 200) {endReached = true;}
         if (endReached) alert("200 Atteint !");
         $scope.showButtons = false;
         $scope.focusedPlayer = null;
