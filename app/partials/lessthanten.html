@@ -16,7 +16,7 @@
 
 <div>
 
-    <table class="table">
+    <table class="table table-striped-odd">
         <tr>
             <th>
                 Joueurs
@@ -32,8 +32,8 @@
                 <add-points-all-button></add-points-all-button>
             </th>
         </tr>
-        <tr ng-repeat="player in players" ng-click="setSelected($index)" ng-class="{selected: $index === focusedPlayer}">
-            <td>
+        <tr ng-repeat="player in players">
+            <td ng-click="setSelected($index)" ng-class="{selected: $index === focusedPlayer}">
                 <add-points-button></add-points-button>
                 <remove-button></remove-button>
                 {{player.name}}
