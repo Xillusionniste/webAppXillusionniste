@@ -24,7 +24,7 @@
             </th>
             <th>
                 Total
-                <add-points-all-button></add-points-all-button>
+                <dummy-button></dummy-button>
             </th>
         </tr>
         <tr ng-repeat="player in players">
@@ -48,7 +48,7 @@
     <a class="btn btn-primary" ng-click="addFifty()">+50</a>
 
     <div>
-        Entrer les points de {{currentPlayerName}} :
+        Entrer les points de {{currentPlayerName}} : 
         <input type="number" ng-model="newPoints">
         <a class="btn btn-primary" ng-click="addPoints()">+</a>
         <br />
