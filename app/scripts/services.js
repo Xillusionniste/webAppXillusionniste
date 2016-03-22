@@ -15,6 +15,21 @@ angular.module('dataService', [])
         }
     };
 
+    var averagePoints = function(){
+        var averagePoints;
+        var addition = 0;
+        var playerLength = players.length;
+
+        if (playerLength > 0) {
+            for (var i=0; i<playerLength ; i++) {
+                addition += players[i].points[1];
+            }    
+            averagePoints = Math.round(addition/playerLength);
+        } else averagePoints = 0;
+        
+        return averagePoints;
+    };
+
 
     return {
         getSize : function(){
@@ -26,7 +41,7 @@ angular.module('dataService', [])
         addPlayerLessThanTen : function(newPlayer){
             if (!nameExists(newPlayer)) {
                 var data =  {   name:   newPlayer,
-                                points: [0,0]
+                                points: [0, averagePoints()]
                             }
                 players.push(data);
             } else alert(newPlayer.toUpperCase() + " existe deja !");
