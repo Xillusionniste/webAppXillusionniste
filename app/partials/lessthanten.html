@@ -1,0 +1,46 @@
+<div>
+    <header class="page-header">
+        <h3>Moins de 10 - Le Jeu</h3>
+        <reset-button></reset-button>
+        <help-button></help-button>
+	<md-switch ng-model="sortingEnabled" aria-label="Switch 1">
+    		Classement auto des joueurs
+  	</md-switch>
+    </header>
+</div>
+
+<div>
+
+    <table class="table table-striped-odd">
+        <tr>
+            <th>
+                Joueurs
+                <add-player-less-than-ten-button>
+                </add-player-less-than-ten-buttonn>
+            </th>
+            <th>
+                Dernier Total
+                <dummy-button></dummy-button>
+            </th>
+            <th>
+                Total
+                <add-points-all-button></add-points-all-button>
+            </th>
+        </tr>
+        <tr ng-repeat="player in players">
+            <td>
+                <add-points-button></add-points-button>
+                <remove-button></remove-button>
+                {{player.name}}
+            </td>
+            <td style="vertical-align: middle;">{{player.points[0]}}</td>
+            <td  style="vertical-align: middle;" class="bold">
+            {{player.points[1]}}</td>
+        </tr>
+    </table>
+
+</div>
+<br>
+<div>
+    <a class="btn btn-primary" href="#/home">Accueil</a>
+</div>

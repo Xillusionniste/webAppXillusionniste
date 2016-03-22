@@ -1,0 +1,56 @@
+/* app css stylesheet */
+
+body {
+    padding-left: 20px;
+    padding-top: 10px;
+}
+
+.myClass {
+    color: red;
+}
+
+td {
+    vertical-align: middle;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.help-section {
+    font-weight: lighter;
+    font-size: 12px;
+    font-style: italic;
+}
+
+.hoverPointer {
+    cursor: pointer;
+}
+
+.table-custom {
+    border-collapse:collapse!important
+}
+
+.buttondemoBasicUsage section {
+  background: #f7f7f7;
+  border-radius: 3px;
+  text-align: center;
+  margin: 1em;
+  position: relative !important;
+  padding-bottom: 10px; }
+.buttondemoBasicUsage md-content {
+  margin-right: 7px; }
+.buttondemoBasicUsage section .md-button {
+  margin-top: 16px;
+  margin-bottom: 16px; }
+.buttondemoBasicUsage .label {
+  position: absolute;
+  bottom: 5px;
+  left: 7px;
+  font-size: 14px;
+  opacity: 0.54; }
+
+.png-icon{
+    width: 17px;
+    height: 17px;
+}

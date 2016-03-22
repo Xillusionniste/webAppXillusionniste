@@ -1,0 +1,50 @@
+<div>
+    <header class="page-header">
+        <h4>Président - Le Jeu</h4>
+        <reset-president-button></reset-president-button>
+        <help-president-button></help-president-button>
+    </header>
+</div>
+
+<div>
+
+    <table class="table table-striped-odd">
+        <tr>
+            <th>
+                Joueurs
+                <add-player-president-button></add-player-president-button>
+            </th>
+            <th>
+                Rôle
+                <role-button></role-button>
+            </th>
+            <th>
+                Tendance
+                <trend-button></trend-button>
+            </th>
+        </tr>
+        <tr ng-repeat="player in players">
+            <td>
+                <add-points-button></add-points-button>
+                <remove-button></remove-button>
+                {{player.name}}
+            </td>
+            <td style="vertical-align: middle;">
+                <div ng-show="{{player.role}}==0"><role-zero></role-zero></div>
+                <div ng-show="{{player.role}}==1"><role-one></role-one></div>
+                <div ng-show="{{player.role}}==2"><role-two></role-two></div>
+                <div ng-show="{{player.role}}==3"><role-three></role-three></div>
+                <div ng-show="{{player.role}}==4"><role-four></role-four></div>
+                <div ng-show="{{player.role}}==5"><role-five></role-five></div>
+                <div ng-show="{{player.role}}==6"><role-six></role-six></div>
+            </td>
+            <td  style="vertical-align: middle;" class="bold">
+            {{player.points[1]}}</td>
+        </tr>
+    </table>
+
+</div>
+<br>
+<div>
+    <a class="btn btn-primary" href="#/home">Accueil</a>
+</div>
