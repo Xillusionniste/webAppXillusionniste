@@ -51,7 +51,47 @@ var truc = angular.module('appliController', ['dataService'])
 
 	$scope.sortPlayers = function() {
 		lessthantenService.sortPlayers();
-};
+    };
+
+    $scope.addZero = function(focusedPlayer){
+        
+        /*
+        var newPoints = -1;
+        var lastTotal;
+        var total;
+        var endReached = false;
+        newPoints = 0;
+        lastTotal               = players[i].points[1];
+        total                   = +lastTotal + +newPoints;
+        players[i].points[0]    = lastTotal;
+        players[i].points[1]    = total;
+        if (endReached) alert("200 Atteint !");
+        */
+    };
+
+    $scope.addTwentyFive = function(focusedPlayer){
+        var lastTotal;
+        var endReached = false;
+        var lastTotal = players[focusedPlayer].points[1];
+        var total = +lastTotal + +25;
+        players[focusedPlayer].points[0] = lastTotal;
+        players[focusedPlayer].points[1] = total;
+        if (endReached) alert("200 Atteint !");
+        $scope.showButtons = false;
+        $scope.focusedPlayer = null;
+    };
+    
+    $scope.addFifty = function(focusedPlayer){
+        var lastTotal;
+        var endReached = false;
+        var lastTotal = players[focusedPlayer].points[1];
+        var total = +lastTotal + +50;
+        players[focusedPlayer].points[0] = lastTotal;
+        players[focusedPlayer].points[1] = total;
+        if (endReached) alert("200 Atteint !");
+        $scope.showButtons = false;
+        $scope.focusedPlayer = null;
+    };
 }])
 .controller('presidentController', ['$scope','$window','presidentService', function($scope,$window,presidentService) {
     $scope.players      = [];
