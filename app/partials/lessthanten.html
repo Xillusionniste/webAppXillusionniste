@@ -29,8 +29,8 @@
         </tr>
         <tr ng-repeat="player in players">
             <td ng-click="setSelected($index)" ng-class="{selected: $index === focusedPlayer}">
-                <add-points-button></add-points-button>
                 <remove-button></remove-button>
+                <input type="number"><a class="btn btn-primary">Ajouter</a>
                 {{player.name}}
             </td>
             <td style="vertical-align: middle;">{{player.points[0]}}</td>
