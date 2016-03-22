@@ -8,6 +8,10 @@ var truc = angular.module('appliController', ['dataService'])
 .controller('lessthantenController', ['$scope','$window','lessthantenService', function($scope,$window,lessthantenService) {
     $scope.players = [];
 	$scope.sortingEnabled = lessthantenService.sortingEnabled;
+    $scope.focusedPlayer = null;
+    $scope.setSelected = function (focusedPlayer) {
+        $scope.focusedPlayer = focusedPlayer;
+}   ;
 
     $scope.addPlayerLessThanTen = function() {
         var newPlayer = prompt("Nouveau joueur : ");

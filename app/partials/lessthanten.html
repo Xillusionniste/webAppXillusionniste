@@ -3,17 +3,14 @@
         <h3>Moins de 10 - Le Jeu</h3>
         <reset-button></reset-button>
         <help-button></help-button>
+    	<md-switch ng-model="sortingEnabled" aria-label="Switch 1">
+		Classement auto des joueurs
+        </md-switch>
         <div>
-            <a class="btn btn-primary">+0</a>
-            <a class="btn btn-primary">+25</a>
-            <a class="btn btn-primary">+50</a>
+            <a class="btn btn-primary" ng-click="addZero()">+0</a>
+            <a class="btn btn-primary" ng-click="addTwentyFive()">+25</a>
+            <a class="btn btn-primary" ng-click="addFifty()">+50</a>
         </div>
-	<md-switch ng-model="sortingEnabled" aria-label="Switch 1">
-    		Classement auto des joueurs
-  	</md-switch>
-    <a class="btn btn-primary">+0</a>
-    <a class="btn btn-primary">+25</a>
-    <a class="btn btn-primary">+50</a>
     </header>
 </div>
 
@@ -36,7 +33,7 @@
             </th>
         </tr>
         <tr ng-repeat="player in players">
-            <td>
+            <td ng-click="setSelected($index)" ng-class="{selected: $index === focusedPlayer}">
                 <add-points-button></add-points-button>
                 <remove-button></remove-button>
                 {{player.name}}

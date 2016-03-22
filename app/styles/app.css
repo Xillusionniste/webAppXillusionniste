@@ -54,3 +54,7 @@ td {
     width: 17px;
     height: 17px;
 }
+
+.selected {
+  background-color: red;
+}
