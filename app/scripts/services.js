@@ -94,7 +94,7 @@ angular.module('dataService', [])
             if (players[index].points[1] >= 200) {endReached = true;}
             if (endReached) alert("200 Atteint !");
         },
-        addTwentyFive = function(){
+        addTwentyFive : function(){
             var lastTotal;
             var endReached = false;
             var lastTotal = players[focusedPlayer].points[1];
