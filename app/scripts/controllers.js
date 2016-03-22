@@ -85,7 +85,18 @@ var truc = angular.module('appliController', ['dataService'])
     };
 
     $scope.addFifty = function(focusedPlayer){
-        
+        var index = $scope.focusedPlayer;
+        var endReached = false;
+        var lastTotal = $scope.players[index].points[1];
+        var total = +lastTotal + +50;
+        $scope.players[index].points[0] = lastTotal;
+        $scope.players[index].points[1] = total;
+        if ($scope.players[index].points[1] >= 200) {endReached = true;}
+        if (endReached) alert("200 Atteint !");
+        $scope.showButtons = false;
+        $scope.focusedPlayer = null;
+        lessthantenService.players = $scope.players;
+        if ($scope.sortingEnabled) {$scope.sortPlayers();}
     };
 }])
 .controller('presidentController', ['$scope','$window','presidentService', function($scope,$window,presidentService) {
