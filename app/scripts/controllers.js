@@ -15,9 +15,11 @@ var truc = angular.module('appliController', ['dataService'])
     $scope.setSelected = function (focusedPlayer) {
         $scope.focusedPlayer = focusedPlayer;
         $scope.showButtons = true;
+        $scope.currentPlayerName = $scope.players[focusedPlayer].name;
+        $scope.newPoints = null;
     };
     $scope.currentPlayerName = null;
-    $scope.newPoints = -1;
+    $scope.newPoints = null;
 
     $scope.addPlayerLessThanTen = function() {
         var newPlayer = prompt("Nouveau joueur : ");
@@ -41,12 +43,29 @@ var truc = angular.module('appliController', ['dataService'])
 
     $scope.addPointsAll = function() {
         lessthantenService.addPointsAll();
-	if ($scope.sortingEnabled) {$scope.sortPlayers();}
+        if ($scope.sortingEnabled) {$scope.sortPlayers();}
     };
 
     $scope.addPoints = function(index) {
-        lessthantenService.addPoints(index);
-	if ($scope.sortingEnabled) {$scope.sortPlayers();}
+        var index = $scope.focusedPlayer;
+        var endReached = false;
+        var lastTotal = $scope.players[index].points[1];
+        var total = +lastTotal + $scope.newPoints;
+        $scope.newPoints = null;
+
+        $scope.players[index].points[0] = lastTotal;
+        $scope.players[index].points[1] = total;
+
+        if ($scope.players[index].points[1] >= 200) {endReached = true;}
+        if (endReached) alert("200 Atteint !");
+
+        lessthantenService.players = $scope.players;
+    };
+
+    $scope.addingFinished = function() {
+        if ($scope.sortingEnabled) {$scope.sortPlayers();}
+        $scope.showButtons = false;
+        $scope.focusedPlayer = null;
     };
 
     $scope.resetGame = function() {
@@ -58,21 +77,17 @@ var truc = angular.module('appliController', ['dataService'])
     };
 
     $scope.addZero = function(){
-        $scope.showPointsInput = true;
-        /*
+        
         var index = $scope.focusedPlayer;
         var endReached = false;
         var lastTotal = -1;
         var total = -1;
+
         for (var i=0; i<$scope.players.length ; i++) {
             if (i != $scope.focusedPlayer) {
                 $scope.currentPlayerName = $scope.players[i].name;
                 lastTotal = $scope.players[i].points[1];
-                console.log($scope.showPointsInput);
-                while(1);
-                while(!$scope.addPointsButtonClicked){
-                    console.log('coucou');
-                }
+                while(!$scope.addPointsButtonClicked){}
 
                 total = +lastTotal + $scope.newPoints;
                 $scope.players[i].points[0] = lastTotal;
@@ -80,8 +95,6 @@ var truc = angular.module('appliController', ['dataService'])
                 $scope.addPointsButtonClicked = false;
             }
         } 
-
-        $scope.showPointsInput = false;
         $scope.showButtons = false;
         $scope.focusedPlayer = null;
 
@@ -91,7 +104,7 @@ var truc = angular.module('appliController', ['dataService'])
 
         if (endReached) alert("200 Atteint !");
         lessthantenService.players = $scope.players;
-        if ($scope.sortingEnabled) {$scope.sortPlayers();}*/
+        if ($scope.sortingEnabled) {$scope.sortPlayers();}
     };
 
     $scope.addTwentyFive = function(){

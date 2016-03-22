@@ -45,13 +45,13 @@
 </div><br/>
 {{showPointsInput}}
 <div ng-show=showButtons>
-    <a class="btn btn-primary" ng-click="addZero()">+0</a>
     <a class="btn btn-primary" ng-click="addTwentyFive()">+25</a>
     <a class="btn btn-primary" ng-click="addFifty()">+50</a>
 
-    <div ng-show=showPointsInput>
-    Entrer les points de {{currentPlayerName}} :
-    <input type="number" ng-model="newPoints">
-    <a class="btn btn-primary" ng-click="addPointsButtonClicked = true;">+</a>
-    </div>
+    <div>
+        Entrer les points de {{currentPlayerName}} :
+        <input type="number" ng-model="newPoints">
+        <a class="btn btn-primary" ng-click="addPoints()">+</a>
+        <a class="btn btn-warn" ng-click="addingFinished()">Terminé</a>
+        </div>
 </div>
