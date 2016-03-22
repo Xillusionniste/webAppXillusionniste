@@ -48,7 +48,7 @@
     <a class="btn btn-primary" ng-click="addTwentyFive()">+25</a>
     <a class="btn btn-primary" ng-click="addFifty()">+50</a>
 
-    <div ng-show=showPointsInput>
+    <div ng-hide=showPointsInput>
     Entrer les points de {{currentPlayerName}} :
     <input type="number" ng-model="newPoints">
     <a class="btn btn-primary" ng-click="addPointsButtonClicked = true;">+</a>
