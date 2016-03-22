@@ -26,10 +26,6 @@ var truc = angular.module('appliController', ['dataService'])
         $scope.players = lessthantenService.getPlayers();
     });
 
-	$scope.$watch('focusedPlayer', function() {
-	   lessthantenService.focusedPlayer = $scope.focusedPlayer;
-	});
-
     $scope.$watch('sortingEnabled', function() {
     if ($scope.sortingEnabled) {$scope.sortPlayers();} 
     lessthantenService.sortingEnabled = $scope.sortingEnabled;
@@ -74,20 +70,20 @@ var truc = angular.module('appliController', ['dataService'])
     };
 
     $scope.addTwentyFive = function(focusedPlayer){
-        lessthantenService.addTwentyFive();
-        if ($scope.sortingEnabled) {$scope.sortPlayers();}
-    };
-    
-    $scope.addFifty = function(focusedPlayer){
-        var lastTotal;
         var endReached = false;
         var lastTotal = players[focusedPlayer].points[1];
-        var total = +lastTotal + +50;
+        var total = +lastTotal + +25;
         players[focusedPlayer].points[0] = lastTotal;
         players[focusedPlayer].points[1] = total;
         if (endReached) alert("200 Atteint !");
-        $scope.showButtons = false;
-        $scope.focusedPlayer = null;
+        showButtons = false;
+        focusedPlayer = null;
+        lessthantenService.players = $scope.players;
+        if ($scope.sortingEnabled) {$scope.sortPlayers();}
+    };
+
+    $scope.addFifty = function(focusedPlayer){
+        
     };
 }])
 .controller('presidentController', ['$scope','$window','presidentService', function($scope,$window,presidentService) {

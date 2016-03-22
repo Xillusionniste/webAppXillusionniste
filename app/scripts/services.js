@@ -1,7 +1,6 @@
 angular.module('dataService', [])
 .service('lessthantenService', function($window){
     var players = [];
-    var focusedPlayer = null;
 	var sortingEnabled = true;
 
     var nameExists = function (x){
@@ -94,17 +93,6 @@ angular.module('dataService', [])
             players[index].points[1]    = total;
             if (players[index].points[1] >= 200) {endReached = true;}
             if (endReached) alert("200 Atteint !");
-        },
-        addTwentyFive : function(focusedPlayer){
-            var lastTotal;
-            var endReached = false;
-            var lastTotal = players[focusedPlayer].points[1];
-            var total = +lastTotal + +25;
-            players[focusedPlayer].points[0] = lastTotal;
-            players[focusedPlayer].points[1] = total;
-            if (endReached) alert("200 Atteint !");
-            showButtons = false;
-            focusedPlayer = null;
         },
         resetGame : function(){
             if($window.confirm('Reset le jeu ?')) {
