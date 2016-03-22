@@ -26,10 +26,14 @@ var truc = angular.module('appliController', ['dataService'])
         $scope.players = lessthantenService.getPlayers();
     });
 
-	$scope.$watch('sortingEnabled', function() {
-	if ($scope.sortingEnabled) {$scope.sortPlayers();} 
-	lessthantenService.sortingEnabled = $scope.sortingEnabled;
+	$scope.$watch('focusedPlayer', function() {
+	   lessthantenService.focusedPlayer = $scope.focusedPlayer;
 	});
+
+    $scope.$watch('sortingEnabled', function() {
+    if ($scope.sortingEnabled) {$scope.sortPlayers();} 
+    lessthantenService.sortingEnabled = $scope.sortingEnabled;
+    });
 
     $scope.removePlayer = function(index) {
         lessthantenService.removePlayer(index);

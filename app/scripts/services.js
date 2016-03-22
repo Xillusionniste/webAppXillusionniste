@@ -1,6 +1,7 @@
 angular.module('dataService', [])
 .service('lessthantenService', function($window){
     var players = [];
+    var focusedPlayer = null;
 	var sortingEnabled = true;
 
     var nameExists = function (x){
