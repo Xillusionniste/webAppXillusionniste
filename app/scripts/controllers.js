@@ -40,7 +40,7 @@ var truc = angular.module('appliController', ['dataService'])
     $scope.removePlayer = function(index) {
         lessthantenService.removePlayer(index);
     };
-    
+
     $scope.sortPlayers = function() {
         lessthantenService.sortPlayers();
     };
@@ -48,17 +48,23 @@ var truc = angular.module('appliController', ['dataService'])
     $scope.addPoints = function() {
         var index = $scope.focusedPlayer;
         var endReached = false;
-        var lastTotal = $scope.players[index].points[1];
-        var total = +lastTotal + $scope.newPoints;
-        $scope.newPoints = null;
+        var lastTotal;
+        if (!isNaN($scope.newPoints) && ($scope.newPoints != null)) {
+            lastTotal = $scope.players[index].points[1]
+            var total = +lastTotal + $scope.newPoints;
+            $scope.newPoints = null;
 
-        $scope.players[index].points[0] = lastTotal;
-        $scope.players[index].points[1] = total;
+            $scope.players[index].points[0] = lastTotal;
+            $scope.players[index].points[1] = total;
 
-        if ($scope.players[index].points[1] >= 200) {endReached = true;}
-        if (endReached) alert("200 Atteint !");
+            if ($scope.players[index].points[1] >= 200) {endReached = true;}
+            if (endReached) alert("200 Atteint !");
 
-        lessthantenService.players = $scope.players;
+            lessthantenService.players = $scope.players;
+        } else {
+            alert("Nombre non valide !");
+            $scope.newPoints = null;
+        } 
     };
 
      $scope.addFifty = function(focusedPlayer){
