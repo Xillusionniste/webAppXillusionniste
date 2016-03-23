@@ -1,6 +1,6 @@
 <div>
     <header class="page-header">
-        <h3>Moins de 10 - Le Jeu</h3>
+        <h3>Moins de 10</h3>
         <reset-button></reset-button>
         <help-button></help-button>
     	<md-switch ng-model="sortingEnabled" aria-label="Switch 1">
@@ -11,7 +11,7 @@
 
 <div>
 
-    <table class="table">
+    <table class="table table-striped-odd">
         <tr>
             <th>
                 Joueurs
@@ -41,18 +41,23 @@
 </div>
 <br>
 <div>
-    <a class="btn btn-primary" href="#/home">Accueil</a>
+    <md-button class="md-raised md-primary" href="#/home">Accueil</md-button>
 </div><br/>
 <div ng-show=showButtons>
-    <a class="btn btn-primary" ng-click="addTwentyFive()">+25</a>
-    <a class="btn btn-primary" ng-click="addFifty()">+50</a>
-
     <div>
-        Entrer les points de {{currentPlayerName}} : 
-        <input type="number" ng-model="newPoints">
-        <a class="btn btn-primary" ng-click="addPoints()">+</a>
-        <br />
-        <a class="btn btn-button" ng-click="addingFinished()">
-            Ajout des points terminé</a>
+        <div>
+            <md-button class="md-raised md-primary" ng-click="addTwentyFive()">+25</md-button>
+            <md-button class="md-raised md-primary" ng-click="addFifty()">+50</md-button>
         </div>
+        <div layout-gt-sm="row">
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>Points de {{currentPlayerName}}</label>
+                <input type="number" ng-model="newPoints">
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm>
+                <md-button class="md-raised md-primary" ng-click="addPoints()">+</md-button>
+                <md-button class="md-raised md-warn" ng-click="addingFinished()">Terminé</md-button>
+            </md-input-container>
+        </div>
+    </div>
 </div>
