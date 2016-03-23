@@ -40,10 +40,9 @@ var truc = angular.module('appliController', ['dataService'])
     $scope.removePlayer = function(index) {
         lessthantenService.removePlayer(index);
     };
-
-    $scope.addPointsAll = function() {
-        lessthantenService.addPointsAll();
-        if ($scope.sortingEnabled) {$scope.sortPlayers();}
+    
+    $scope.sortPlayers = function() {
+        lessthantenService.sortPlayers();
     };
 
     $scope.addPoints = function() {
@@ -62,47 +61,17 @@ var truc = angular.module('appliController', ['dataService'])
         lessthantenService.players = $scope.players;
     };
 
-    $scope.addingFinished = function() {
-        if ($scope.sortingEnabled) {$scope.sortPlayers();}
-        $scope.showButtons = false;
-        $scope.focusedPlayer = null;
-    };
-
-    $scope.resetGame = function() {
-        lessthantenService.resetGame();
-    };
-
-	$scope.sortPlayers = function() {
-		lessthantenService.sortPlayers();
-    };
-
-    $scope.addZero = function(){
-        
+     $scope.addFifty = function(focusedPlayer){
         var index = $scope.focusedPlayer;
         var endReached = false;
-        var lastTotal = -1;
-        var total = -1;
-
-        for (var i=0; i<$scope.players.length ; i++) {
-            if (i != $scope.focusedPlayer) {
-                $scope.currentPlayerName = $scope.players[i].name;
-                lastTotal = $scope.players[i].points[1];
-                while(!$scope.addPointsButtonClicked){}
-
-                total = +lastTotal + $scope.newPoints;
-                $scope.players[i].points[0] = lastTotal;
-                $scope.players[i].points[1] = total;
-                $scope.addPointsButtonClicked = false;
-            }
-        } 
+        var lastTotal = $scope.players[index].points[1];
+        var total = +lastTotal + +50;
+        $scope.players[index].points[0] = lastTotal;
+        $scope.players[index].points[1] = total;
+        if ($scope.players[index].points[1] >= 200) {endReached = true;}
+        if (endReached) alert("200 Atteint !");
         $scope.showButtons = false;
         $scope.focusedPlayer = null;
-
-        for (i=0; i<$scope.players.length; i++) {
-                if ($scope.players[i].points[1] >= 200) {endReached = true;}
-        }
-
-        if (endReached) alert("200 Atteint !");
         lessthantenService.players = $scope.players;
         if ($scope.sortingEnabled) {$scope.sortPlayers();}
     };
@@ -122,19 +91,14 @@ var truc = angular.module('appliController', ['dataService'])
         if ($scope.sortingEnabled) {$scope.sortPlayers();}
     };
 
-    $scope.addFifty = function(focusedPlayer){
-        var index = $scope.focusedPlayer;
-        var endReached = false;
-        var lastTotal = $scope.players[index].points[1];
-        var total = +lastTotal + +50;
-        $scope.players[index].points[0] = lastTotal;
-        $scope.players[index].points[1] = total;
-        if ($scope.players[index].points[1] >= 200) {endReached = true;}
-        if (endReached) alert("200 Atteint !");
+    $scope.addingFinished = function() {
+        if ($scope.sortingEnabled) {$scope.sortPlayers();}
         $scope.showButtons = false;
         $scope.focusedPlayer = null;
-        lessthantenService.players = $scope.players;
-        if ($scope.sortingEnabled) {$scope.sortPlayers();}
+    };
+
+    $scope.resetGame = function() {
+        lessthantenService.resetGame();
     };
 }])
 .controller('presidentController', ['$scope','$window','presidentService', function($scope,$window,presidentService) {
