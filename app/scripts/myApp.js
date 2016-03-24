@@ -12,11 +12,11 @@ var app = angular.module('myApp', [
         $routeProvider
         .when('/home', {
             templateUrl: 'app/partials/home.html',
-            controller: 'homeController'
+            controller: 'HomeController'
         })
         .when('/lessthanten', {
             templateUrl: 'app/partials/lessthanten.html',
-            controller: 'lessthantenController'
+            controller: 'LessthantenController'
         })
         .when('/lessthantenrules', {
             templateUrl: 'app/partials/lessthantenrules.html',

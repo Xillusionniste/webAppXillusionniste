@@ -1,0 +1,37 @@
+<!--NAME-->
+<td style="vertical-align: middle;" ng-click="setSelected($index)" ng-class="{selected: player.showButtons}">
+    <remove-button></remove-button>
+    {{player.name}}
+</td>
+<!--LAST TOTAL-->
+<td style="vertical-align: middle; text-align: center;">
+    <div ng-show="player.trend == -1">
+        <trend-down-icon></trend-down-icon> {{player.evolution}}
+    </div>
+    <div ng-show="player.trend == 0">
+        <trend-flat-icon></trend-flat-icon> {{player.evolution}}
+    </div>
+    <div ng-show="player.trend == 1">
+        <trend-up-icon></trend-up-icon> {{player.evolution}}
+    </div>
+    <!-- {{player.points}} -->
+    <div ng-show="player.showButtons">
+        <md-button class="md-raised md-primary" ng-click="addTwentyFive()">+25</md-button>
+        <md-button class="md-raised md-primary" ng-click="addFifty()">+50</md-button>
+    </div>
+</td>
+<!--TOTAL-->
+<td  style="vertical-align: middle; text-align: center;" class="bold">
+    {{player.points}}
+    <div ng-show="player.showButtons">
+        <div layout-gt-sm="row">
+            <md-input-container class="md-block" flex-gt-sm>
+                <form ng-submit="addPoints()">
+                    <label>Points de {{currentPlayerName}}</label>
+                    <input type="number" ng-model="newPoints">
+                    <md-button type="submit" class="md-raised md-warn">OK</md-button>
+                </form>                                
+            </md-input-container>                        
+        </div>
+    </div>
+</td>

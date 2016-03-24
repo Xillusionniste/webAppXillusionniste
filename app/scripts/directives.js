@@ -11,19 +11,14 @@ angular.module('buttonDirectives', [])
         templateUrl: "app/web/buttons/removeButton.html"
     };
 })
-.directive("addPointsAllButton", function() {
-    return {
-        templateUrl: "app/web/buttons/addPointsAllButton.html"
-    };
-})
-.directive("addPointsButton", function() {
-    return {
-        templateUrl: "app/web/buttons/addPointsButton.html"
-    };
-})
 .directive("resetButton", function() {
     return {
         templateUrl: "app/web/buttons/resetButton.html"
+    };
+})
+.directive("refreshButton", function() {
+    return {
+        templateUrl: "app/web/buttons/refreshButton.html"
     };
 })
 .directive("helpButton", function() {
@@ -76,13 +71,105 @@ angular.module('buttonDirectives', [])
         templateUrl: "app/web/buttons/roleSix.html"
     };
 })
-.directive("trendButton", function() {
+.directive("trendUpButton", function() {
     return {
-        templateUrl: "app/web/buttons/trendButton.html"
+        templateUrl: "app/web/buttons/trendUpButton.html"
+    };
+})
+.directive("trendUpIcon", function() {
+    return {
+        templateUrl: "app/web/buttons/trendUpIcon.html"
+    };
+})
+.directive("trendFlatIcon", function() {
+    return {
+        templateUrl: "app/web/buttons/trendFlatIcon.html"
+    };
+})
+.directive("trendDownIcon", function() {
+    return {
+        templateUrl: "app/web/buttons/trendDownIcon.html"
     };
 })
 .directive("addPlayerPresidentButton", function() {
     return {
         templateUrl: "app/web/buttons/addPlayerPresidentButton.html"
     };
+})
+.directive("playerRow", function(lessthantenService) {
+    return {
+        restrict : 'A',
+        templateUrl : "app/web/templates/playerRow.html",
+        controller: function($scope){
+            $scope.newPoints = null;
+            $scope.focusedPlayer = null;
+            $scope.currentPlayerName = null;
+
+            $scope.setSelected = function (focusedPlayer) {
+                //Only to simplify the code
+                var showButtons = $scope.players[focusedPlayer].showButtons
+
+                $scope.focusedPlayer = focusedPlayer;
+                //Open the buttons for the selected player
+                $scope.showCurrentPlayerButtons(focusedPlayer);
+                //Set name to be displayed for adding points
+                $scope.currentPlayerName = $scope.players[focusedPlayer].name;
+                //Reset the points input field to be empty
+                $scope.newPoints = null;
+                //Reset focusedPlayer (also to remove row background color)
+                if (showButtons === true) {$scope.focusedPlayer = null;}
+            };
+
+            $scope.addPoints = function() {            
+                var index = $scope.focusedPlayer;
+                var lastTotal;
+                if (!isNaN($scope.newPoints) && ($scope.newPoints != null)) {
+                    lastTotal = $scope.players[index].points
+                    var total = +lastTotal + $scope.newPoints;
+                    $scope.newPoints = null;
+                    $scope.players[index].points = total;
+                    lessthantenService.players = $scope.players;
+                    $scope.showButtons = false;
+                } else {
+                    alert("Nombre non valide !");
+                    $scope.newPoints = null;
+                }
+                //Hide points adding row        
+                $scope.showCurrentPlayerButtons(index);
+                $scope.$parent.showInt = true;
+            };
+
+
+            $scope.addFifty = function(focusedPlayer){
+                var index = $scope.focusedPlayer;
+                var lastTotal = $scope.players[index].points;
+                var total = +lastTotal + +50;
+                $scope.players[index].points = total;
+                $scope.showButtons = false;
+                $scope.focusedPlayer = null;
+                lessthantenService.players = $scope.players;
+                //Hide points adding row 
+                $scope.showCurrentPlayerButtons(index);
+                $scope.sortPlayers();
+            };
+
+            $scope.addTwentyFive = function(){
+                var index = $scope.focusedPlayer;
+                var lastTotal = $scope.players[index].points;
+                var total = +lastTotal + +25;
+                $scope.players[index].points = total;
+                $scope.showButtons = false;
+                $scope.focusedPlayer = null;
+                lessthantenService.players = $scope.players;
+                if ($scope.sortingEnabled) {$scope.sortPlayers();}
+                //Hide points adding row 
+                $scope.showCurrentPlayerButtons(index);
+                $scope.sortPlayers();
+            };
+
+            $scope.$watch('focusedPlayer', function() { 
+                lessthantenService.focusedPlayer = $scope.focusedPlayer;
+            });
+        }
+    }
 });

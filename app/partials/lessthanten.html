@@ -7,57 +7,32 @@
 <div>
         <reset-button></reset-button>
         <help-button></help-button>
-    	<md-switch ng-model="sortingEnabled" aria-label="Switch 1">
-		  Classement auto des joueurs
-        </md-switch>
+        <refresh-button></refresh-button>
 
-    <table class="table table-striped-odd">
-        <tr>
-            <th style="vertical-align: middle; text-align: center;" class="bold">
-                Joueurs
-                <add-player-less-than-ten-button>
-                </add-player-less-than-ten-buttonn>
-            </th>
-            <th style="vertical-align: middle; text-align: center;" class="bold">
-                Dernier Total
-                <dummy-button></dummy-button>
-            </th>
-            <th style="vertical-align: middle; text-align: center;" class="bold">
-                Total
-                <dummy-button2></dummy-button2>
-            </th>
-        </tr>
-        <tr ng-repeat="player in players" ng-click="setSelected($index)" ng-class="{selected: $index === focusedPlayer}">
-            <td style="vertical-align: middle;">
-                <remove-button></remove-button>
-                {{player.name}}
-            </td>
-            <td style="vertical-align: middle; text-align: center;">{{player.points[0]}}</td>
-            <td  style="vertical-align: middle; text-align: center;" class="bold">
-            {{player.points[1]}}</td>
-        </tr>
+    <table class="table">
+        <thead>
+            <tr style="background-color: #E0F7FA;">
+                <th style="vertical-align: middle; text-align: center;" class="bold">
+                    Joueurs
+                    <add-player-less-than-ten-button>
+                    </add-player-less-than-ten-button>
+                </th>
+                <th style="vertical-align: middle; text-align: center;" class="bold">
+                    Evol.
+                    <trend-up-button></trend-up-button>
+                </th>
+                <th style="vertical-align: middle; text-align: center;" class="bold">
+                    Total
+                    <dummy-button2></dummy-button2>
+                </th>
+            </tr>
+         </thead>
+        <tbody>
+            <tr ng-repeat="player in players" data-player-row></tr>
+        </tbody>
     </table>
-
 </div>
 <br>
 <div>
     <md-button class="md-raised md-primary" href="#/home">Accueil</md-button>
 </div><br/>
-<div ng-show=showButtons>
-    <div>
-        <div>
-            <md-button class="md-raised md-primary" ng-click="addTwentyFive()">+25</md-button>
-            <md-button class="md-raised md-primary" ng-click="addFifty()">+50</md-button>
-        </div>
-        <div layout-gt-sm="row">
-            <md-input-container class="md-block" flex-gt-sm>
-                <label>Points de {{currentPlayerName}}</label>
-                <input type="number" ng-model="newPoints">
-            </md-input-container>
-            <md-input-container class="md-block" flex-gt-sm>
-                <md-button class="md-raised md-primary" ng-click="addPoints()">+</md-button>
-                <md-button class="md-raised md-warn" ng-click="addingFinished()">Terminé</md-button>
-            </md-input-container>
-        </div>
-    </div>
-</div>

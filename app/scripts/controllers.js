@@ -2,30 +2,46 @@
 
 var truc = angular.module('appliController', ['dataService'])
 
-.controller('homeController', function($scope) {
+.controller('HomeController', function($scope) {
 })
 
-.controller('lessthantenController', ['$scope','$window','lessthantenService', function($scope,$window,lessthantenService) {
+.controller('LessthantenController', function($scope,$window,lessthantenService) {
     $scope.players = [];
-	$scope.sortingEnabled = lessthantenService.sortingEnabled;
-    $scope.showButtons = false;
-    $scope.showPointsInput = false;
-    $scope.addPointsButtonClicked = false;
-    $scope.focusedPlayer = null;
-    $scope.setSelected = function (focusedPlayer) {
-        $scope.focusedPlayer = focusedPlayer;
-        $scope.showButtons = true;
-        $scope.currentPlayerName = $scope.players[focusedPlayer].name;
-        $scope.newPoints = null;
-    };
-    $scope.currentPlayerName = null;
-    $scope.newPoints = null;
+    $scope.showInt = false;
 
     $scope.addPlayerLessThanTen = function() {
         var newPlayer = prompt("Nouveau joueur : ");
         if (!newPlayer) {return;}
         lessthantenService.addPlayerLessThanTen(newPlayer);
-	if ($scope.sortingEnabled) {$scope.sortPlayers();}
+        lessthantenService.sortPlayers();
+        lessthantenService.retreiveIndexes();
+    };
+
+    $scope.removePlayer = function(index) {
+        lessthantenService.removePlayer(index);
+        lessthantenService.retreiveIndexes();
+    };
+
+    $scope.sortPlayers = function() {
+        $scope.showInt = false;
+        lessthantenService.sortPlayers();
+        lessthantenService.updateTrends();
+        lessthantenService.retreiveIndexes();
+        lessthantenService.checkForEnd();
+    };
+
+    $scope.showCurrentPlayerButtons = function(player) {
+        for (var i = 0; i<$scope.players.length ; i++ ) {
+            if (i == player) {
+                $scope.players[player].showButtons = !$scope.players[player].showButtons   
+            } else {
+                $scope.players[i].showButtons = false;
+            }
+        }
+    };
+
+    $scope.resetGame = function() {
+        lessthantenService.resetGame();
     };
 
     $scope.$watch(function(){return lessthantenService.getSize();},function(newVal){
@@ -33,81 +49,26 @@ var truc = angular.module('appliController', ['dataService'])
     });
 
     $scope.$watch('sortingEnabled', function() {
-    if ($scope.sortingEnabled) {$scope.sortPlayers();} 
-    lessthantenService.sortingEnabled = $scope.sortingEnabled;
+        if ($scope.sortingEnabled) {$scope.sortPlayers();} 
+        lessthantenService.sortingEnabled = $scope.sortingEnabled;
     });
 
-    $scope.removePlayer = function(index) {
-        lessthantenService.removePlayer(index);
-    };
+    $scope.$watch('showInt', function() {
+        lessthantenService.showInt = $scope.showInt;
+    });
 
-    $scope.sortPlayers = function() {
-        lessthantenService.sortPlayers();
-    };
+    /*********************************************
+        IF VIEW CHANGED, CLOSE ALL THE PLAYER ROWS
+    **********************************************/
+    $scope.$on('$routeChangeStart', function() { 
+        for (var i = 0 ; i<$scope.players.length; i++) {
+            $scope.players[i].showButtons = false;
+        }
+     });
 
-    $scope.addPoints = function() {
-        var index = $scope.focusedPlayer;
-        var endReached = false;
-        var lastTotal;
-        if (!isNaN($scope.newPoints) && ($scope.newPoints != null)) {
-            lastTotal = $scope.players[index].points[1]
-            var total = +lastTotal + $scope.newPoints;
-            $scope.newPoints = null;
 
-            $scope.players[index].points[0] = lastTotal;
-            $scope.players[index].points[1] = total;
-
-            if ($scope.players[index].points[1] >= 200) {endReached = true;}
-            if (endReached) alert("200 Atteint !");
-
-            lessthantenService.players = $scope.players;
-        } else {
-            alert("Nombre non valide !");
-            $scope.newPoints = null;
-        } 
-    };
-
-     $scope.addFifty = function(focusedPlayer){
-        var index = $scope.focusedPlayer;
-        var endReached = false;
-        var lastTotal = $scope.players[index].points[1];
-        var total = +lastTotal + +50;
-        $scope.players[index].points[0] = lastTotal;
-        $scope.players[index].points[1] = total;
-        if ($scope.players[index].points[1] >= 200) {endReached = true;}
-        if (endReached) alert("200 Atteint !");
-        $scope.showButtons = false;
-        $scope.focusedPlayer = null;
-        lessthantenService.players = $scope.players;
-        if ($scope.sortingEnabled) {$scope.sortPlayers();}
-    };
-
-    $scope.addTwentyFive = function(){
-        var index = $scope.focusedPlayer;
-        var endReached = false;
-        var lastTotal = $scope.players[index].points[1];
-        var total = +lastTotal + +25;
-        $scope.players[index].points[0] = lastTotal;
-        $scope.players[index].points[1] = total;
-        if ($scope.players[index].points[1] >= 200) {endReached = true;}
-        if (endReached) alert("200 Atteint !");
-        $scope.showButtons = false;
-        $scope.focusedPlayer = null;
-        lessthantenService.players = $scope.players;
-        if ($scope.sortingEnabled) {$scope.sortPlayers();}
-    };
-
-    $scope.addingFinished = function() {
-        if ($scope.sortingEnabled) {$scope.sortPlayers();}
-        $scope.showButtons = false;
-        $scope.focusedPlayer = null;
-    };
-
-    $scope.resetGame = function() {
-        lessthantenService.resetGame();
-    };
-}])
-.controller('presidentController', ['$scope','$window','presidentService', function($scope,$window,presidentService) {
+})
+.controller('presidentController',function($scope,$window,presidentService) {
     $scope.players      = [];
     $scope.trendIcons    = [
         "app/web/img/icons/ic_trending_down_black_18px.svg",
@@ -132,5 +93,4 @@ var truc = angular.module('appliController', ['dataService'])
     $scope.resetGame = function() {
         presidentService.resetGame();
     };
-
-}]);
+});

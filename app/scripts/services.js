@@ -1,7 +1,8 @@
 angular.module('dataService', [])
 .service('lessthantenService', function($window){
     var players = [];
-	var sortingEnabled = true;
+    var showInt = false;
+    var focusedPlayer = null;
 
     var nameExists = function (x){
         var i = 0;
@@ -22,7 +23,7 @@ angular.module('dataService', [])
 
         if (playerLength > 0) {
             for (var i=0; i<playerLength ; i++) {
-                addition += players[i].points[1];
+                addition += players[i].points;
             }    
             averagePoints = Math.round(addition/playerLength);
         } else averagePoints = 0;
@@ -41,10 +42,19 @@ angular.module('dataService', [])
         addPlayerLessThanTen : function(newPlayer){
             if (!nameExists(newPlayer)) {
                 var data =  {   name:   newPlayer,
-                                points: [0, averagePoints()]
+                                points: averagePoints(),
+                                showButtons: false,
+                                trend : 0,
+                                evolution: '+0',
+                                lastIndex : -1
                             }
                 players.push(data);
             } else alert(newPlayer.toUpperCase() + " existe deja !");
+        },
+        retreiveIndexes : function(){
+            for (var i = 0; i<players.length; i++) {
+                    players[i].lastIndex = i;
+                }
         },
         removePlayer : function(index){
 		var message = "Supprimer " + players[index].name + " ?";
@@ -52,67 +62,39 @@ angular.module('dataService', [])
                 players.splice(index, 1);
             }
         },
-        addPointsAll : function(){
-            var newPoints = -1;
-            var lastTotal;
-            var total;
-            var endReached = false;
-            for (i=0; i<players.length; i++) {
-                do {
-                    if (isNaN(newPoints)) {
-                        newPoints = prompt("VEUILLEZ ENTRER UN NOMBRE!!!\n" + "Points de " + players[i].name + " :");
-                    } else {
-                        newPoints = prompt("Points de " + players[i].name + " :");
-                    }
-                } while (!newPoints || isNaN(newPoints));
-                lastTotal               = players[i].points[1];
-                total                   = +lastTotal + +newPoints;
-                players[i].points[0]    = lastTotal;
-                players[i].points[1]    = total;
-            }
-            for (i=0; i<players.length; i++) {
-                if (players[i].points[1] >= 200) {endReached = true;}
-            }
-            if (endReached) alert("200 Atteint !");
-        },
-        addPoints : function(index){
-            var newPoints = -1;
-            var lastTotal;
-            var total;
-            var endReached = false;
-            do {
-                if (isNaN(newPoints)) {
-                    newPoints = prompt("VEUILLEZ ENTRER UN NOMBRE!!!\n" + "Points de " + players[index].name + " :" );
-                } else {
-                    newPoints = prompt("Points de " + players[index].name + " :" );
-                }
-            } while (isNaN(newPoints));
-            lastTotal               = players[index].points[1];
-            total                   = +lastTotal + +newPoints;
-            players[index].points[0]    = lastTotal;
-            players[index].points[1]    = total;
-            if (players[index].points[1] >= 200) {endReached = true;}
-            if (endReached) alert("200 Atteint !");
-        },
         resetGame : function(){
             if($window.confirm('Reset le jeu ?')) {
                 for (var i = 0; i<players.length; i++) {
-                    players[i].points[0] = players[i].points[1] = 0;
+                    players[i].points = 0;
                 }
             }
         },
     	sortPlayers : function() {
     		for (var i = players.length-1; i>=0; i--) {
     			var temp;
-    			for (var j=players.length-1; j>=0; j--) {
-    				if (players[j].points[1] < players[i].points[1]) {
-    					temp = players[j];
-    					players[j] = players[i];
-    					players[i] = temp;
+    			for (var j = 1; j <= i; j++) {
+    				if (players[j-1].points > players[j].points) {
+    					temp = players[j-1];
+    					players[j-1] = players[j];
+    					players[j] = temp;
     				}
     			}
     		}
-    	}		
+    	},
+        updateTrends : function() {
+            for (var i = 0; i < players.length; i++) {
+                if (i < players[i].lastIndex) {players[i].trend = 1;}
+                else if (i == players[i].lastIndex) {players[i].trend = 0;}
+                else {players[i].trend = -1;}
+                players[i].evolution = players[i].lastIndex - i;
+                if (players[i].evolution >= 0) {players[i].evolution = '+' + players[i].evolution;}
+            }
+        },
+        checkForEnd : function() {
+            for (var i = 0; i<players.length; i++) {
+                if (players[i].points >= 200) {alert("200 Atteint !");}
+            }
+        }
     }
 })
 .service('presidentService', function($window){
