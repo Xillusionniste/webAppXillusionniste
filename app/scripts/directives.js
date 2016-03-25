@@ -136,6 +136,7 @@ angular.module('buttonDirectives', [])
                 }
                 //Hide points adding row        
                 $scope.showCurrentPlayerButtons(index);
+                $scope.$parent.sortingEnabled = true;
                 $scope.$parent.showInt = true;
             };
 
@@ -150,7 +151,9 @@ angular.module('buttonDirectives', [])
                 lessthantenService.players = $scope.players;
                 //Hide points adding row 
                 $scope.showCurrentPlayerButtons(index);
+                $scope.$parent.sortingEnabled = true;
                 $scope.sortPlayers();
+                $scope.$parent.sortingEnabled = false;
             };
 
             $scope.addTwentyFive = function(){
@@ -164,7 +167,9 @@ angular.module('buttonDirectives', [])
                 if ($scope.sortingEnabled) {$scope.sortPlayers();}
                 //Hide points adding row 
                 $scope.showCurrentPlayerButtons(index);
+                $scope.$parent.sortingEnabled = true;
                 $scope.sortPlayers();
+                $scope.$parent.sortingEnabled = false;
             };
 
             $scope.$watch('focusedPlayer', function() { 

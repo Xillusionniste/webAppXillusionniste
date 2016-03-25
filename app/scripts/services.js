@@ -3,6 +3,7 @@ angular.module('dataService', [])
     var players = [];
     var showInt = false;
     var focusedPlayer = null;
+    var sortingEnabled = true;
 
     var nameExists = function (x){
         var i = 0;

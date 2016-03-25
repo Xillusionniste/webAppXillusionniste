@@ -8,6 +8,7 @@ var truc = angular.module('appliController', ['dataService'])
 .controller('LessthantenController', function($scope,$window,lessthantenService) {
     $scope.players = [];
     $scope.showInt = false;
+    $scope.sortingEnabled = true;
 
     $scope.addPlayerLessThanTen = function() {
         var newPlayer = prompt("Nouveau joueur : ");
@@ -23,11 +24,14 @@ var truc = angular.module('appliController', ['dataService'])
     };
 
     $scope.sortPlayers = function() {
-        $scope.showInt = false;
-        lessthantenService.sortPlayers();
-        lessthantenService.updateTrends();
-        lessthantenService.retreiveIndexes();
-        lessthantenService.checkForEnd();
+        if ($scope.sortingEnabled == true){
+            $scope.showInt = false;
+            lessthantenService.sortPlayers();
+            lessthantenService.updateTrends();
+            lessthantenService.retreiveIndexes();
+            lessthantenService.checkForEnd();
+            $scope.sortingEnabled = false;
+        }
     };
 
     $scope.showCurrentPlayerButtons = function(player) {
@@ -49,12 +53,15 @@ var truc = angular.module('appliController', ['dataService'])
     });
 
     $scope.$watch('sortingEnabled', function() {
-        if ($scope.sortingEnabled) {$scope.sortPlayers();} 
         lessthantenService.sortingEnabled = $scope.sortingEnabled;
     });
 
     $scope.$watch('showInt', function() {
         lessthantenService.showInt = $scope.showInt;
+    });
+
+    $scope.$watch('sortingEnabled', function() {
+        lessthantenService.sortingEnabled = $scope.sortingEnabled;
     });
 
     /*********************************************
