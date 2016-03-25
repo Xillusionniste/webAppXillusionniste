@@ -6,8 +6,17 @@ var truc = angular.module('appliController', ['dataService'])
 })
 
 .controller('LessthantenController', function($scope,$window,lessthantenService) {
+    /*************************
+    $scope.saved = localStorage.getItem('players');
+    $scope.players = (localStorage.getItem('players')!==null) ? JSON.parse($scope.saved) : [ {text: 'Learn AngularJS', done: false}, {text: 'Build an Angular app', done: false} ];
+    localStorage.setItem('players', JSON.stringify($scope.players));
+    */
+    //Dans une fonction qui watch les players :
+    /*
+    localStorage.setItem('todos', JSON.stringify($scope.todos));
+    */
+    /*************************/
     $scope.players = [];
-    $scope.showInt = false;
     $scope.sortingEnabled = true;
 
     $scope.addPlayerLessThanTen = function() {
@@ -23,14 +32,12 @@ var truc = angular.module('appliController', ['dataService'])
         lessthantenService.retreiveIndexes();
     };
 
-    $scope.sortPlayers = function() {
-        if ($scope.sortingEnabled == true){
-            $scope.showInt = false;
+    $scope.sortPlayers = function(force) {
+        if ($scope.sortingEnabled == true || force){
             lessthantenService.sortPlayers();
             lessthantenService.updateTrends();
             lessthantenService.retreiveIndexes();
             lessthantenService.checkForEnd();
-            $scope.sortingEnabled = false;
         }
     };
 
@@ -49,20 +56,18 @@ var truc = angular.module('appliController', ['dataService'])
     };
 
     $scope.$watch(function(){return lessthantenService.getSize();},function(newVal){
+        console.log('WATCH: <players>');
         $scope.players = lessthantenService.getPlayers();
     });
 
-    $scope.$watch('sortingEnabled', function() {
-        lessthantenService.sortingEnabled = $scope.sortingEnabled;
-    });
 
-    $scope.$watch('showInt', function() {
-        lessthantenService.showInt = $scope.showInt;
-    });
-
-    $scope.$watch('sortingEnabled', function() {
-        lessthantenService.sortingEnabled = $scope.sortingEnabled;
-    });
+    $scope.$watch(
+        function(){return "<"+lessthantenService.getSortingEnabled()+">";},
+        function(newVal){
+            console.log('WATCH: <sortingEnabled>',newVal);
+            $scope.sortingEnabled = lessthantenService.getSortingEnabled();
+        }
+    );
 
     /*********************************************
         IF VIEW CHANGED, CLOSE ALL THE PLAYER ROWS
