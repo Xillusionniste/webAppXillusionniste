@@ -42,6 +42,7 @@ var truc = angular.module('appliController', ['dataService'])
 
     $scope.resetGame = function() {
         lessthantenService.resetGame();
+        alert('Hello');
     };
 
     $scope.$watch(function(){return lessthantenService.getSize();},function(newVal){
