@@ -16,9 +16,14 @@ angular.module('buttonDirectives', [])
         templateUrl: "app/web/buttons/resetButton.html"
     };
 })
-.directive("refreshButton", function() {
+.directive("refreshDisabledButton", function() {
     return {
-        templateUrl: "app/web/buttons/refreshButton.html"
+        templateUrl: "app/web/buttons/refreshDisabledButton.html"
+    };
+})
+.directive("refreshEnabledButton", function() {
+    return {
+        templateUrl: "app/web/buttons/refreshEnabledButton.html"
     };
 })
 .directive("helpButton", function() {
@@ -136,10 +141,26 @@ angular.module('buttonDirectives', [])
                 }
                 //Hide points adding row        
                 $scope.showCurrentPlayerButtons(index);
-                $scope.$parent.sortingEnabled = true;
-                $scope.$parent.showInt = true;
+                lessthantenService.updateSortingEnabled(true);
+                console.log(lessthantenService.sortingEnabled);
+                console.log($scope.$parent.sortingEnabled);
+                console.log($scope.$parent);
             };
 
+
+            $scope.addTwentyFive = function(){
+                var index = $scope.focusedPlayer;
+                var lastTotal = $scope.players[index].points;
+                var total = +lastTotal + +25;
+                $scope.players[index].points = total;
+                $scope.showButtons = false;
+                $scope.focusedPlayer = null;
+                lessthantenService.players = $scope.players;
+                //Hide points adding row 
+                $scope.showCurrentPlayerButtons(index);
+                lessthantenService.updateSortingEnabled(true);
+                $scope.$parent.sortPlayers(true);
+            };
 
             $scope.addFifty = function(focusedPlayer){
                 var index = $scope.focusedPlayer;
@@ -151,25 +172,8 @@ angular.module('buttonDirectives', [])
                 lessthantenService.players = $scope.players;
                 //Hide points adding row 
                 $scope.showCurrentPlayerButtons(index);
-                $scope.$parent.sortingEnabled = true;
-                $scope.sortPlayers();
-                $scope.$parent.sortingEnabled = false;
-            };
-
-            $scope.addTwentyFive = function(){
-                var index = $scope.focusedPlayer;
-                var lastTotal = $scope.players[index].points;
-                var total = +lastTotal + +25;
-                $scope.players[index].points = total;
-                $scope.showButtons = false;
-                $scope.focusedPlayer = null;
-                lessthantenService.players = $scope.players;
-                if ($scope.sortingEnabled) {$scope.sortPlayers();}
-                //Hide points adding row 
-                $scope.showCurrentPlayerButtons(index);
-                $scope.$parent.sortingEnabled = true;
-                $scope.sortPlayers();
-                $scope.$parent.sortingEnabled = false;
+                lessthantenService.updateSortingEnabled(true);
+                $scope.$parent.sortPlayers(true);
             };
 
             $scope.$watch('focusedPlayer', function() { 

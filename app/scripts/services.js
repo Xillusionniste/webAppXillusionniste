@@ -1,9 +1,8 @@
 angular.module('dataService', [])
 .service('lessthantenService', function($window){
     var players = [];
-    var showInt = false;
     var focusedPlayer = null;
-    var sortingEnabled = true;
+    var sortingEnabled = false;
 
     var nameExists = function (x){
         var i = 0;
@@ -51,6 +50,7 @@ angular.module('dataService', [])
                             }
                 players.push(data);
             } else alert(newPlayer.toUpperCase() + " existe deja !");
+            sortingEnabled = true;
         },
         retreiveIndexes : function(){
             for (var i = 0; i<players.length; i++) {
@@ -67,6 +67,9 @@ angular.module('dataService', [])
             if($window.confirm('Reset le jeu ?')) {
                 for (var i = 0; i<players.length; i++) {
                     players[i].points = 0;
+                    players[i].showButtons = false;
+                    players[i].trend = 0;
+                    players[i].evolution = '+0';
                 }
             }
         },
@@ -81,6 +84,7 @@ angular.module('dataService', [])
     				}
     			}
     		}
+            sortingEnabled = false;
     	},
         updateTrends : function() {
             for (var i = 0; i < players.length; i++) {
@@ -95,6 +99,12 @@ angular.module('dataService', [])
             for (var i = 0; i<players.length; i++) {
                 if (players[i].points >= 200) {alert("200 Atteint !");}
             }
+        },
+        updateSortingEnabled : function(value){
+            sortingEnabled = value;
+        },
+        getSortingEnabled : function(){
+            return sortingEnabled;
         }
     }
 })
