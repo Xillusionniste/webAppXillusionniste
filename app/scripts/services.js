@@ -1,6 +1,7 @@
 angular.module('dataService', [])
 .service('lessthantenService', function($window){
     var players = [];
+    var saved = localStorage.getItem('players');
     var focusedPlayer = null;
     var sortingEnabled = false;
 
@@ -38,6 +39,15 @@ angular.module('dataService', [])
         },
         getPlayers : function(){
             return players;
+        },
+        getPlayersFromLocalSession : function(){
+            players = (localStorage.getItem('players')!==null) ? 
+                        JSON.parse(localStorage.getItem('players')) : 
+                        [ {text: 'Learn AngularJS', done: false}, {text: 'Build an Angular app', done: false} ];
+            return players;
+        },
+        pushDataIntoLocalSession : function(){
+            localStorage.setItem('players', JSON.stringify(players));
         },
         addPlayerLessThanTen : function(newPlayer){
             if (!nameExists(newPlayer)) {

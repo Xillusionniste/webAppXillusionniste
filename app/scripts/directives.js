@@ -134,11 +134,11 @@ angular.module('buttonDirectives', [])
                 var index = $scope.focusedPlayer;
                 var lastTotal;
                 if (!isNaN($scope.newPoints) && ($scope.newPoints != null)) {
-                    lastTotal = $scope.players[index].points
+                    lastTotal = $scope.players[index].points;
                     var total = +lastTotal + $scope.newPoints;
                     $scope.newPoints = null;
                     $scope.players[index].points = total;
-                    lessthantenService.players = $scope.players;
+                    //lessthantenService.players = $scope.players;
                     $scope.showButtons = false;
                 } else {
                     alert("Nombre non valide !");
@@ -147,9 +147,6 @@ angular.module('buttonDirectives', [])
                 //Hide points adding row        
                 $scope.showCurrentPlayerButtons(index);
                 lessthantenService.updateSortingEnabled(true);
-                console.log(lessthantenService.sortingEnabled);
-                console.log($scope.$parent.sortingEnabled);
-                console.log($scope.$parent);
             };
 
 
