@@ -101,6 +101,11 @@ angular.module('buttonDirectives', [])
         templateUrl: "app/web/buttons/trendDownIcon.html"
     };
 })
+.directive("arrowDownIcon", function() {
+    return {
+        templateUrl: "app/web/buttons/arrowDownIcon.html"
+    };
+})
 .directive("addPlayerPresidentButton", function() {
     return {
         templateUrl: "app/web/buttons/addPlayerPresidentButton.html"
