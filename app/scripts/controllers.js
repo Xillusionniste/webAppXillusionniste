@@ -6,7 +6,11 @@ var truc = angular.module('appliController', ['dataService'])
 })
 
 .controller('LessthantenController', function($scope,$window,lessthantenService) {
-    $scope.players = [];
+
+    $scope.players = lessthantenService.getPlayersFromLocalSession();
+    //console.log('Super Players');
+    //console.log($scope.players);
+    //$scope.players = [];
     $scope.sortingEnabled = true;
 
     $scope.addPlayerLessThanTen = function() {
@@ -15,15 +19,18 @@ var truc = angular.module('appliController', ['dataService'])
         lessthantenService.addPlayerLessThanTen(newPlayer);
         lessthantenService.sortPlayers();
         lessthantenService.retreiveIndexes();
+        lessthantenService.pushDataIntoLocalSession();
     };
 
     $scope.removePlayer = function(index) {
         lessthantenService.removePlayer(index);
         lessthantenService.retreiveIndexes();
+        lessthantenService.pushDataIntoLocalSession();
     };
 
     $scope.removeAllPlayers = function() {
         lessthantenService.removeAllPlayers();
+        lessthantenService.pushDataIntoLocalSession();
     };
 
     $scope.sortPlayers = function(force) {
@@ -32,6 +39,7 @@ var truc = angular.module('appliController', ['dataService'])
             lessthantenService.updateTrends();
             lessthantenService.retreiveIndexes();
             lessthantenService.checkForEnd();
+            lessthantenService.pushDataIntoLocalSession();
         }
     };
 
@@ -43,14 +51,15 @@ var truc = angular.module('appliController', ['dataService'])
                 $scope.players[i].showButtons = false;
             }
         }
+        lessthantenService.pushDataIntoLocalSession();
     };
 
     $scope.resetGame = function() {
         lessthantenService.resetGame();
+        lessthantenService.pushDataIntoLocalSession();
     };
 
     $scope.$watch(function(){return lessthantenService.getSize();},function(newVal){
-        console.log('WATCH: <players>');
         $scope.players = lessthantenService.getPlayers();
     });
 
@@ -58,7 +67,6 @@ var truc = angular.module('appliController', ['dataService'])
     $scope.$watch(
         function(){return "<"+lessthantenService.getSortingEnabled()+">";},
         function(newVal){
-            console.log('WATCH: <sortingEnabled>',newVal);
             $scope.sortingEnabled = lessthantenService.getSortingEnabled();
         }
     );
@@ -70,8 +78,7 @@ var truc = angular.module('appliController', ['dataService'])
         for (var i = 0 ; i<$scope.players.length; i++) {
             $scope.players[i].showButtons = false;
         }
-     });
-
+    });
 
 })
 .controller('presidentController',function($scope,$window,presidentService) {
