@@ -6,16 +6,6 @@ var truc = angular.module('appliController', ['dataService'])
 })
 
 .controller('LessthantenController', function($scope,$window,lessthantenService) {
-    /*************************
-    $scope.saved = localStorage.getItem('players');
-    $scope.players = (localStorage.getItem('players')!==null) ? JSON.parse($scope.saved) : [ {text: 'Learn AngularJS', done: false}, {text: 'Build an Angular app', done: false} ];
-    localStorage.setItem('players', JSON.stringify($scope.players));
-    */
-    //Dans une fonction qui watch les players :
-    /*
-    localStorage.setItem('todos', JSON.stringify($scope.todos));
-    */
-    /*************************/
     $scope.players = [];
     $scope.sortingEnabled = true;
 
@@ -30,6 +20,10 @@ var truc = angular.module('appliController', ['dataService'])
     $scope.removePlayer = function(index) {
         lessthantenService.removePlayer(index);
         lessthantenService.retreiveIndexes();
+    };
+
+    $scope.removeAllPlayers = function() {
+        lessthantenService.removeAllPlayers();
     };
 
     $scope.sortPlayers = function(force) {

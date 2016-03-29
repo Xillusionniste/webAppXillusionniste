@@ -63,6 +63,16 @@ angular.module('dataService', [])
                 players.splice(index, 1);
             }
         },
+        removeAllPlayers : function(){
+            if (players.length != 0) {
+            var message = "Supprimer tous les joueurs ?";
+                if($window.confirm(message)) {
+                    for (var i = players.length; i >=0 ; i--) {
+                        players.splice(i, 1);
+                    }
+                }    
+            }
+        },
         resetGame : function(){
             if($window.confirm('Reset le jeu ?')) {
                 for (var i = 0; i<players.length; i++) {
