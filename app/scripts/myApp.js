@@ -18,6 +18,12 @@ var app = angular.module('myApp', [
             templateUrl: 'app/partials/lessthanten.html',
             controller: 'LessthantenController'
         })
+        .when('/lessthantenhelp', {
+            templateUrl: 'app/partials/lessthantenhelp.html'
+        })
+        .when('/lessthantenbuttons', {
+            templateUrl: 'app/partials/lessthantenbuttons.html'
+        })
         .when('/lessthantenrules', {
             templateUrl: 'app/partials/lessthantenrules.html',
         })

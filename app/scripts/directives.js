@@ -6,9 +6,14 @@ angular.module('buttonDirectives', [])
         templateUrl: "app/web/buttons/addPlayerLessThanTenButton.html"
     };
 })
-.directive("removeButton", function() {
+.directive("removePlayerButton", function() {
     return {
-        templateUrl: "app/web/buttons/removeButton.html"
+        templateUrl: "app/web/buttons/removePlayerButton.html"
+    };
+})
+.directive("removeAllPlayersButton", function() {
+    return {
+        templateUrl: "app/web/buttons/removeAllPlayersButton.html"
     };
 })
 .directive("resetButton", function() {
