@@ -132,13 +132,13 @@ var truc = angular.module('appliController', ['dataService'])
 
     $scope.showRanking = function() {
         alert('*RAPPEL* \nOrdre des places :\n\n' +
-            '1. Empereur\n' +
-            '2. Prés.\n' +
-            '3. V.Prés\n' +
+            '1. (Empereur)\n' +
+            '2. Pr\351sident\n' +
+            '3. Vice-Pr\351sident\n' +
             '4. Neutre\n' +
-            '5. V.Troud\n' +
-            '6. Troud\n' +
-            '7. Cloporte');
+            '5. Vice-Trouduc\n' +
+            '6. Trouduc\n' +
+            '7. (Cloporte)');
     };
 
     $scope.$watch(function(){return presidentService.getSize();},function(newVal){
