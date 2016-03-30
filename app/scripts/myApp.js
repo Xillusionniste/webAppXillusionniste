@@ -31,6 +31,18 @@ var app = angular.module('myApp', [
             templateUrl: 'app/partials/president.html',
             controller: 'presidentController'
         })
+        .when('/presidenthelp', {
+            templateUrl: 'app/partials/presidenthelp.html'
+        })
+        .when('/presidentbuttons', {
+            templateUrl: 'app/partials/presidentbuttons.html'
+        })
+        .when('/presidentrules', {
+            templateUrl: 'app/partials/presidentrules.html',
+        })
+        .when('/presidentroles', {
+            templateUrl: 'app/partials/presidentroles.html',
+        })
         .otherwise({
             redirectTo: '/home'
         });

@@ -1,7 +1,7 @@
 angular.module('dataService', [])
 .service('lessthantenService', function($window){
     var players = [];
-    var saved = localStorage.getItem('players');
+    var saved = localStorage.getItem('players.lessthanten');
     var focusedPlayer = null;
     var sortingEnabled = false;
 
@@ -41,14 +41,14 @@ angular.module('dataService', [])
             return players;
         },
         getPlayersFromLocalSession : function(){
-            players = (localStorage.getItem('players')!==null) ? 
-                        JSON.parse(localStorage.getItem('players')) : [];
+            players = (localStorage.getItem('players.lessthanten')!==null) ? 
+                        JSON.parse(localStorage.getItem('players.lessthanten')) : [];
             return players;
         },
         pushDataIntoLocalSession : function(){
-            localStorage.setItem('players', JSON.stringify(players));
+            localStorage.setItem('players.lessthanten', JSON.stringify(players));
         },
-        addPlayerLessThanTen : function(newPlayer){
+        addPlayer : function(newPlayer){
             if (!nameExists(newPlayer)) {
                 var data =  {   name:   newPlayer,
                                 points: averagePoints(),
@@ -129,6 +129,9 @@ angular.module('dataService', [])
 })
 .service('presidentService', function($window){
     var players = [];
+    var saved = localStorage.getItem('players.president');
+    var focusedPlayer = null;
+    var sortingEnabled = false;
 
     var nameExists = function (x){
         var i = 0;
@@ -149,27 +152,85 @@ angular.module('dataService', [])
         getPlayers : function(){
             return players;
         },
-        addPlayerPresident : function(newPlayer){
+        getPlayersFromLocalSession : function(){
+            players = (localStorage.getItem('players.president')!==null) ? 
+                        JSON.parse(localStorage.getItem('players.president')) : [];
+            return players;
+        },
+        pushDataIntoLocalSession : function(){
+            localStorage.setItem('players.president', JSON.stringify(players));
+        },
+        addPlayer : function(newPlayer){
             if (!nameExists(newPlayer)) {
-                var data =  {   name:   newPlayer,
-                                role: 2,
-                                trend: 1
+                var data =  {   name: newPlayer,
+                                role: 3,
+                                showButtons: false,
+                                trend : 0,
+                                evolution: '+0',
+                                lastIndex : -1
                             }
                 players.push(data);
-            } else alert(newPlayer.toUpperCase() + " existe déjà!");
+            } else alert(newPlayer.toUpperCase() + " existe deja !");
+            sortingEnabled = true;
         },
         removePlayer : function(index){
-            if($window.confirm('Supprimer ce joueur ?')) {
+            var message = "Supprimer " + players[index].name + " ?";
+            if($window.confirm(message)) {
                 players.splice(index, 1);
             }
+        },
+        removeAllPlayers : function(){
+            if (players.length != 0) {
+            var message = "Supprimer tous les joueurs ?";
+                if($window.confirm(message)) {
+                    for (var i = players.length; i >=0 ; i--) {
+                        players.splice(i, 1);
+                    }
+                }    
+            }
+        },
+        retreiveIndexes : function(){
+            for (var i = 0; i<players.length; i++) {
+                    players[i].lastIndex = i;
+                }
         },
         resetGame : function(){
             if($window.confirm('Reset le jeu ?')) {
                 for (var i = 0; i<players.length; i++) {
-                    players[i].role = 2;
-                    players[i].trend = 1;
+                    players[i].role = 3;
+                    players[i].showButtons = false;
+                    players[i].trend = 0;
+                    players[i].evolution = '+0';
                 }
             }
+        },
+        sortPlayers : function() {
+            for (var i = players.length-1; i>=0; i--) {
+                var temp;
+                for (var j = 1; j <= i; j++) {
+                    if (players[j-1].role < players[j].role) {
+                        temp = players[j-1];
+                        players[j-1] = players[j];
+                        players[j] = temp;
+                    }
+                }
+            }
+            sortingEnabled = false;
+        },
+        updateTrends : function() {
+            for (var i = 0; i < players.length; i++) {
+                if (i < players[i].lastIndex) {players[i].trend = 1;}
+                else if (i == players[i].lastIndex) {players[i].trend = 0;}
+                else {players[i].trend = -1;}
+                players[i].evolution = players[i].lastIndex - i;
+                if (players[i].evolution >= 0) {players[i].evolution = '+' + players[i].evolution;}
+            }
+        },
+        updateSortingEnabled : function(value){
+            sortingEnabled = value;
+        },
+        getSortingEnabled : function(){
+            return sortingEnabled;
         }
     }
 });

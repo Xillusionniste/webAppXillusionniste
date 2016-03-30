@@ -13,10 +13,10 @@ var truc = angular.module('appliController', ['dataService'])
     //$scope.players = [];
     $scope.sortingEnabled = true;
 
-    $scope.addPlayerLessThanTen = function() {
+    $scope.addPlayer = function() {
         var newPlayer = prompt("Nouveau joueur : ");
         if (!newPlayer) {return;}
-        lessthantenService.addPlayerLessThanTen(newPlayer);
+        lessthantenService.addPlayer(newPlayer);
         lessthantenService.sortPlayers();
         lessthantenService.retreiveIndexes();
         lessthantenService.pushDataIntoLocalSession();
@@ -82,28 +82,82 @@ var truc = angular.module('appliController', ['dataService'])
 
 })
 .controller('presidentController',function($scope,$window,presidentService) {
-    $scope.players      = [];
-    $scope.trendIcons    = [
-        "app/web/img/icons/ic_trending_down_black_18px.svg",
-        "app/web/img/icons/ic_trending_flat_black_18px.svg",
-        "app/web/img/icons/ic_trending_up_black_18px.svg"
-    ];
+    $scope.players = presidentService.getPlayersFromLocalSession();
+    $scope.sortingEnabled = true;
 
-    $scope.addPlayerPresident = function() {
+    $scope.addPlayer = function() {
         var newPlayer = prompt("Nouveau joueur : ");
         if (!newPlayer) {return;}
-        presidentService.addPlayerPresident(newPlayer);
+        presidentService.addPlayer(newPlayer);
+        presidentService.sortPlayers();
+        presidentService.retreiveIndexes();
+        presidentService.pushDataIntoLocalSession();
+    };
+
+    $scope.removePlayer = function(index) {
+        presidentService.removePlayer(index);
+        presidentService.retreiveIndexes();
+        presidentService.pushDataIntoLocalSession();
+    };
+
+    $scope.removeAllPlayers = function() {
+        presidentService.removeAllPlayers();
+        presidentService.pushDataIntoLocalSession();
+    };
+
+    $scope.sortPlayers = function(force) {
+        if ($scope.sortingEnabled == true || force){
+            presidentService.sortPlayers();
+            presidentService.updateTrends();
+            presidentService.retreiveIndexes();
+            presidentService.pushDataIntoLocalSession();
+        }
+    };
+
+    $scope.showCurrentPlayerButtons = function(player) {
+        for (var i = 0; i<$scope.players.length ; i++ ) {
+            if (i == player) {
+                $scope.players[player].showButtons = !$scope.players[player].showButtons   
+            } else {
+                $scope.players[i].showButtons = false;
+            }
+        }
+        presidentService.pushDataIntoLocalSession();
+    };
+
+    $scope.resetGame = function() {
+        presidentService.resetGame();
+        presidentService.pushDataIntoLocalSession();
+    };
+
+    $scope.showRanking = function() {
+        alert('*RAPPEL* \nOrdre des places :\n\n' +
+            '1. Empereur\n' +
+            '2. Prés.\n' +
+            '3. V.Prés\n' +
+            '4. Neutre\n' +
+            '5. V.Troud\n' +
+            '6. Troud\n' +
+            '7. Cloporte');
     };
 
     $scope.$watch(function(){return presidentService.getSize();},function(newVal){
         $scope.players = presidentService.getPlayers();
     });
 
-    $scope.removePlayer = function(index) {
-        presidentService.removePlayer(index);
-    };
+    $scope.$watch(
+        function(){return "<"+presidentService.getSortingEnabled()+">";},
+        function(newVal){
+            $scope.sortingEnabled = presidentService.getSortingEnabled();
+        }
+    );
 
-    $scope.resetGame = function() {
-        presidentService.resetGame();
-    };
+    /*********************************************
+        IF VIEW CHANGED, CLOSE ALL THE PLAYER ROWS
+    **********************************************/
+    $scope.$on('$routeChangeStart', function() { 
+        for (var i = 0 ; i<$scope.players.length; i++) {
+            $scope.players[i].showButtons = false;
+        }
+    });
 });

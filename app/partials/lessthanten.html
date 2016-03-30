@@ -6,7 +6,7 @@
 
 <div>
         <reset-button></reset-button>
-        <help-button></help-button>
+        <help-lessthanten-button></help-lessthanten-button>
         <span ng-show="sortingEnabled">
             <refresh-enabled-button></refresh-enabled-button>
         </span>
@@ -17,24 +17,24 @@
     <table class="table">
         <thead>
             <tr style="background-color: #E0F7FA;">
-                <th style="vertical-align: middle; text-align: center;" class="bold">
+                <th style="vertical-align: middle;" class="bold">
                     <remove-all-players-button></remove-all-players-button>
                     Joueurs
-                    <add-player-less-than-ten-button>
-                    </add-player-less-than-ten-button>
+                    <add-player-button>
+                    </add-player-button>
                 </th>
-                <th style="vertical-align: middle; text-align: center;" class="bold">
+                <th style="vertical-align: middle;" class="bold">
                     Evol.
                     <trend-up-button></trend-up-button>
                 </th>
-                <th style="vertical-align: middle; text-align: center;" class="bold">
+                <th style="vertical-align: middle;" class="bold">
                     Total
                     <dummy-button2></dummy-button2>
                 </th>
             </tr>
          </thead>
         <tbody>
-            <tr ng-repeat="player in players" data-player-row></tr>
+            <tr ng-repeat="player in players" ng-class="{selected: player.showButtons}" data-player-row-lessthanten></tr>
         </tbody>
     </table>
 </div>

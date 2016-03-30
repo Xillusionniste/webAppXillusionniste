@@ -1,0 +1,63 @@
+<!--NAME-->
+<td style="vertical-align: middle;" ng-click="setSelected($index)">
+    <remove-player-button></remove-player-button>
+    {{player.name}}
+</td>
+<!--TREND-->
+<td style="vertical-align: middle;">
+    <div ng-show="player.trend == -1">
+        <trend-down-icon></trend-down-icon> {{player.evolution}}
+    </div>
+    <div ng-show="player.trend == 0">
+        <trend-flat-icon></trend-flat-icon> {{player.evolution}}
+    </div>
+    <div ng-show="player.trend == 1">
+        <trend-up-icon></trend-up-icon> {{player.evolution}}
+    </div>
+</td>
+<!--ROLE-->
+<td style="vertical-align: middle;">
+    
+    <div ng-show="player.role==6"><role-six></role-six></div>
+    <div ng-show="player.role==5"><role-five></role-five></div>
+    <div ng-show="player.role==4"><role-four></role-four></div>
+    <div ng-show="player.role==3"><role-three></role-three></div>
+    <div ng-show="player.role==2"><role-two></role-two></div>
+    <div ng-show="player.role==1"><role-one></role-one></div>
+    <div ng-show="player.role==0"><role-zero></role-zero></div>
+    <div ng-show="player.showButtons">
+
+        <div ng-cloak>
+            <div>
+                <div layout="row">
+                    <md-input-container style="margin-right: 10px;">
+                        <label>Nouveau rôle</label>
+                        <md-select ng-model="roleSelect">
+                            <md-optgroup label="Rôle">
+                                <md-option value="6"><role-six-disabled></role-six-disabled>      Empereur    </md-option>
+                                <md-option value="5"><role-five-disabled></role-five-disabled>    Président   </md-option>
+                                <md-option value="4"><role-four-disabled></role-four-disabled>    V.Président </md-option>
+                                <md-option value="3"><role-three-disabled></role-three-disabled>  Neutre      </md-option>
+                                <md-option value="2"><role-two-disabled></role-two-disabled>      V.Trouduc   </md-option>
+                                <md-option value="1"><role-one-disabled></role-one-disabled>      Trouduc     </md-option>
+                                <md-option value="0"><role-zero-disabled></role-zero-disabled>    Cloporte    </md-option>
+                            </md-optgroup>
+                        </md-select>
+                        <md-button class="md-raised md-primary" ng-click="changeRole(roleSelect)">OK</md-button>
+                    </md-input-container>
+                </div>
+            </div>
+        </div>
+    <!--
+            <md-input-container class="md-block" flex-gt-sm>
+                <role-six-clickable></role-six-clickable>
+                <role-five-clickable></role-five-clickable>
+                <role-four-clickable></role-four-clickable>
+                <role-three-clickable></role-three-clickable>
+                <role-two-clickable></role-two-clickable>
+                <role-one-clickable></role-one-clickable>
+                <role-zero-clickable></role-zero-clickable>
+            </md-input-container>    
+    -->
+    </div>
+</td>

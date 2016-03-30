@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('buttonDirectives', [])
-.directive("addPlayerLessThanTenButton", function() {
+.directive("addPlayerButton", function() {
     return {
-        templateUrl: "app/web/buttons/addPlayerLessThanTenButton.html"
+        templateUrl: "app/web/buttons/addPlayerButton.html"
     };
 })
 .directive("removePlayerButton", function() {
@@ -31,9 +31,14 @@ angular.module('buttonDirectives', [])
         templateUrl: "app/web/buttons/refreshEnabledButton.html"
     };
 })
-.directive("helpButton", function() {
+.directive("helpLessthantenButton", function() {
     return {
-        templateUrl: "app/web/buttons/helpButton.html"
+        templateUrl: "app/web/buttons/helpLessthantenButton.html"
+    };
+})
+.directive("helpPresidentButton", function() {
+    return {
+        templateUrl: "app/web/buttons/helpPresidentButton.html"
     };
 })
 .directive("dummyButton", function() {
@@ -46,9 +51,24 @@ angular.module('buttonDirectives', [])
         templateUrl: "app/web/buttons/dummyButton2.html"
     };
 })
+.directive("dummyButton3", function() {
+    return {
+        templateUrl: "app/web/buttons/dummyButton3.html"
+    };
+})
+.directive("roleButton", function() {
+    return {
+        templateUrl: "app/web/buttons/roleButton.html"
+    };
+})
 .directive("roleZero", function() {
     return {
         templateUrl: "app/web/buttons/roleZero.html"
+    };
+})
+.directive("roleZeroDisabled", function() {
+    return {
+        templateUrl: "app/web/buttons/roleZeroDisabled.html"
     };
 })
 .directive("roleOne", function() {
@@ -56,9 +76,19 @@ angular.module('buttonDirectives', [])
         templateUrl: "app/web/buttons/roleOne.html"
     };
 })
+.directive("roleOneDisabled", function() {
+    return {
+        templateUrl: "app/web/buttons/roleOneDisabled.html"
+    };
+})
 .directive("roleTwo", function() {
     return {
         templateUrl: "app/web/buttons/roleTwo.html"
+    };
+})
+.directive("roleTwoDisabled", function() {
+    return {
+        templateUrl: "app/web/buttons/roleTwoDisabled.html"
     };
 })
 .directive("roleThree", function() {
@@ -66,9 +96,19 @@ angular.module('buttonDirectives', [])
         templateUrl: "app/web/buttons/roleThree.html"
     };
 })
+.directive("roleThreeDisabled", function() {
+    return {
+        templateUrl: "app/web/buttons/roleThreeDisabled.html"
+    };
+})
 .directive("roleFour", function() {
     return {
         templateUrl: "app/web/buttons/roleFour.html"
+    };
+})
+.directive("roleFourDisabled", function() {
+    return {
+        templateUrl: "app/web/buttons/roleFourDisabled.html"
     };
 })
 .directive("roleFive", function() {
@@ -76,9 +116,19 @@ angular.module('buttonDirectives', [])
         templateUrl: "app/web/buttons/roleFive.html"
     };
 })
+.directive("roleFiveDisabled", function() {
+    return {
+        templateUrl: "app/web/buttons/roleFiveDisabled.html"
+    };
+})
 .directive("roleSix", function() {
     return {
         templateUrl: "app/web/buttons/roleSix.html"
+    };
+})
+.directive("roleSixDisabled", function() {
+    return {
+        templateUrl: "app/web/buttons/roleSixDisabled.html"
     };
 })
 .directive("trendUpButton", function() {
@@ -106,15 +156,10 @@ angular.module('buttonDirectives', [])
         templateUrl: "app/web/buttons/arrowDownIcon.html"
     };
 })
-.directive("addPlayerPresidentButton", function() {
-    return {
-        templateUrl: "app/web/buttons/addPlayerPresidentButton.html"
-    };
-})
-.directive("playerRow", function(lessthantenService) {
+.directive("playerRowLessthanten", function(lessthantenService) {
     return {
         restrict : 'A',
-        templateUrl : "app/web/templates/playerRow.html",
+        templateUrl : "app/web/templates/playerRowLessthanten.html",
         controller: function($scope){
             $scope.newPoints = null;
             $scope.focusedPlayer = null;
@@ -185,6 +230,42 @@ angular.module('buttonDirectives', [])
 
             $scope.$watch('focusedPlayer', function() { 
                 lessthantenService.focusedPlayer = $scope.focusedPlayer;
+            });
+        }
+    }
+}).directive("playerRowPresident", function(presidentService) {
+    return {
+        restrict : 'A',
+        templateUrl : "app/web/templates/playerRowPresident.html",
+        controller: function($scope){
+            $scope.newPoints = null;
+            $scope.focusedPlayer = null;
+            $scope.currentPlayerName = null;
+
+            $scope.setSelected = function (focusedPlayer) {
+                //Only to simplify the code
+                var showButtons = $scope.players[focusedPlayer].showButtons
+
+                $scope.focusedPlayer = focusedPlayer;
+                //Open the buttons for the selected player
+                $scope.showCurrentPlayerButtons(focusedPlayer);
+                //Set name to be displayed for adding points
+                $scope.currentPlayerName = $scope.players[focusedPlayer].name;
+                //Reset focusedPlayer (also to remove row background color)
+                if (showButtons === true) {$scope.focusedPlayer = null;}
+            };
+
+            $scope.changeRole = function(data) {            
+                var index = $scope.focusedPlayer;
+                $scope.players[index].role = data;
+                $scope.showButtons = false;
+                //Hide points adding row        
+                $scope.showCurrentPlayerButtons(index);
+                presidentService.updateSortingEnabled(true);
+            };
+
+            $scope.$watch('focusedPlayer', function() { 
+                presidentService.focusedPlayer = $scope.focusedPlayer;
             });
         }
     }

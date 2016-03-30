@@ -42,7 +42,8 @@ td {
   margin-right: 7px; }
 .buttondemoBasicUsage section .md-button {
   margin-top: 16px;
-  margin-bottom: 16px; }
+  margin-bottom: 16px;
+  background-color: yellow; }
 .buttondemoBasicUsage .label {
   position: absolute;
   bottom: 5px;

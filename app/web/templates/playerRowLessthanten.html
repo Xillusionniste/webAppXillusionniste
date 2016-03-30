@@ -1,10 +1,10 @@
 <!--NAME-->
-<td style="vertical-align: middle;" ng-click="setSelected($index)" ng-class="{selected: player.showButtons}">
+<td style="vertical-align: middle;" ng-click="setSelected($index)">
     <remove-player-button></remove-player-button>
     {{player.name}}
 </td>
-<!--LAST TOTAL-->
-<td style="vertical-align: middle; text-align: center;">
+<!--TREND-->
+<td style="vertical-align: middle;">
     <div ng-show="player.trend == -1">
         <trend-down-icon></trend-down-icon> {{player.evolution}}
     </div>
@@ -21,7 +21,7 @@
     </div>
 </td>
 <!--TOTAL-->
-<td  style="vertical-align: middle; text-align: center;" class="bold">
+<td  style="vertical-align: middle;" class="bold">
     {{player.points}}
     <div ng-show="player.showButtons">
         <div layout-gt-sm="row">
