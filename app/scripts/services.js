@@ -42,8 +42,7 @@ angular.module('dataService', [])
         },
         getPlayersFromLocalSession : function(){
             players = (localStorage.getItem('players')!==null) ? 
-                        JSON.parse(localStorage.getItem('players')) : 
-                        [ {text: 'Learn AngularJS', done: false}, {text: 'Build an Angular app', done: false} ];
+                        JSON.parse(localStorage.getItem('players')) : [];
             return players;
         },
         pushDataIntoLocalSession : function(){
