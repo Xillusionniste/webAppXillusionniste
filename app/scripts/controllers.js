@@ -81,7 +81,7 @@ var truc = angular.module('appliController', ['dataService'])
     });
 
 })
-.controller('presidentController',function($scope,$window,presidentService) {
+.controller('PresidentController',function($scope,$window,presidentService) {
     $scope.players = presidentService.getPlayersFromLocalSession();
     $scope.sortingEnabled = true;
 
@@ -160,4 +160,68 @@ var truc = angular.module('appliController', ['dataService'])
             $scope.players[i].showButtons = false;
         }
     });
+})
+.controller('ScopaController',function($scope,$window,scopaService) {   
+
+    $scope.players = scopaService.getPlayersFromLocalSession();
+    $scope.validateEnabled = false;
+    $scope.continueEnabled = false;
+    $scope.goals0 = [false,false,false,false,0];
+    $scope.goals1 = [false,false,false,false,0];
+
+    $scope.editPlayer = function(index) {
+        var newPlayer = prompt("Nom du joueur : ");
+        if (!newPlayer) {return;}
+        scopaService.editPlayer(newPlayer,index);
+        scopaService.pushDataIntoLocalSession();
+    };
+
+    $scope.validate = function() {
+        $scope.updateGoals();
+        scopaService.validate();
+
+    };
+
+    $scope.continue = function() {
+        scopaService.continue();
+    };
+
+    $scope.updateGoals = function() {
+        scopaService.updateGoals($scope.goals0, $scope.goals1);
+    };
+
+    $scope.updateValidateEnabled = function() {
+        scopaService.updateValidateEnabled(true);
+    };
+
+    $scope.updateContinueEnabled = function() {
+        scopaService.updateContinueEnabled(true);
+    };
+
+    $scope.$watch(
+        function(){return "<"+scopaService.getValidateEnabled()+">";},
+        function(newVal){
+            $scope.validateEnabled = scopaService.getValidateEnabled();
+        }
+    );
+
+    $scope.$watch(
+        function(){return "<"+scopaService.getContinueEnabled()+">";},
+        function(newVal){
+            $scope.continueEnabled = scopaService.getContinueEnabled();
+        }
+    );
+
+    $scope.$watch(
+        function(){return "<"+scopaService.getGoals0()+">";},
+        function(newVal){
+            $scope.goals0 = scopaService.getGoals0();
+        }
+    );
+    $scope.$watch(
+        function(){return "<"+scopaService.getGoals1()+">";},
+        function(newVal){
+            $scope.goals1 = scopaService.getGoals1();
+        }
+    );
 });

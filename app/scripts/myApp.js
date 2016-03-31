@@ -29,7 +29,7 @@ var app = angular.module('myApp', [
         })
         .when('/president', {
             templateUrl: 'app/partials/president.html',
-            controller: 'presidentController'
+            controller: 'PresidentController'
         })
         .when('/presidenthelp', {
             templateUrl: 'app/partials/presidenthelp.html'
@@ -42,6 +42,10 @@ var app = angular.module('myApp', [
         })
         .when('/presidentroles', {
             templateUrl: 'app/partials/presidentroles.html',
+        })
+        .when('/scopa', {
+            templateUrl: 'app/partials/scopa.html',
+            controller: 'ScopaController'
         })
         .otherwise({
             redirectTo: '/home'

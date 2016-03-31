@@ -59,3 +59,9 @@ td {
 .selected {
   background-color: #E3F2FD;
 }
+
+label {
+    cursor: pointer;
+    display: block;
+    text-align: center;
+}

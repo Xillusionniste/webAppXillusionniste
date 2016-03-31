@@ -1,0 +1,139 @@
+<tr>
+    <td style="vertical-align: middle; text-align: center;">
+        <div flex-xs flex="50">
+            <md-checkbox md-no-ink ng-model="cards0" class="md-align-middle" ng-click="updateValidateEnabled()" aria-label="Checkbox">
+            </md-checkbox>
+        </div>
+    </td>
+    <td style="vertical-align: middle; text-align: center; font-weight: bold;">
+        Cartes
+    </td>
+    <td  style="vertical-align: middle; text-align: center;">
+        <div flex-xs flex="50">
+            <md-checkbox md-no-ink ng-model="cards1" class="md-align-middle" aria-label="Checkbox">
+            </md-checkbox>
+        </div>
+    </td>
+</tr>
+
+<tr>
+    <td style="vertical-align: middle; text-align: center;">
+        <div flex-xs flex="50">
+            <md-checkbox md-no-ink ng-model="primera0" class="md-align-middle" aria-label="Checkbox">
+            </md-checkbox>
+        </div>
+    </td>
+    <td style="vertical-align: middle; text-align: center; font-weight: bold;">
+        Primera
+    </td>
+    <td  style="vertical-align: middle; text-align: center;">
+        <div flex-xs flex="50">
+            <md-checkbox md-no-ink ng-model="primera1" class="md-align-middle" aria-label="Checkbox">
+            </md-checkbox>
+        </div>
+    </td>
+</tr>
+
+<tr>
+    <td style="vertical-align: middle; text-align: center;">
+        <div flex-xs flex="50">
+            <md-checkbox md-no-ink ng-model="settebello0" class="md-align-middle" aria-label="Checkbox">
+            </md-checkbox>
+        </div>
+    </td>
+    <td style="vertical-align: middle; text-align: center; font-weight: bold;">
+        Settebello
+    </td>
+    <td  style="vertical-align: middle; text-align: center;">
+        <div flex-xs flex="50">
+            <md-checkbox md-no-ink ng-model="settebello1" class="md-align-middle" aria-label="Checkbox">
+            </md-checkbox>
+        </div>
+    </td>
+</tr>
+
+<tr>
+    <td style="vertical-align: middle; text-align: center;">
+        <div flex-xs flex="50">
+            <md-checkbox md-no-ink ng-model="denari0" class="md-align-middle" aria-label="Checkbox">
+            </md-checkbox>
+        </div>
+    </td>
+    <td style="vertical-align: middle; text-align: center; font-weight: bold;">
+        Denari
+    </td>
+    <td  style="vertical-align: middle; text-align: center;">
+        <div flex-xs flex="50">
+            <md-checkbox md-no-ink ng-model="denari1" class="md-align-middle" aria-label="Checkbox">
+            </md-checkbox>
+        </div>
+    </td>
+</tr>
+
+<tr>
+    <td style="vertical-align: middle; text-align: center;">
+        <div layout-gt-sm="row">
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>Nombre</label>
+                <input type="number" ng-model="goals0[4]">                 
+            </md-input-container>                        
+        </div>
+    </td>
+    <td style="vertical-align: middle; text-align: center; font-weight: bold;">
+        Scopa
+    </td>
+    <td  style="vertical-align: middle; text-align: center;">
+        <div layout-gt-sm="row">
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>Nombre</label>
+                <input type="number" ng-model="goals1[4]">                     
+            </md-input-container>                        
+        </div>
+    </td>
+</tr>
+
+<tr style="background-color: #E0F7FA;">
+    <td>
+    </td>
+    <td style="text-align: center;">
+        <span ng-show="validateEnabled">
+            <validate-enabled-button></validate-enabled-button>
+        </span>
+        <span ng-show="!validateEnabled">
+            <validate-disabled-button></validate-disabled-button>
+        </span>
+        <br/>
+        <span ng-show="continueEnabled">
+            <continue-enabled-button></continue-enabled-button>
+        </span>
+        <span ng-show="!continueEnabled">
+            <continue-disabled-button></continue-disabled-button>
+        </span>
+    </td>
+    <td>
+    </td>
+</tr>
+
+<tr>
+    <td>
+        <p>Points avant : {{players[0].previousPoints}}</p>
+        <p>Cette main : {{players[0].handPoints}}</p>
+    </td>
+    <td style="background-color: #E0F7FA;">
+    </td>
+    <td>
+        <p>Points avant : {{players[1].previousPoints}}</p>
+        <p>Cette main : {{players[1].handPoints}}</p>
+    </td>
+</tr>
+<tr>
+    <td>
+        <strong>TOTAL : {{players[0].totalPoints}}</strong>
+    </td>
+    <td style="background-color: #E0F7FA;">
+    </td>
+    <td>
+        <strong>TOTAL : {{players[1].totalPoints}}</strong>
+    </td>
+</tr>
+

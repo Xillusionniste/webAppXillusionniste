@@ -1,0 +1,40 @@
+<div>
+    <header class="page-header">
+        <h3>Scopa - !!NON FONCTIONNEL!!</h3>
+    </header>
+</div>
+
+<div>
+        <reset-button></reset-button>
+        <help-scopa-button></help-scopa-button>
+        <dummy-button-3></dummy-button-3><br/>
+        <md-switch-container>
+            <md-switch ng-model="goal" aria-label="Switch">
+                 <strong>11pts / 21pts</strong>   
+            </md-switch>
+        </md-switch-container>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th style="vertical-align: middle; background-color: #E0F7FA; text-align: center;" class="bold">
+                    <edit-player-zero-button></edit-player-zero-button>
+                    {{players[0].name}}
+                </th>
+                <th style="vertical-align: middle; background-color: #B2EBF2;" class="bold">
+                </th>
+                <th style="vertical-align: middle; background-color: #E0F7FA; text-align: center;" class="bold">
+                    <edit-player-one-button></edit-player-one-button>
+                    {{players[1].name}}
+                </th>
+            </tr>
+        </thead>
+        <tbody data-rows-scopa>
+        </tbody>
+    </table>
+
+</div>
+<br>
+<div>
+    <md-button class="md-raised md-primary" href="#/home">Accueil</md-button>
+</div><br/>

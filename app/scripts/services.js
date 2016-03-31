@@ -233,4 +233,125 @@ angular.module('dataService', [])
             return sortingEnabled;
         }
     }
+})
+.service('scopaService', function($window){
+    var players = [];
+    var saved = localStorage.getItem('players.scopa');
+    var validateEnabled = false;
+    var continueEnabled = false;
+    var goals0 = [false,false,false,false,0];
+    var goals1 = [false,false,false,false,0];
+
+    var nameExists = function (x){
+        var i = 0;
+        while (i<players.length) {
+            if (players[i].name == x) {
+                return true;
+            }
+            if (i == players.length-1) {
+                return false;
+            } else i++;
+        }
+    };
+
+    return {
+        getPlayers : function(){
+            return players;
+        },
+        getPlayersFromLocalSession : function(){
+            players = (localStorage.getItem('players.scopa')!==null) ? 
+                        JSON.parse(localStorage.getItem('players.scopa')) : 
+                        [
+                            {
+                                name: 'Joueur 1',
+                                previousPoints: 0,
+                                handPoints: 0,
+                                totalPoints: 0
+                            },
+                            {
+                                name: 'Joueur 2',
+                                previousPoints: 0,
+                                handPoints: 0,
+                                totalPoints: 0
+                            }
+                        ];
+            return players;
+        },
+        pushDataIntoLocalSession : function(){
+            localStorage.setItem('players.scopa', JSON.stringify(players));
+        },
+        editPlayer : function(newPlayer, index){
+            if (!nameExists(newPlayer)) {
+                players[index].name = newPlayer;
+            } else alert(newPlayer.toUpperCase() + " existe deja !");
+        },
+        resetGame : function(){
+            if($window.confirm('Reset le jeu ?')) {
+                for (var i = 0; i<players.length; i++) {
+                    players[i].role = 3;
+                    players[i].showButtons = false;
+                    players[i].trend = 0;
+                    players[i].evolution = '+0';
+                }
+            }
+        },
+        validate : function(){
+            validateEnabled = false;
+            var handPoints0 = 0;
+            var handPoints1 = 0;
+            
+            //Calcul des points pour Joueur 0
+            if (goals0[0]) {handPoints0++;}
+            if (goals0[1]) {handPoints0++;}
+            if (goals0[2]) {handPoints0++;}
+            if (goals0[3]) {handPoints0++;}
+            handPoints0 = handPoints0 + goals0[4];
+            players[0].previousPoints = players[0].totalPoints;
+            players[0].handPoints = handPoints0;
+            players[0].totalPoints = players[0].totalPoints + players[0].handPoints;
+
+            //Calcul des points pour Joueur 1
+            if (goals1[0]) {handPoints1++;}
+            if (goals1[1]) {handPoints1++;}
+            if (goals1[2]) {handPoints1++;}
+            if (goals1[3]) {handPoints0++;}
+            handPoints1 = handPoints1 + goals1[4];
+            players[1].previousPoints = players[1].totalPoints;
+            players[1].handPoints = handPoints1;
+            players[1].totalPoints = players[1].totalPoints + players[1].handPoints;
+
+            for (var i = 0; i < 4; i++) {
+                goals0[i] = goals1[i] = false;
+            }
+            goals0[4] = goals1[4] = 0;
+
+        },
+        continue : function(){
+
+        },
+        updateValidateEnabled : function(value){
+            validateEnabled = value;
+        },
+        getValidateEnabled : function(){
+            return validateEnabled;
+        },
+        updateContinueEnabled : function(value){
+            continueEnabled = value;
+        },
+        getContinueEnabled : function(){
+            return continueEnabled;
+        },
+        getGoals0 : function(){
+            return goals0;
+        },
+        getGoals1 : function(){
+            return goals1;
+        },
+        updateGoals : function(goals0_values, goals1_values){
+            for (var i = 0; i < goals0.length; i++) {
+                goals0[i] = goals0_values[i];
+                goals1[i] = goals1_values[i];
+            }
+        }
+    }
 });

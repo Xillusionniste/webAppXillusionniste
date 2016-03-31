@@ -41,6 +41,11 @@ angular.module('buttonDirectives', [])
         templateUrl: "app/web/buttons/helpPresidentButton.html"
     };
 })
+.directive("helpScopaButton", function() {
+    return {
+        templateUrl: "app/web/buttons/helpScopaButton.html"
+    };
+})
 .directive("dummyButton", function() {
     return {
         templateUrl: "app/web/buttons/dummyButton.html"
@@ -156,6 +161,37 @@ angular.module('buttonDirectives', [])
         templateUrl: "app/web/buttons/arrowDownIcon.html"
     };
 })
+.directive("editPlayerZeroButton", function() {
+    return {
+        templateUrl: "app/web/buttons/editPlayerZeroButton.html"
+    };
+})
+.directive("editPlayerOneButton", function() {
+    return {
+        templateUrl: "app/web/buttons/editPlayerOneButton.html"
+    };
+})
+.directive("validateEnabledButton", function() {
+    return {
+        templateUrl: "app/web/buttons/validateEnabledButton.html"
+    };
+})
+.directive("validateDisabledButton", function() {
+    return {
+        templateUrl: "app/web/buttons/validateDisabledButton.html"
+    };
+})
+.directive("continueEnabledButton", function() {
+    return {
+        templateUrl: "app/web/buttons/continueEnabledButton.html"
+    };
+})
+.directive("continueDisabledButton", function() {
+    return {
+        templateUrl: "app/web/buttons/continueDisabledButton.html"
+    };
+})
+
 .directive("playerRowLessthanten", function(lessthantenService) {
     return {
         restrict : 'A',
@@ -233,7 +269,8 @@ angular.module('buttonDirectives', [])
             });
         }
     }
-}).directive("playerRowPresident", function(presidentService) {
+})
+.directive("playerRowPresident", function(presidentService) {
     return {
         restrict : 'A',
         templateUrl : "app/web/templates/playerRowPresident.html",
@@ -267,6 +304,16 @@ angular.module('buttonDirectives', [])
             $scope.$watch('focusedPlayer', function() { 
                 presidentService.focusedPlayer = $scope.focusedPlayer;
             });
+        }
+    }
+})
+.directive("rowsScopa", function(scopaService) {
+    return {
+        restrict : 'A',
+        templateUrl : "app/web/templates/rowsScopa.html",
+        controller: function($scope){
+
+            $scope.denari0 = $scope.denari1 = false;
         }
     }
 });
