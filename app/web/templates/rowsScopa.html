@@ -133,27 +133,41 @@
 <tr>
     <td style="text-align: center; vertical-align: middle;">
         <p>{{players[0].handPoints}}</p>
-        <p>{{players[0].previousPoints}}</p>
-        <p>{{players[0].totalPoints}}</p>
     </td>
     <td style="background-color: #E0F7FA; text-align: center; vertical-align: middle;">
         Partiel<br/>
-        Avant<br/>
-        <strong>TOTAL</strong>
     </td>
     <td style="text-align: center; vertical-align: middle;">
         <p>{{players[1].handPoints}}</p>
-        <p>{{players[1].previousPoints}}</p>
-        <p>{{players[1].totalPoints}}</p>
     </td>
 </tr>
 <tr>
+    <td style="text-align: center; vertical-align: middle;">
+        <p>{{players[0].previousPoints}}</p>
+    </td>
+    <td style="background-color: #E0F7FA; text-align: center; vertical-align: middle;">
+        Avant<br/>
+    </td>
+    <td style="text-align: center; vertical-align: middle;">
+        <p>{{players[1].previousPoints}}</p>
+    </td>
+</tr>
+<tr>
+    <td style="text-align: center; vertical-align: middle;">
+        <p>{{players[0].totalPoints}}</p>
+    </td>
+    <td style="background-color: #E0F7FA; text-align: center; vertical-align: middle;">
+        <strong>TOTAL</strong>
+    </td>
+    <td style="text-align: center; vertical-align: middle;">
+        <p>{{players[1].totalPoints}}</p>
+    </td>
+</tr>
+<tr ng-show="rematchEnabled">
     <td>
     </td>
     <td style="background-color: #E0F7FA; text-align: center; vertical-align: middle;">
-        <span ng-show="rematchEnabled">
                 <rematch-button></rematch-button>
-        </span>
     </td>
     <td>
     </td>
