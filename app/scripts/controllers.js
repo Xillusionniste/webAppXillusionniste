@@ -166,8 +166,12 @@ var truc = angular.module('appliController', ['dataService'])
     $scope.players = scopaService.getPlayersFromLocalSession();
     $scope.validateEnabled = false;
     $scope.continueEnabled = false;
-    $scope.goals0 = [false,false,false,false,0];
-    $scope.goals1 = [false,false,false,false,0];
+    $scope.rematchEnabled = false;
+    $scope.goal = scopaService.getGoalFromLocalSession(); //false = 11 pts, else 21 pts
+    $scope.goals0 = scopaService.getGoals0FromLocalSession();
+    $scope.goals1 = scopaService.getGoals1FromLocalSession();
+    $scope.display0Won = scopaService.getDisplay0WonFromLocalSession();
+    $scope.display1Won = scopaService.getDisplay1WonFromLocalSession();
 
     $scope.editPlayer = function(index) {
         var newPlayer = prompt("Nom du joueur : ");
@@ -179,23 +183,50 @@ var truc = angular.module('appliController', ['dataService'])
     $scope.validate = function() {
         $scope.updateGoals();
         scopaService.validate();
-
+        scopaService.checkForEnd();
+        scopaService.pushDataIntoLocalSession();
     };
 
     $scope.continue = function() {
         scopaService.continue();
+        scopaService.pushDataIntoLocalSession();
     };
 
     $scope.updateGoals = function() {
         scopaService.updateGoals($scope.goals0, $scope.goals1);
+        scopaService.pushDataIntoLocalSession();
+    };
+
+    $scope.updateGoal = function() {
+        scopaService.updateGoal();
+        scopaService.pushDataIntoLocalSession();
     };
 
     $scope.updateValidateEnabled = function() {
         scopaService.updateValidateEnabled(true);
+        scopaService.pushDataIntoLocalSession();
     };
 
     $scope.updateContinueEnabled = function() {
         scopaService.updateContinueEnabled(true);
+        scopaService.pushDataIntoLocalSession();
+    };
+
+    $scope.resetGame = function() {
+        scopaService.resetGame();
+        scopaService.pushDataIntoLocalSession();
+    };
+
+    $scope.showRanking = function() {
+        alert(  'Valeurs pour la primera :\n\n' +
+                '7 (21 pts)\n' +
+                '6 (18 pts)\n' +
+                '1 (16 pts)\n' +
+                '5 (15 pts)\n' +
+                '4 (14 pts)\n' +
+                '3 (13 pts)\n' +
+                '2 (12 pts)\n' +
+                'Tetes (10 pts)\n');
     };
 
     $scope.$watch(
@@ -213,15 +244,46 @@ var truc = angular.module('appliController', ['dataService'])
     );
 
     $scope.$watch(
-        function(){return "<"+scopaService.getGoals0()+">";},
+        function(){return "<"+scopaService.getRematchEnabled()+">";},
+        function(newVal){
+            $scope.rematchEnabled = scopaService.getRematchEnabled();
+        }
+    );
+
+    $scope.$watch(
+        function(){return scopaService.getGoals0();},
         function(newVal){
             $scope.goals0 = scopaService.getGoals0();
         }
     );
+
+    $scope.$watch("goal",
+        function(newValue, oldValue){
+            scopaService.updateGoal($scope.goal);
+            scopaService.pushDataIntoLocalSession();
+        }
+    );
+
     $scope.$watch(
-        function(){return "<"+scopaService.getGoals1()+">";},
+        function(){return scopaService.getGoals1();},
         function(newVal){
             $scope.goals1 = scopaService.getGoals1();
         }
     );
+
+    $scope.$watch(
+        function(){return scopaService.getDisplay0Won();},
+        function(newVal){
+            $scope.display0Won = scopaService.getDisplay0Won();
+        }
+    );
+
+    $scope.$watch(
+        function(){return scopaService.getDisplay1Won();},
+        function(newVal){
+            $scope.display1Won = scopaService.getDisplay1Won();
+        }
+    );
+
+    
 });

@@ -47,6 +47,15 @@ var app = angular.module('myApp', [
             templateUrl: 'app/partials/scopa.html',
             controller: 'ScopaController'
         })
+        .when('/scopahelp', {
+            templateUrl: 'app/partials/scopahelp.html'
+        })
+        .when('/scopabuttons', {
+            templateUrl: 'app/partials/scopabuttons.html'
+        })
+        .when('/scoparules', {
+            templateUrl: 'app/partials/scoparules.html',
+        })
         .otherwise({
             redirectTo: '/home'
         });

@@ -191,7 +191,11 @@ angular.module('buttonDirectives', [])
         templateUrl: "app/web/buttons/continueDisabledButton.html"
     };
 })
-
+.directive("rematchButton", function() {
+    return {
+        templateUrl: "app/web/buttons/rematchButton.html"
+    };
+})
 .directive("playerRowLessthanten", function(lessthantenService) {
     return {
         restrict : 'A',

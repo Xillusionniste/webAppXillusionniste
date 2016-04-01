@@ -1,7 +1,7 @@
 <tr>
     <td style="vertical-align: middle; text-align: center;">
         <div flex-xs flex="50">
-            <md-checkbox md-no-ink ng-model="cards0" class="md-align-middle" ng-click="updateValidateEnabled()" aria-label="Checkbox">
+            <md-checkbox md-no-ink ng-model="goals0[0]" class="md-align-middle" ng-click="updateValidateEnabled()" aria-label="Checkbox">
             </md-checkbox>
         </div>
     </td>
@@ -10,7 +10,7 @@
     </td>
     <td  style="vertical-align: middle; text-align: center;">
         <div flex-xs flex="50">
-            <md-checkbox md-no-ink ng-model="cards1" class="md-align-middle" aria-label="Checkbox">
+            <md-checkbox md-no-ink ng-model="goals1[0]" class="md-align-middle" ng-click="updateValidateEnabled()" aria-label="Checkbox">
             </md-checkbox>
         </div>
     </td>
@@ -19,7 +19,7 @@
 <tr>
     <td style="vertical-align: middle; text-align: center;">
         <div flex-xs flex="50">
-            <md-checkbox md-no-ink ng-model="primera0" class="md-align-middle" aria-label="Checkbox">
+            <md-checkbox md-no-ink ng-model="goals0[1]" class="md-align-middle" ng-click="updateValidateEnabled()" aria-label="Checkbox">
             </md-checkbox>
         </div>
     </td>
@@ -28,7 +28,7 @@
     </td>
     <td  style="vertical-align: middle; text-align: center;">
         <div flex-xs flex="50">
-            <md-checkbox md-no-ink ng-model="primera1" class="md-align-middle" aria-label="Checkbox">
+            <md-checkbox md-no-ink ng-model="goals1[1]" class="md-align-middle" ng-click="updateValidateEnabled()" aria-label="Checkbox">
             </md-checkbox>
         </div>
     </td>
@@ -37,7 +37,7 @@
 <tr>
     <td style="vertical-align: middle; text-align: center;">
         <div flex-xs flex="50">
-            <md-checkbox md-no-ink ng-model="settebello0" class="md-align-middle" aria-label="Checkbox">
+            <md-checkbox md-no-ink ng-model="goals0[2]" class="md-align-middle" ng-click="updateValidateEnabled()" aria-label="Checkbox">
             </md-checkbox>
         </div>
     </td>
@@ -46,7 +46,7 @@
     </td>
     <td  style="vertical-align: middle; text-align: center;">
         <div flex-xs flex="50">
-            <md-checkbox md-no-ink ng-model="settebello1" class="md-align-middle" aria-label="Checkbox">
+            <md-checkbox md-no-ink ng-model="goals1[2]" class="md-align-middle" ng-click="updateValidateEnabled()" aria-label="Checkbox">
             </md-checkbox>
         </div>
     </td>
@@ -55,16 +55,16 @@
 <tr>
     <td style="vertical-align: middle; text-align: center;">
         <div flex-xs flex="50">
-            <md-checkbox md-no-ink ng-model="denari0" class="md-align-middle" aria-label="Checkbox">
+            <md-checkbox md-no-ink ng-model="goals0[3]" class="md-align-middle" ng-click="updateValidateEnabled()" aria-label="Checkbox">
             </md-checkbox>
         </div>
     </td>
     <td style="vertical-align: middle; text-align: center; font-weight: bold;">
-        Denari
+        Pièces
     </td>
     <td  style="vertical-align: middle; text-align: center;">
         <div flex-xs flex="50">
-            <md-checkbox md-no-ink ng-model="denari1" class="md-align-middle" aria-label="Checkbox">
+            <md-checkbox md-no-ink ng-model="goals1[3]" class="md-align-middle" ng-click="updateValidateEnabled()" aria-label="Checkbox">
             </md-checkbox>
         </div>
     </td>
@@ -72,7 +72,7 @@
 
 <tr>
     <td style="vertical-align: middle; text-align: center;">
-        <div layout-gt-sm="row">
+        <div layout-gt-sm="row" ng-click="updateValidateEnabled()">
             <md-input-container class="md-block" flex-gt-sm>
                 <label>Nombre</label>
                 <input type="number" ng-model="goals0[4]">                 
@@ -83,7 +83,7 @@
         Scopa
     </td>
     <td  style="vertical-align: middle; text-align: center;">
-        <div layout-gt-sm="row">
+        <div layout-gt-sm="row" ng-click="updateValidateEnabled()">
             <md-input-container class="md-block" flex-gt-sm>
                 <label>Nombre</label>
                 <input type="number" ng-model="goals1[4]">                     
@@ -93,8 +93,12 @@
 </tr>
 
 <tr style="background-color: #E0F7FA;">
-    <td>
+    <td style="vertical-align: middle; text-align: center;">
+        <span style="color: blue; font-weight: bolder; font-size: 18px;" ng-show="display0Won">
+                GAGNE
+        </span>
     </td>
+
     <td style="text-align: center;">
         <span ng-show="validateEnabled">
             <validate-enabled-button></validate-enabled-button>
@@ -110,20 +114,27 @@
             <continue-disabled-button></continue-disabled-button>
         </span>
     </td>
-    <td>
+
+    <td style="vertical-align: middle; text-align: center;">
+        <span style="color: blue; font-weight: bolder; font-size: 18px;" ng-show="display1Won">
+                GAGNE
+        </span>
     </td>
 </tr>
 
 <tr>
     <td>
-        <p>Points avant : {{players[0].previousPoints}}</p>
-        <p>Cette main : {{players[0].handPoints}}</p>
+        <p>Avant : {{players[0].previousPoints}}</p>
+        <p>Main : {{players[0].handPoints}}</p>
     </td>
-    <td style="background-color: #E0F7FA;">
+    <td style="background-color: #E0F7FA; text-align: center; vertical-align: middle;">
+        <span ng-show="rematchEnabled">
+                <rematch-button></rematch-button>
+        </span>
     </td>
     <td>
-        <p>Points avant : {{players[1].previousPoints}}</p>
-        <p>Cette main : {{players[1].handPoints}}</p>
+        <p>Avant : {{players[1].previousPoints}}</p>
+        <p>Main : {{players[1].handPoints}}</p>
     </td>
 </tr>
 <tr>
