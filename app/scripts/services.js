@@ -426,7 +426,7 @@ angular.module('dataService', [])
                     validateEnabled = true;
                 }    
             } else {
-                alert("Il faut cliquer sur Continuer !");
+                alert("Cliquer sur Continuer !");
             }
         },
         removeScopa : function(index){
@@ -440,14 +440,14 @@ angular.module('dataService', [])
                     validateEnabled = true;
                 } 
             } else {
-                alert("Il faut cliquer sur Continuer !");
+                alert("Cliquer sur Continuer !");
             }
         },
         updateValidateEnabled : function(player_index, goal_item){
             if (!continueEnabled) {
                 validateEnabled = true;
             } else {
-                alert("Il faut cliquer sur Continuer !");
+                alert("Cliquer sur Continuer !");
                 if (player_index == 0){
                     goals0[goal_item] = !goals0[goal_item];
                 }
