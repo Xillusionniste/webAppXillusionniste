@@ -218,7 +218,7 @@ var truc = angular.module('appliController', ['dataService'])
     };
 
     $scope.showRanking = function() {
-        alert(  'Valeurs pour la primera :\n\n' +
+        alert(  'Valeurs pour la Primera :\n\n' +
                 '7 (21 pts)\n' +
                 '6 (18 pts)\n' +
                 '1 (16 pts)\n' +
