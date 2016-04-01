@@ -164,7 +164,7 @@ var truc = angular.module('appliController', ['dataService'])
 .controller('ScopaController',function($scope,$window,scopaService) {   
 
     $scope.players = scopaService.getPlayersFromLocalSession();
-    $scope.validateEnabled = false;
+    $scope.validateEnabled = false; /**************************************************************/
     $scope.continueEnabled = false;
     $scope.rematchEnabled = false;
     $scope.goal = scopaService.getGoalFromLocalSession(); //false = 11 pts, else 21 pts

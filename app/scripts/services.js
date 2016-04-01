@@ -398,28 +398,38 @@ angular.module('dataService', [])
 
         },
         addScopa : function(index){
-            if (index == 0) {
-                goals0[4]++;
-                validateEnabled = true;
-            }
-            else if (index == 1) {
-                goals1[4]++;
-                validateEnabled = true;
+            if (!continueEnabled) {
+                if (index == 0) {
+                    goals0[4]++;
+                    validateEnabled = true;
+                }
+                else if (index == 1) {
+                    goals1[4]++;
+                    validateEnabled = true;
+                }    
+            } else {
+                alert("Il faut cliquer sur Continuer !");
             }
         },
         removeScopa : function(index){
-            if (index == 0) {
-                goals0[4]--;
-                validateEnabled = true;
-            }
-            else if (index == 1) {
-                goals1[4]--;
-                validateEnabled = true;
+            if (!continueEnabled) {
+                if (index == 0) {
+                    goals0[4]--;
+                    validateEnabled = true;
+                }
+                else if (index == 1) {
+                    goals1[4]--;
+                    validateEnabled = true;
+                } 
+            } else {
+                alert("Il faut cliquer sur Continuer !");
             }
         },
         updateValidateEnabled : function(value){
             if (!continueEnabled) {
                 validateEnabled = value;
+            } else {
+                alert("Il faut cliquer sur Continuer !");
             }
         },
         getValidateEnabled : function(){
