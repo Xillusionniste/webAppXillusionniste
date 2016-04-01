@@ -229,6 +229,16 @@ var truc = angular.module('appliController', ['dataService'])
                 'Tetes (10 pts)\n');
     };
 
+    $scope.addScopa = function(index) {
+        scopaService.addScopa(index);
+        scopaService.pushDataIntoLocalSession();
+    };
+
+    $scope.removeScopa = function(index) {
+        scopaService.removeScopa(index);
+        scopaService.pushDataIntoLocalSession();
+    };
+
     $scope.$watch(
         function(){return "<"+scopaService.getValidateEnabled()+">";},
         function(newVal){

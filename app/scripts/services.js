@@ -397,6 +397,26 @@ angular.module('dataService', [])
             rematchEnabled = false;
 
         },
+        addScopa : function(index){
+            if (index == 0) {
+                goals0[4]++;
+                validateEnabled = true;
+            }
+            else if (index == 1) {
+                goals1[4]++;
+                validateEnabled = true;
+            }
+        },
+        removeScopa : function(index){
+            if (index == 0) {
+                goals0[4]--;
+                validateEnabled = true;
+            }
+            else if (index == 1) {
+                goals1[4]--;
+                validateEnabled = true;
+            }
+        },
         updateValidateEnabled : function(value){
             if (!continueEnabled) {
                 validateEnabled = value;

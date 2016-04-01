@@ -196,6 +196,26 @@ angular.module('buttonDirectives', [])
         templateUrl: "app/web/buttons/rematchButton.html"
     };
 })
+.directive("addScopa0Button", function() {
+    return {
+        templateUrl: "app/web/buttons/addScopa0Button.html"
+    };
+})
+.directive("addScopa1Button", function() {
+    return {
+        templateUrl: "app/web/buttons/addScopa1Button.html"
+    };
+})
+.directive("removeScopa0Button", function() {
+    return {
+        templateUrl: "app/web/buttons/removeScopa0Button.html"
+    };
+})
+.directive("removeScopa1Button", function() {
+    return {
+        templateUrl: "app/web/buttons/removeScopa1Button.html"
+    };
+})
 .directive("playerRowLessthanten", function(lessthantenService) {
     return {
         restrict : 'A',

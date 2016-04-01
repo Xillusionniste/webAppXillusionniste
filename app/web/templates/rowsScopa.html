@@ -1,5 +1,5 @@
 <tr>
-    <td style="vertical-align: middle; text-align: center;">
+    <td style="vertical-align: middle;">
         <div flex-xs flex="50">
             <md-checkbox md-no-ink ng-model="goals0[0]" class="md-align-middle" ng-click="updateValidateEnabled()" aria-label="Checkbox">
             </md-checkbox>
@@ -8,7 +8,7 @@
     <td style="vertical-align: middle; text-align: center; font-weight: bold;">
         Cartes
     </td>
-    <td  style="vertical-align: middle; text-align: center;">
+    <td  style="vertical-align: middle;">
         <div flex-xs flex="50">
             <md-checkbox md-no-ink ng-model="goals1[0]" class="md-align-middle" ng-click="updateValidateEnabled()" aria-label="Checkbox">
             </md-checkbox>
@@ -17,7 +17,7 @@
 </tr>
 
 <tr>
-    <td style="vertical-align: middle; text-align: center;">
+    <td style="vertical-align: middle;">
         <div flex-xs flex="50">
             <md-checkbox md-no-ink ng-model="goals0[1]" class="md-align-middle" ng-click="updateValidateEnabled()" aria-label="Checkbox">
             </md-checkbox>
@@ -26,7 +26,7 @@
     <td style="vertical-align: middle; text-align: center; font-weight: bold;">
         Primera
     </td>
-    <td  style="vertical-align: middle; text-align: center;">
+    <td  style="vertical-align: middle;">
         <div flex-xs flex="50">
             <md-checkbox md-no-ink ng-model="goals1[1]" class="md-align-middle" ng-click="updateValidateEnabled()" aria-label="Checkbox">
             </md-checkbox>
@@ -35,7 +35,7 @@
 </tr>
 
 <tr>
-    <td style="vertical-align: middle; text-align: center;">
+    <td style="vertical-align: middle;">
         <div flex-xs flex="50">
             <md-checkbox md-no-ink ng-model="goals0[2]" class="md-align-middle" ng-click="updateValidateEnabled()" aria-label="Checkbox">
             </md-checkbox>
@@ -44,7 +44,7 @@
     <td style="vertical-align: middle; text-align: center; font-weight: bold;">
         Settebello
     </td>
-    <td  style="vertical-align: middle; text-align: center;">
+    <td  style="vertical-align: middle;">
         <div flex-xs flex="50">
             <md-checkbox md-no-ink ng-model="goals1[2]" class="md-align-middle" ng-click="updateValidateEnabled()" aria-label="Checkbox">
             </md-checkbox>
@@ -53,7 +53,7 @@
 </tr>
 
 <tr>
-    <td style="vertical-align: middle; text-align: center;">
+    <td style="vertical-align: middle;">
         <div flex-xs flex="50">
             <md-checkbox md-no-ink ng-model="goals0[3]" class="md-align-middle" ng-click="updateValidateEnabled()" aria-label="Checkbox">
             </md-checkbox>
@@ -62,7 +62,7 @@
     <td style="vertical-align: middle; text-align: center; font-weight: bold;">
         Pièces
     </td>
-    <td  style="vertical-align: middle; text-align: center;">
+    <td  style="vertical-align: middle;">
         <div flex-xs flex="50">
             <md-checkbox md-no-ink ng-model="goals1[3]" class="md-align-middle" ng-click="updateValidateEnabled()" aria-label="Checkbox">
             </md-checkbox>
@@ -71,23 +71,21 @@
 </tr>
 
 <tr>
-    <td style="vertical-align: middle; text-align: center;">
-        <div layout-gt-sm="row" ng-click="updateValidateEnabled()">
-            <md-input-container class="md-block" flex-gt-sm>
-                <label>Nombre</label>
-                <input type="number" ng-model="goals0[4]">                 
-            </md-input-container>                        
+    <td style="vertical-align: middle;">
+        <div>
+            <add-scopa-0-button></add-scopa-0-button><br>
+            <span style="font-weight: bolder; padding-left: 20px;">{{goals0[4]}}</span><br>
+            <remove-scopa-0-button></remove-scopa-0-button><br>
         </div>
     </td>
     <td style="vertical-align: middle; text-align: center; font-weight: bold;">
         Scopa
     </td>
-    <td  style="vertical-align: middle; text-align: center;">
-        <div layout-gt-sm="row" ng-click="updateValidateEnabled()">
-            <md-input-container class="md-block" flex-gt-sm>
-                <label>Nombre</label>
-                <input type="number" ng-model="goals1[4]">                     
-            </md-input-container>                        
+    <td  style="vertical-align: middle;">
+        <div>
+            <add-scopa-1-button></add-scopa-1-button><br>
+            <span style="font-weight: bolder; padding-left: 20px;">{{goals1[4]}}</span><br>
+            <remove-scopa-1-button></remove-scopa-1-button><br>
         </div>
     </td>
 </tr>
