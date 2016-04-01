@@ -216,6 +216,16 @@ angular.module('buttonDirectives', [])
         templateUrl: "app/web/buttons/removeScopa1Button.html"
     };
 })
+.directive("emoticonHappyIcon", function() {
+    return {
+        templateUrl: "app/web/buttons/emoticonHappyIcon.html"
+    };
+})
+.directive("emoticonSadIcon", function() {
+    return {
+        templateUrl: "app/web/buttons/emoticonSadIcon.html"
+    };
+})
 .directive("playerRowLessthanten", function(lessthantenService) {
     return {
         restrict : 'A',

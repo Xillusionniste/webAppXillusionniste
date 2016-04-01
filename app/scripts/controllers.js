@@ -163,15 +163,15 @@ var truc = angular.module('appliController', ['dataService'])
 })
 .controller('ScopaController',function($scope,$window,scopaService) {   
 
-    $scope.players = scopaService.getPlayersFromLocalSession();
-    $scope.validateEnabled = false; /**************************************************************/
-    $scope.continueEnabled = false;
-    $scope.rematchEnabled = false;
-    $scope.goal = scopaService.getGoalFromLocalSession(); //false = 11 pts, else 21 pts
-    $scope.goals0 = scopaService.getGoals0FromLocalSession();
-    $scope.goals1 = scopaService.getGoals1FromLocalSession();
-    $scope.display0Won = scopaService.getDisplay0WonFromLocalSession();
-    $scope.display1Won = scopaService.getDisplay1WonFromLocalSession();
+    $scope.players =            scopaService.getPlayersFromLocalSession();
+    $scope.validateEnabled =    scopaService.getValidateEnabledFromLocalSession();
+    $scope.continueEnabled =    scopaService.getContinueEnabledFromLocalSession();
+    $scope.rematchEnabled =     scopaService.getRematchEnabledFromLocalSession();
+    $scope.goal =               scopaService.getGoalFromLocalSession(); //false = 11 pts, else 21 pts
+    $scope.goals0 =             scopaService.getGoals0FromLocalSession();
+    $scope.goals1 =             scopaService.getGoals1FromLocalSession();
+    $scope.display0Won =        scopaService.getDisplay0WonFromLocalSession();
+    $scope.display1Won =        scopaService.getDisplay1WonFromLocalSession();
 
     $scope.editPlayer = function(index) {
         var newPlayer = prompt("Nom du joueur : ");
@@ -202,8 +202,8 @@ var truc = angular.module('appliController', ['dataService'])
         scopaService.pushDataIntoLocalSession();
     };
 
-    $scope.updateValidateEnabled = function() {
-        scopaService.updateValidateEnabled(true);
+    $scope.updateValidateEnabled = function(player_index, goal_item) {
+        scopaService.updateValidateEnabled(player_index, goal_item);
         scopaService.pushDataIntoLocalSession();
     };
 

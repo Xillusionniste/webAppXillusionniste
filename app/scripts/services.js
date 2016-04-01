@@ -235,14 +235,14 @@ angular.module('dataService', [])
     }
 })
 .service('scopaService', function($window){
-    var players = [];
+    var players;
     var saved = localStorage.getItem('players.scopa');
-    var validateEnabled = false;
-    var continueEnabled = false;
-    var rematchEnabled = false;
-    var goal = false; //false = 11 pts, else 21 pts
-    var goals0 = [];
-    var goals1 = [];
+    var validateEnabled;
+    var continueEnabled;
+    var rematchEnabled;
+    var goal; //false = 11 pts, else 21 pts
+    var goals0;
+    var goals1;
     var display0Won;
     var display1Won;
 
@@ -306,6 +306,21 @@ angular.module('dataService', [])
                         JSON.parse(localStorage.getItem('display1Won.scopa')) : false;
             return display1Won;
         },
+        getValidateEnabledFromLocalSession : function(){
+            validateEnabled = (localStorage.getItem('validateEnabled.scopa')!==null) ? 
+                        JSON.parse(localStorage.getItem('validateEnabled.scopa')) : false;
+            return validateEnabled;
+        },
+        getContinueEnabledFromLocalSession : function(){
+            continueEnabled = (localStorage.getItem('continueEnabled.scopa')!==null) ? 
+                        JSON.parse(localStorage.getItem('continueEnabled.scopa')) : false;
+            return continueEnabled;
+        },
+        getRematchEnabledFromLocalSession : function(){
+            rematchEnabled = (localStorage.getItem('rematchEnabled.scopa')!==null) ? 
+                        JSON.parse(localStorage.getItem('rematchEnabled.scopa')) : false;
+            return rematchEnabled;
+        },
         pushDataIntoLocalSession : function(){
             localStorage.setItem('players.scopa', JSON.stringify(players));
             localStorage.setItem('goals0.scopa', JSON.stringify(goals0));
@@ -313,6 +328,9 @@ angular.module('dataService', [])
             localStorage.setItem('goal.scopa', JSON.stringify(goal));
             localStorage.setItem('display0Won.scopa', JSON.stringify(display0Won));
             localStorage.setItem('display1Won.scopa', JSON.stringify(display1Won));
+            localStorage.setItem('validateEnabled.scopa', JSON.stringify(validateEnabled));
+            localStorage.setItem('continueEnabled.scopa', JSON.stringify(continueEnabled));
+            localStorage.setItem('rematchEnabled.scopa', JSON.stringify(rematchEnabled));
         },
         editPlayer : function(newPlayer, index){
             if (!nameExists(newPlayer)) {
@@ -425,11 +443,17 @@ angular.module('dataService', [])
                 alert("Il faut cliquer sur Continuer !");
             }
         },
-        updateValidateEnabled : function(value){
+        updateValidateEnabled : function(player_index, goal_item){
             if (!continueEnabled) {
-                validateEnabled = value;
+                validateEnabled = true;
             } else {
                 alert("Il faut cliquer sur Continuer !");
+                if (player_index == 0){
+                    goals0[goal_item] = !goals0[goal_item];
+                }
+                else if (player_index == 1){
+                    goals1[goal_item] = !goals1[goal_item];
+                }
             }
         },
         getValidateEnabled : function(){
