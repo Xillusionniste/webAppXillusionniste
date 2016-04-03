@@ -10,7 +10,7 @@
         <dummy-button-3></dummy-button-3><br/>
         <md-switch-container>
             <md-switch ng-model="goal" aria-label="Switch">
-                 <strong>11pts / 21pts</strong>   
+                <span style="font-weight: bolder;" ng-show="!goal">11pts</span><span ng-show="goal">11pts</span> / <span style="font-weight: bolder;" ng-show="goal">21pts</span><span ng-show="!goal">21pts</span>   
             </md-switch>
         </md-switch-container>
 
