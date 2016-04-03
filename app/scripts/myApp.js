@@ -56,6 +56,9 @@ var app = angular.module('myApp', [
         .when('/scoparules', {
             templateUrl: 'app/partials/scoparules.html',
         })
+        .when('/scopaprimera', {
+            templateUrl: 'app/partials/scopaprimera.html',
+        })
         .otherwise({
             redirectTo: '/home'
         });
