@@ -25,7 +25,7 @@ var app = angular.module('myApp', [
             templateUrl: 'app/partials/lessthantenbuttons.html'
         })
         .when('/lessthantenrules', {
-            templateUrl: 'app/partials/lessthantenrules.html',
+            templateUrl: 'app/partials/lessthantenrules.html'
         })
         .when('/president', {
             templateUrl: 'app/partials/president.html',
@@ -38,10 +38,10 @@ var app = angular.module('myApp', [
             templateUrl: 'app/partials/presidentbuttons.html'
         })
         .when('/presidentrules', {
-            templateUrl: 'app/partials/presidentrules.html',
+            templateUrl: 'app/partials/presidentrules.html'
         })
         .when('/presidentroles', {
-            templateUrl: 'app/partials/presidentroles.html',
+            templateUrl: 'app/partials/presidentroles.html'
         })
         .when('/scopa', {
             templateUrl: 'app/partials/scopa.html',
@@ -54,10 +54,11 @@ var app = angular.module('myApp', [
             templateUrl: 'app/partials/scopabuttons.html'
         })
         .when('/scoparules', {
-            templateUrl: 'app/partials/scoparules.html',
+            templateUrl: 'app/partials/scoparules.html'
         })
         .when('/scopaprimera', {
             templateUrl: 'app/partials/scopaprimera.html',
+            controller: 'ScopaController'
         })
         .otherwise({
             redirectTo: '/home'
