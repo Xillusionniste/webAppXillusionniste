@@ -8,7 +8,7 @@
     <br>
     <hr>
     <span style="font-weight: bolder;">
-        {{players[0].name}} :</span><br>
+        Meilleures cartes de {{players[0].name}} :</span><br>
     <md-input-container style="margin-right: 10px;">
         <label>Carte 1</label>
         <md-select ng-model="primera_00">
@@ -69,14 +69,14 @@
         </md-optgroup>
     </md-select>
     </md-input-container><br>
-    <span style="font-weight: bolder;">
+    <span style="font-weight: bolder; color: blue;">
         Résultat : {{+primera_00 + +primera_01 + +primera_02 + +primera_03}}</span>
 </div>
 
 <div>
     <hr>
     <span style="font-weight: bolder;">
-        {{players[1].name}} :</span><br>
+        Meilleures cartes de {{players[1].name}} :</span><br>
     <md-input-container style="margin-right: 10px;">
         <label>Carte 1</label>
         <md-select ng-model="primera_10">
@@ -137,6 +137,6 @@
         </md-optgroup>
     </md-select>
     </md-input-container><br>
-    <span style="font-weight: bolder;">
+    <span style="font-weight: bolder; color: blue;">
         Résultat : {{+primera_10 + +primera_11 + +primera_12 + +primera_13}}</span>
 </div>
