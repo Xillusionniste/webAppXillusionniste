@@ -447,12 +447,12 @@ angular.module('dataService', [])
             if (!continueEnabled) {
                 validateEnabled = true;
                 if (player_index == 0) {
-                    if (goals0[!goal_item] && goals1[goal_item]) {
+                    if (!goals0[goal_item] && goals1[goal_item]) {
                         goals1[goal_item] = false;
                     }
                 }
                 if (player_index == 1) {
-                    if (goals1[!goal_item] && goals0[goal_item]) {
+                    if (!goals1[goal_item] && goals0[goal_item]) {
                         goals0[goal_item] = false;
                     }
                 }
