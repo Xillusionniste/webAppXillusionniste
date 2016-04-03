@@ -7,97 +7,66 @@
     <md-button class="md-raised md-primary" href="#/scopa">Retour au jeu</md-button>
     <br>
     <hr>
-
-    <table class="table">
-        <thead>
-            <tr style="background-color: #E0F7FA;">
-                <th style="vertical-align: middle;" class="bold">
-                    Cartes
-                </th>
-                <th style="vertical-align: middle;" class="bold">
-                    Résultat
-                    <trend-up-button></trend-up-button>
-                </th>
-            </tr>
-         </thead>
-        <tbody>
-            <tr>
-                <td>
-                    <md-input-container style="margin-right: 10px;">
-                        <label>Carte</label>
-                        <md-select ng-model="primera_0">
-                            <md-optgroup label="Carte">
-                                <md-option value="21">7          </md-option>
-                                <md-option value="18">6          </md-option>
-                                <md-option value="16">1          </md-option>
-                                <md-option value="15">5          </md-option>
-                                <md-option value="14">4          </md-option>
-                                <md-option value="13">3          </md-option>
-                                <md-option value="12">2          </md-option>
-                                <md-option value="10">Figure     </md-option>
-                            </md-optgroup>
-                        </md-select>
-                    </md-input-container>
-                </td>
-                <td style="vertical-align: middle;" class="bold">
-                    {{primera_0 + primera_1 + primera_2 + primera_3}}
-                </td>
-            </tr>
-            <tr>
-                <md-input-container style="margin-right: 10px;">
-                    <label>Carte</label>
-                    <md-select ng-model="primera_1">
-                        <md-optgroup label="Carte">
-                            <md-option value="21">7          </md-option>
-                            <md-option value="18">6          </md-option>
-                            <md-option value="16">1          </md-option>
-                            <md-option value="15">5          </md-option>
-                            <md-option value="14">4          </md-option>
-                            <md-option value="13">3          </md-option>
-                            <md-option value="12">2          </md-option>
-                            <md-option value="10">Figure     </md-option>
-                        </md-optgroup>
-                    </md-select>
-                </md-input-container>
-            </tr>
-            <tr>
-                <md-input-container style="margin-right: 10px;">
-                    <label>Carte</label>
-                    <md-select ng-model="primera_2">
-                        <md-optgroup label="Carte">
-                            <md-option value="21">7          </md-option>
-                            <md-option value="18">6          </md-option>
-                            <md-option value="16">1          </md-option>
-                            <md-option value="15">5          </md-option>
-                            <md-option value="14">4          </md-option>
-                            <md-option value="13">3          </md-option>
-                            <md-option value="12">2          </md-option>
-                            <md-option value="10">Figure     </md-option>
-                        </md-optgroup>
-                    </md-select>
-                </md-input-container>
-            </tr>
-            <tr>
-                <md-input-container style="margin-right: 10px;">
-                    <label>Carte</label>
-                    <md-select ng-model="primera_3">
-                        <md-optgroup label="Carte">
-                            <md-option value="21">7          </md-option>
-                            <md-option value="18">6          </md-option>
-                            <md-option value="16">1          </md-option>
-                            <md-option value="15">5          </md-option>
-                            <md-option value="14">4          </md-option>
-                            <md-option value="13">3          </md-option>
-                            <md-option value="12">2          </md-option>
-                            <md-option value="10">Figure     </md-option>
-                        </md-optgroup>
-                    </md-select>
-                </md-input-container>
-            </tr>
-        </tbody>
-    </table>
-
-
-
-
+    <md-input-container style="margin-right: 10px;">
+        <label>Carte 1</label>
+        <md-select ng-model="primera_0">
+            <md-optgroup label="Carte">
+                <md-option value="21">7          </md-option>
+                <md-option value="18">6          </md-option>
+                <md-option value="16">1          </md-option>
+                <md-option value="15">5          </md-option>
+                <md-option value="14">4          </md-option>
+                <md-option value="13">3          </md-option>
+                <md-option value="12">2          </md-option>
+                <md-option value="10">Figure     </md-option>
+            </md-optgroup>
+        </md-select>
+    </md-input-container><br>
+    <md-input-container style="margin-right: 10px;">
+    <label>Carte 2</label>
+    <md-select ng-model="primera_1">
+        <md-optgroup label="Carte">
+            <md-option value="21">7          </md-option>
+            <md-option value="18">6          </md-option>
+            <md-option value="16">1          </md-option>
+            <md-option value="15">5          </md-option>
+            <md-option value="14">4          </md-option>
+            <md-option value="13">3          </md-option>
+            <md-option value="12">2          </md-option>
+            <md-option value="10">Figure     </md-option>
+        </md-optgroup>
+    </md-select>
+    </md-input-container><br>
+    <md-input-container style="margin-right: 10px;">
+    <label>Carte 3</label>
+    <md-select ng-model="primera_2">
+        <md-optgroup label="Carte">
+            <md-option value="21">7          </md-option>
+            <md-option value="18">6          </md-option>
+            <md-option value="16">1          </md-option>
+            <md-option value="15">5          </md-option>
+            <md-option value="14">4          </md-option>
+            <md-option value="13">3          </md-option>
+            <md-option value="12">2          </md-option>
+            <md-option value="10">Figure     </md-option>
+        </md-optgroup>
+    </md-select>
+    </md-input-container><br>
+    <md-input-container style="margin-right: 10px;">
+    <label>Carte 4</label>
+    <md-select ng-model="primera_3">
+        <md-optgroup label="Carte">
+            <md-option value="21">7          </md-option>
+            <md-option value="18">6          </md-option>
+            <md-option value="16">1          </md-option>
+            <md-option value="15">5          </md-option>
+            <md-option value="14">4          </md-option>
+            <md-option value="13">3          </md-option>
+            <md-option value="12">2          </md-option>
+            <md-option value="10">Figure     </md-option>
+        </md-optgroup>
+    </md-select>
+    </md-input-container><br><br>
+    <span style="font-weight=bolder;">
+        Résultat : {[+primera_0 + +primera_1 + +primera_2 + +primera_3}}</span>
 </div>
