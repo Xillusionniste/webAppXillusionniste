@@ -226,6 +226,11 @@ angular.module('buttonDirectives', [])
         templateUrl: "app/web/buttons/emoticonSadIcon.html"
     };
 })
+.directive("primeraCalculationButton", function() {
+    return {
+        templateUrl: "app/web/buttons/primeraCalculationButton.html"
+    };
+})
 .directive("playerRowLessthanten", function(lessthantenService) {
     return {
         restrict : 'A',
