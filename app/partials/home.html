@@ -3,10 +3,22 @@
         <h2>Accueil</h2>
     </header>
 </div>
-<div>
-	<md-button class="md-raised md-primary" href="#/lessthanten">Moins de 10</md-button>
-	<br/>
-	<md-button class="md-raised md-primary" href="#/president">Président</md-button>
-	<br/>
-	<md-button class="md-raised md-primary" href="#/scopa">Scopa</md-button>
+<div layout="column" flex-sm="100" flex="33">
+	Jeux
+	<md-menu md-offset="0 -7">
+		<md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+			<md-icon md-menu-origin md-svg-icon="app/web/img/icons/ic_games_black_24px.svg"></md-icon>
+		</md-button>
+		<md-menu-content width="4">
+			<md-menu-item>
+			  <md-button href="#/lessthanten" ng-click="ctrl.announceClick($index)">Moins de 10</md-button>
+			</md-menu-item>
+			<md-menu-item>
+			  <md-button href="#/president" ng-click="ctrl.announceClick($index)">Président</md-button>
+			</md-menu-item>
+			<md-menu-item>
+			  <md-button href="#/scopa" ng-click="ctrl.announceClick($index)">Scopa</md-button>
+			</md-menu-item>
+		</md-menu-content>
+	</md-menu>
 </div>
