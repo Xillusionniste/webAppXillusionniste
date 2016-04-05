@@ -11,7 +11,8 @@ var truc = angular.module('appliController', ['dataService'])
     //console.log('Super Players');
     //console.log($scope.players);
     //$scope.players = [];
-    $scope.sortingEnabled = true;
+    $scope.sortingEnabled = false;
+    $scope.game = "lessthanten";
 
     $scope.addPlayer = function() {
         var newPlayer = prompt("Nouveau joueur : ");
@@ -84,6 +85,7 @@ var truc = angular.module('appliController', ['dataService'])
 .controller('PresidentController',function($scope,$window,presidentService) {
     $scope.players = presidentService.getPlayersFromLocalSession();
     $scope.sortingEnabled = true;
+    $scope.game = true;
 
     $scope.addPlayer = function() {
         var newPlayer = prompt("Nouveau joueur : ");
@@ -172,6 +174,7 @@ var truc = angular.module('appliController', ['dataService'])
     $scope.goals1 =             scopaService.getGoals1FromLocalSession();
     $scope.display0Won =        scopaService.getDisplay0WonFromLocalSession();
     $scope.display1Won =        scopaService.getDisplay1WonFromLocalSession();
+    $scope.game = true;
 
     $scope.editPlayer = function(index) {
         var newPlayer = prompt("Nom du joueur : ");

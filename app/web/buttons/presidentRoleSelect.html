@@ -1,0 +1,8 @@
+<md-container>
+	<md-button ng-class="{'md-fab md-primary md-mini'   : !roleDisabled,
+                          'md-icon-button md-primary' : roleDisabled}" 
+                           aria-label="role zero">
+        <md-icon ng-if="!roleDisabled" md-svg-src={{roleEnabledPaths[playerRole]}}></md-icon>
+        <md-icon ng-if="roleDisabled"  md-svg-src={{roleDisabledPaths[playerRole]}}></md-icon>
+    </md-button>
+</md-container>

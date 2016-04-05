@@ -1,234 +1,48 @@
 'use strict';
 
 angular.module('buttonDirectives', [])
-.directive("addPlayerButton", function() {
+.directive("roleSelect", function() {
     return {
-        templateUrl: "app/web/buttons/addPlayerButton.html"
+        templateUrl: "app/web/buttons/presidentRoleSelect.html",
+        scope: {
+            playerRole: "=",
+            roleDisabled: "="
+        },
+        controller: function ($scope) {
+            $scope.roleEnabledPaths = [
+                "app/web/img/icons/ic_bug_report_white_18px.svg",
+                "app/web/img/icons/ic_cancel_white_18px.svg",
+                "app/web/img/icons/ic_clear_white_18px.svg",
+                "app/web/img/icons/ic_do_not_disturb_white_18px.svg",
+                "app/web/img/icons/ic_star_border_white_18px.svg",
+                "app/web/img/icons/ic_stars_white_24px.svg",
+                "app/web/img/icons/ic_school_white_18px.svg"
+            ];
+            $scope.roleDisabledPaths = [
+                "app/web/img/icons/ic_bug_report_black_18px.svg",
+                "app/web/img/icons/ic_cancel_black_18px.svg",
+                "app/web/img/icons/ic_clear_black_18px.svg",
+                "app/web/img/icons/ic_do_not_disturb_black_18px.svg",
+                "app/web/img/icons/ic_star_border_black_18px.svg",
+                "app/web/img/icons/ic_stars_black_24px.svg",
+                "app/web/img/icons/ic_school_black_18px.svg"
+            ];
+        }
     };
 })
-.directive("removePlayerButton", function() {
+.directive("trendIcon", function() {
     return {
-        templateUrl: "app/web/buttons/removePlayerButton.html"
-    };
-})
-.directive("removeAllPlayersButton", function() {
-    return {
-        templateUrl: "app/web/buttons/removeAllPlayersButton.html"
-    };
-})
-.directive("resetButton", function() {
-    return {
-        templateUrl: "app/web/buttons/resetButton.html"
-    };
-})
-.directive("refreshDisabledButton", function() {
-    return {
-        templateUrl: "app/web/buttons/refreshDisabledButton.html"
-    };
-})
-.directive("refreshEnabledButton", function() {
-    return {
-        templateUrl: "app/web/buttons/refreshEnabledButton.html"
-    };
-})
-.directive("helpLessthantenButton", function() {
-    return {
-        templateUrl: "app/web/buttons/helpLessthantenButton.html"
-    };
-})
-.directive("helpPresidentButton", function() {
-    return {
-        templateUrl: "app/web/buttons/helpPresidentButton.html"
-    };
-})
-.directive("helpScopaButton", function() {
-    return {
-        templateUrl: "app/web/buttons/helpScopaButton.html"
-    };
-})
-.directive("dummyButton", function() {
-    return {
-        templateUrl: "app/web/buttons/dummyButton.html"
-    };
-})
-.directive("dummyButton2", function() {
-    return {
-        templateUrl: "app/web/buttons/dummyButton2.html"
-    };
-})
-.directive("dummyButton3", function() {
-    return {
-        templateUrl: "app/web/buttons/dummyButton3.html"
-    };
-})
-.directive("roleButton", function() {
-    return {
-        templateUrl: "app/web/buttons/roleButton.html"
-    };
-})
-.directive("roleZero", function() {
-    return {
-        templateUrl: "app/web/buttons/roleZero.html"
-    };
-})
-.directive("roleZeroDisabled", function() {
-    return {
-        templateUrl: "app/web/buttons/roleZeroDisabled.html"
-    };
-})
-.directive("roleOne", function() {
-    return {
-        templateUrl: "app/web/buttons/roleOne.html"
-    };
-})
-.directive("roleOneDisabled", function() {
-    return {
-        templateUrl: "app/web/buttons/roleOneDisabled.html"
-    };
-})
-.directive("roleTwo", function() {
-    return {
-        templateUrl: "app/web/buttons/roleTwo.html"
-    };
-})
-.directive("roleTwoDisabled", function() {
-    return {
-        templateUrl: "app/web/buttons/roleTwoDisabled.html"
-    };
-})
-.directive("roleThree", function() {
-    return {
-        templateUrl: "app/web/buttons/roleThree.html"
-    };
-})
-.directive("roleThreeDisabled", function() {
-    return {
-        templateUrl: "app/web/buttons/roleThreeDisabled.html"
-    };
-})
-.directive("roleFour", function() {
-    return {
-        templateUrl: "app/web/buttons/roleFour.html"
-    };
-})
-.directive("roleFourDisabled", function() {
-    return {
-        templateUrl: "app/web/buttons/roleFourDisabled.html"
-    };
-})
-.directive("roleFive", function() {
-    return {
-        templateUrl: "app/web/buttons/roleFive.html"
-    };
-})
-.directive("roleFiveDisabled", function() {
-    return {
-        templateUrl: "app/web/buttons/roleFiveDisabled.html"
-    };
-})
-.directive("roleSix", function() {
-    return {
-        templateUrl: "app/web/buttons/roleSix.html"
-    };
-})
-.directive("roleSixDisabled", function() {
-    return {
-        templateUrl: "app/web/buttons/roleSixDisabled.html"
-    };
-})
-.directive("trendUpButton", function() {
-    return {
-        templateUrl: "app/web/buttons/trendUpButton.html"
-    };
-})
-.directive("trendUpIcon", function() {
-    return {
-        templateUrl: "app/web/buttons/trendUpIcon.html"
-    };
-})
-.directive("trendFlatIcon", function() {
-    return {
-        templateUrl: "app/web/buttons/trendFlatIcon.html"
-    };
-})
-.directive("trendDownIcon", function() {
-    return {
-        templateUrl: "app/web/buttons/trendDownIcon.html"
-    };
-})
-.directive("arrowDownIcon", function() {
-    return {
-        templateUrl: "app/web/buttons/arrowDownIcon.html"
-    };
-})
-.directive("editPlayerZeroButton", function() {
-    return {
-        templateUrl: "app/web/buttons/editPlayerZeroButton.html"
-    };
-})
-.directive("editPlayerOneButton", function() {
-    return {
-        templateUrl: "app/web/buttons/editPlayerOneButton.html"
-    };
-})
-.directive("validateEnabledButton", function() {
-    return {
-        templateUrl: "app/web/buttons/validateEnabledButton.html"
-    };
-})
-.directive("validateDisabledButton", function() {
-    return {
-        templateUrl: "app/web/buttons/validateDisabledButton.html"
-    };
-})
-.directive("continueEnabledButton", function() {
-    return {
-        templateUrl: "app/web/buttons/continueEnabledButton.html"
-    };
-})
-.directive("continueDisabledButton", function() {
-    return {
-        templateUrl: "app/web/buttons/continueDisabledButton.html"
-    };
-})
-.directive("rematchButton", function() {
-    return {
-        templateUrl: "app/web/buttons/rematchButton.html"
-    };
-})
-.directive("addScopa0Button", function() {
-    return {
-        templateUrl: "app/web/buttons/addScopa0Button.html"
-    };
-})
-.directive("addScopa1Button", function() {
-    return {
-        templateUrl: "app/web/buttons/addScopa1Button.html"
-    };
-})
-.directive("removeScopa0Button", function() {
-    return {
-        templateUrl: "app/web/buttons/removeScopa0Button.html"
-    };
-})
-.directive("removeScopa1Button", function() {
-    return {
-        templateUrl: "app/web/buttons/removeScopa1Button.html"
-    };
-})
-.directive("emoticonHappyIcon", function() {
-    return {
-        templateUrl: "app/web/buttons/emoticonHappyIcon.html"
-    };
-})
-.directive("emoticonSadIcon", function() {
-    return {
-        templateUrl: "app/web/buttons/emoticonSadIcon.html"
-    };
-})
-.directive("primeraCalculationButton", function() {
-    return {
-        templateUrl: "app/web/buttons/primeraCalculationButton.html"
+        templateUrl: "app/web/buttons/trendIcon.html",
+        scope: {
+            playerTrend: "="
+        },
+        controller: function($scope) {
+            $scope.trendPaths = [
+                "app/web/img/icons/ic_trending_down_black_18px.svg",
+                "app/web/img/icons/ic_trending_flat_black_18px.svg",
+                "app/web/img/icons/ic_trending_up_black_18px.svg"
+            ];
+        }
     };
 })
 .directive("playerRowLessthanten", function(lessthantenService) {

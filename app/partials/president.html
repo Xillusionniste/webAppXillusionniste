@@ -5,32 +5,50 @@
 </div>
 
 <div>
-        <reset-button></reset-button>
-        <help-president-button></help-president-button>
-        <dummy-button-3></dummy-button-3>
-        <span ng-show="sortingEnabled">
-            <refresh-enabled-button></refresh-enabled-button>
-        </span>
-        <span ng-show="!sortingEnabled">
-            <refresh-disabled-button></refresh-disabled-button>
-        </span>
+        <md-button class="md-fab md-primary md-mini" aria-label="Reset Game"
+            ng-click="resetGame()">
+            <md-icon md-svg-src="app/web/img/icons/ic_settings_backup_restore_white_24px.svg"></md-icon>
+        </md-button>
+        <md-button class="md-fab md-mini" aria-label="Help"
+            href="#/presidenthelp">
+            <md-icon md-svg-src="app/web/img/icons/ic_help_white_24px.svg"></md-icon>
+        </md-button>
+        <md-button class="md-fab md-mini" aria-label="dummy button" ng-click="showRanking()">
+            <md-icon md-svg-src="app/web/img/icons/ic_sort_white_24px.svg"></md-icon>
+        </md-button>
+        <md-button ng-if="!sortingEnabled"  class="md-icon-button md-primary" ng-disabled="true" aria-label="Refresh">
+            <md-icon md-svg-src="app/web/img/icons/ic_refresh_black_18px.svg"></md-icon>
+        </md-button>
+         <md-button  ng-if="sortingEnabled" class="md-fab md-primary md-mini" aria-label="Refresh" ng-click="sortPlayers(false)">
+            <md-icon md-svg-src="app/web/img/icons/ic_refresh_white_18px.svg"></md-icon>
+        </md-button>
+        <span ng-if="sortingEnabled" style="font-weight: bolder; color: red;">Actualiser</span>
 
     <table class="table">
         <thead>
             <tr style="background-color: #E0F7FA;">
                 <th style="vertical-align: middle;" class="bold">
-                    <remove-all-players-button></remove-all-players-button>
+                    <md-button class="md-icon-button md-primary" aria-label="Remove all players"
+                        ng-click="removeAllPlayers()">
+                        <md-icon md-svg-src="app/web/img/icons/ic_delete_forever_black_18px.svg"></md-icon>
+                    </md-button>
                     Joueurs
-                    <add-player-button>
-                    </add-player-button>
+                    <md-button class="md-fab md-primary md-mini" aria-label="Add Player"
+                        ng-click="addPlayer()">
+                        <md-icon md-svg-src="app/web/img/icons/ic_add_circle_white_24px.svg"></md-icon>
+                    </md-button>
                 </th>
                 <th style="vertical-align: middle;" class="bold">
                     Evolution
-                    <trend-up-button></trend-up-button>
+                    <md-button class="md-fab md-mini" ng-disabled="true" aria-label="trend up button">
+                        <md-icon md-svg-src="app/web/img/icons/ic_trending_up_black_18px.svg"></md-icon>
+                    </md-button>
                 </th>
                 <th style="vertical-align: middle;" class="bold">
                     Place
-                    <role-button></role-button>
+                    <md-button class="md-fab md-mini" ng-disabled="true" aria-label="role button">
+                        <md-icon md-svg-src="app/web/img/icons/ic_account_circle_black_24px.svg"></md-icon>
+                    </md-button>
                 </th>
             </tr>
         </thead>

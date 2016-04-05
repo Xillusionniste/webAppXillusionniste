@@ -1,19 +1,14 @@
 <!--NAME-->
 <td style="vertical-align: middle;" ng-click="setSelected($index)">
-    <remove-player-button></remove-player-button>
+    <md-button class="md-icon-button md-primary" aria-label="Remove Player"
+        ng-click="removePlayer($index)">
+        <md-icon md-svg-src="app/web/img/icons/ic_delete_black_18px.svg"></md-icon>
+    </md-button>
     {{player.name}}
 </td>
 <!--TREND-->
 <td style="vertical-align: middle;">
-    <div ng-show="player.trend == -1">
-        <trend-down-icon></trend-down-icon> {{player.evolution}}
-    </div>
-    <div ng-show="player.trend == 0">
-        <trend-flat-icon></trend-flat-icon> {{player.evolution}}
-    </div>
-    <div ng-show="player.trend == 1">
-        <trend-up-icon></trend-up-icon> {{player.evolution}}
-    </div>
+    <trend-icon player-trend="player.trend+1"></trend-icon> {{player.evolution}}
     <!-- {{player.points}} -->
     <div ng-show="player.showButtons">
         <md-button class="md-raised md-primary" ng-click="addTwentyFive()">+25</md-button>
