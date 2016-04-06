@@ -16,14 +16,7 @@
         <md-button class="md-fab md-mini" aria-label="dummy button" ng-click="showRanking()">
             <md-icon md-svg-src="app/web/img/icons/ic_sort_white_24px.svg"></md-icon>
         </md-button>
-        <md-button ng-if="!sortingEnabled"  class="md-icon-button md-primary" ng-disabled="true" aria-label="Refresh">
-            <md-icon md-svg-src="app/web/img/icons/ic_refresh_black_18px.svg"></md-icon>
-        </md-button>
-         <md-button  ng-if="sortingEnabled" class="md-fab md-primary md-mini" aria-label="Refresh" ng-click="sortPlayers(false)">
-            <md-icon md-svg-src="app/web/img/icons/ic_refresh_white_18px.svg"></md-icon>
-        </md-button>
-        <span ng-if="sortingEnabled" style="font-weight: bolder; color: red;">Actualiser</span>
-
+        
     <table class="table">
         <thead>
             <tr style="background-color: #E0F7FA;">
@@ -33,10 +26,17 @@
                         <md-icon md-svg-src="app/web/img/icons/ic_delete_forever_black_18px.svg"></md-icon>
                     </md-button>
                     Joueurs
+                    <md-button ng-if="!sortingEnabled"  class="md-icon-button md-primary" ng-disabled="true" aria-label="Refresh">
+                        <md-icon md-svg-src="app/web/img/icons/ic_refresh_black_18px.svg"></md-icon>
+                    </md-button>
+                     <md-button  ng-if="sortingEnabled" class="md-fab md-primary md-mini" aria-label="Refresh" ng-click="sortPlayers(false)">
+                        <md-icon md-svg-src="app/web/img/icons/ic_refresh_white_18px.svg"></md-icon>
+                    </md-button>
                     <md-button class="md-fab md-primary md-mini" aria-label="Add Player"
                         ng-click="addPlayer()">
                         <md-icon md-svg-src="app/web/img/icons/ic_add_circle_white_24px.svg"></md-icon>
                     </md-button>
+                    <span ng-if="sortingEnabled" style="font-weight: bolder; color: red;">Actualiser</span>
                 </th>
                 <th style="vertical-align: middle;" class="bold">
                     Evolution
