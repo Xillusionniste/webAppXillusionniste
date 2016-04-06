@@ -55,7 +55,8 @@ angular.module('dataService', [])
                                 showButtons: false,
                                 trend : 0,
                                 evolution: '+0',
-                                lastIndex : -1
+                                lastIndex : -1,
+                                offsetWithPreviousPlayer: -1
                             }
                 players.push(data);
             } else alert(newPlayer.toUpperCase() + " existe deja !");
@@ -103,6 +104,13 @@ angular.module('dataService', [])
     				}
     			}
     		}
+            for (i = 0; i<players.length; i++) {
+                if (i == 0) {
+                    players[i].offsetWithPreviousPlayer = -1;
+                } else {
+                    players[i].offsetWithPreviousPlayer = players[i].points - players[i-1].points;
+                }
+            }   
             sortingEnabled = false;
     	},
         updateTrends : function() {

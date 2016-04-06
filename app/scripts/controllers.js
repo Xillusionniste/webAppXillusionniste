@@ -39,6 +39,7 @@ var truc = angular.module('appliController', ['dataService'])
 
     $scope.removePlayer = function(index) {
         lessthantenService.removePlayer(index);
+        lessthantenService.sortPlayers();
         lessthantenService.retreiveIndexes();
         lessthantenService.pushDataIntoLocalSession();
     };

@@ -16,8 +16,11 @@
     </div>
 </td>
 <!--TOTAL-->
-<td  style="vertical-align: middle;" class="bold">
-    {{player.points}}
+<td  style="vertical-align: middle; text-align: center;" class="bold">
+    <span ng-show="player.offsetWithPreviousPlayer != -1" style="font-size: 11px; color: red; text-decoration: inherit;">
+        (+{{player.offsetWithPreviousPlayer}})
+    </span>
+    <br>{{player.points}} 
     <div ng-show="player.showButtons">
         <div layout-gt-sm="row">
             <md-input-container class="md-block" flex-gt-sm>
@@ -29,4 +32,5 @@
             </md-input-container>                        
         </div>
     </div>
+    
 </td>
