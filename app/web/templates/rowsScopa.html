@@ -129,11 +129,15 @@
     <td style="vertical-align: middle; text-align: center;">
         <span style="color: green; font-weight: bolder; font-size: 18px;" ng-show="display1Won">
                 GAGN&Eacute;<br>
-                <emoticon-happy-icon></emoticon-happy-icon>
+                <md-button class="md-fab md-mini" ng-disabled="true" aria-label="dummy button">
+                    <md-icon md-svg-src="app/web/img/icons/ic_mood_black_24px.svg"></md-icon>
+                </md-button>
         </span>
         <span style="color: red; font-weight: bolder; font-size: 18px;" ng-show="display0Won">
                 PERDU<br>
-                <emoticon-sad-icon></emoticon-sad-icon>
+                <md-button class="md-fab md-mini" ng-disabled="true" aria-label="dummy button">
+                    <md-icon md-svg-src="app/web/img/icons/ic_sentiment_very_dissatisfied_black_24px.svg"></md-icon>
+                </md-button>
         </span>
     </td>
 </tr>
@@ -160,21 +164,49 @@
     </td>
 </tr>
 <tr>
-    <td style="text-align: center; vertical-align: middle; font-weight: bold; font-size: 19px;  color: #388E3C; text-shadow: 0 0 3px #43A047;">
-        <p>{{players[0].totalPoints}}</p>
+    <td>
+        <!-- TOTAL POINTS BLUE -->
+        <span style="text-align: center; vertical-align: middle; font-weight: bold; font-size: 19px;  color: #0D47A1; text-shadow: 0 0 3px #1565C0;" 
+        ng-hide="display0Won || display1Won">
+            <p>{{players[0].totalPoints}}</p>
+        </span>
+        <!-- TOTAL POINTS GREEN -->
+        <span style="text-align: center; vertical-align: middle; font-weight: bold; font-size: 19px;  color: #AFB42B; text-shadow: 0 0 3px #D4E157;" 
+        ng-show="display0Won">
+            <p>{{players[0].totalPoints}}</p>
+        </span>
+        <!-- TOTAL POINTS RED -->
+        <span style="text-align: center; vertical-align: middle; font-weight: bold; font-size: 19px;  color: #D50000; text-shadow: 0 0 3px #FF1744;" 
+        ng-show="display1Won">
+            <p>{{players[0].totalPoints}}</p>
+        </span>
     </td>
     <td style="background-color: #E0F7FA; text-align: center; vertical-align: middle; font-weight: bolder;">
         <strong>TOTAL</strong>
     </td>
-    <td style="text-align: center; vertical-align: middle; font-weight: bold; font-size: 19px;  color: #388E3C; text-shadow: 0 0 3px #43A047;">
-        <p>{{players[1].totalPoints}}</p>
+    <td>
+        <!-- TOTAL POINTS BLUE -->
+        <span style="text-align: center; vertical-align: middle; font-weight: bold; font-size: 19px;  color: #0D47A1; text-shadow: 0 0 3px #1565C0;" 
+        ng-hide="display0Won || display1Won">
+            <p>{{players[1].totalPoints}}</p>
+        </span>
+        <!-- TOTAL POINTS GREEN -->
+        <span style="text-align: center; vertical-align: middle; font-weight: bold; font-size: 19px;  color: #33691E; text-shadow: 0 0 3px #D4E157;" 
+        ng-show="display1Won">
+            <p>{{players[1].totalPoints}}</p>
+        </span>
+        <!-- TOTAL POINTS RED -->
+        <span style="text-align: center; vertical-align: middle; font-weight: bold; font-size: 19px;  color: #D50000; text-shadow: 0 0 3px #FF1744;" 
+        ng-show="display0Won">
+            <p>{{players[1].totalPoints}}</p>
+        </span>
     </td>
 </tr>
 <tr ng-show="rematchEnabled">
     <td>
     </td>
     <td style="background-color: #E0F7FA; text-align: center; vertical-align: middle;">
-        <md-button class="md-raised md-warn" ng-click="resetGame()">Rejouer</md-button>
+        <md-button class="md-raised md-warn" ng-click="resetGame(1)">Rejouer</md-button>
     </td>
     <td>
     </td>

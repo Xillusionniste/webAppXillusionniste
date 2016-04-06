@@ -398,8 +398,10 @@ angular.module('dataService', [])
             }
             goals0[4] = goals1[4] = 0;
         },
-        resetGame : function(){
-            if($window.confirm('Reset le jeu ?')) {
+        resetGame : function(mode){
+            console.log(mode);
+            var sentence = ["Reset le jeu ?", "Rejouer ?"];
+            if($window.confirm(sentence[mode])) {
                 for (var i = 0; i<players.length; i++) {
                     players[i].previousPoints = players[i].handPoints = players[i].totalPoints = 0;
                 }
@@ -407,12 +409,12 @@ angular.module('dataService', [])
                     goals0[i] = goals1[i] = false;
                 }
                 goals0[4] = goals1[4] = 0;
+                continueEnabled = false;
+                validateEnabled = false;
+                display0Won = false;
+                display1Won = false;
+                rematchEnabled = false;
             }
-            continueEnabled = false;
-            validateEnabled = false;
-            display0Won = false;
-            display1Won = false;
-            rematchEnabled = false;
 
         },
         addScopa : function(index){

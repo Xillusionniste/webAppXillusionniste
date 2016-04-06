@@ -8,7 +8,7 @@
     <br>
     <hr>
     <span style="font-weight: bolder;">
-        Meilleures cartes de {{players[0].name}} :</span><br>
+        Entrer les 4 meilleurs cartes de chaque famille (selon l'ordre ci-dessous) :</span><br>
     <md-input-container style="margin-right: 10px;">
         <label>Carte 1</label>
         <md-select ng-model="primera_00">
@@ -69,75 +69,31 @@
         </md-optgroup>
     </md-select>
     </md-input-container><br>
-    <span style="font-weight: bolder; color: #00ACC1;">
-        Résultat : {{+primera_00 + +primera_01 + +primera_02 + +primera_03}}</span>
+    
+        
+        <md-button class="md-raised"><span style="font-weight: bolder; color: #00ACC1;">Résultat : {{+primera_00 + +primera_01 + +primera_02 + +primera_03}}</span></md-button>
 </div>
-
-<div>
-    <hr>
-    <span style="font-weight: bolder;">
-        Meilleures cartes de {{players[1].name}} :</span><br>
-    <md-input-container style="margin-right: 10px;">
-        <label>Carte 1</label>
-        <md-select ng-model="primera_10">
-            <md-optgroup label="Carte">
-                <md-option value="21">7          </md-option>
-                <md-option value="18">6          </md-option>
-                <md-option value="16">1          </md-option>
-                <md-option value="15">5          </md-option>
-                <md-option value="14">4          </md-option>
-                <md-option value="13">3          </md-option>
-                <md-option value="12">2          </md-option>
-                <md-option value="10">Figure     </md-option>
-            </md-optgroup>
-        </md-select>
-    </md-input-container>
-    <md-input-container style="margin-right: 10px;">
-    <label>Carte 2</label>
-    <md-select ng-model="primera_11">
-        <md-optgroup label="Carte">
-            <md-option value="21">7          </md-option>
-            <md-option value="18">6          </md-option>
-            <md-option value="16">1          </md-option>
-            <md-option value="15">5          </md-option>
-            <md-option value="14">4          </md-option>
-            <md-option value="13">3          </md-option>
-            <md-option value="12">2          </md-option>
-            <md-option value="10">Figure     </md-option>
-        </md-optgroup>
-    </md-select>
-    </md-input-container><br>
-    <md-input-container style="margin-right: 10px;">
-    <label>Carte 3</label>
-    <md-select ng-model="primera_12">
-        <md-optgroup label="Carte">
-            <md-option value="21">7          </md-option>
-            <md-option value="18">6          </md-option>
-            <md-option value="16">1          </md-option>
-            <md-option value="15">5          </md-option>
-            <md-option value="14">4          </md-option>
-            <md-option value="13">3          </md-option>
-            <md-option value="12">2          </md-option>
-            <md-option value="10">Figure     </md-option>
-        </md-optgroup>
-    </md-select>
-    </md-input-container>
-    <md-input-container style="margin-right: 10px;">
-    <label>Carte 4</label>
-    <md-select ng-model="primera_13">
-        <md-optgroup label="Carte">
-            <md-option value="21">7          </md-option>
-            <md-option value="18">6          </md-option>
-            <md-option value="16">1          </md-option>
-            <md-option value="15">5          </md-option>
-            <md-option value="14">4          </md-option>
-            <md-option value="13">3          </md-option>
-            <md-option value="12">2          </md-option>
-            <md-option value="10">Figure     </md-option>
-        </md-optgroup>
-    </md-select>
-    </md-input-container><br>
-    <span style="font-weight: bolder; color: #00ACC1;">
-        Résultat : {{+primera_10 + +primera_11 + +primera_12 + +primera_13}}</span>
-    <br><br>
-</div>
+<br>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th style="vertical-align: middle; background-color: #E0F7FA; text-align: center;" class="bold">
+                Cartes
+            </th>
+            <th style="vertical-align: middle; background-color: #E0F7FA; text-align: center;" class="bold">
+                Points
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in cards" style="vertical-align: middle; text-align: center;">
+        <td>
+            {{item.card}}
+        </td>
+        <td>
+            {{item.points}}
+        </td>
+    </tr>
+    </tbody>
+</table>
+<br><br>

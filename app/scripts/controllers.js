@@ -189,6 +189,8 @@ var truc = angular.module('appliController', ['dataService'])
     $scope.display0Won =        scopaService.getDisplay0WonFromLocalSession();
     $scope.display1Won =        scopaService.getDisplay1WonFromLocalSession();
     $scope.game = true;
+    $scope.cards = [{card: "7",points: 21},{card: "6",points: 18},{card: "1",points: 16},{card: "5",points: 15},
+    {card: "4",points: 14},{card: "3",points: 13},{card: "2",points: 12},{card: "Tetes",points: 10}];
 
     $scope.editPlayer = function(index) {
         var newPlayer = prompt("Nom du joueur : ");
@@ -229,8 +231,8 @@ var truc = angular.module('appliController', ['dataService'])
         scopaService.pushDataIntoLocalSession();
     };
 
-    $scope.resetGame = function() {
-        scopaService.resetGame();
+    $scope.resetGame = function(mode) {
+        scopaService.resetGame(mode);
         scopaService.pushDataIntoLocalSession();
     };
 
