@@ -9,7 +9,7 @@ var truc = angular.module('appliController', ['dataService'])
             link: '#/lessthanten'
         },
         {
-            game: 'Président',
+            game: 'Pr\351sident',
             link: "#/president"
         },
         {
