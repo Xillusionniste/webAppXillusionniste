@@ -3,6 +3,20 @@
 var truc = angular.module('appliController', ['dataService'])
 
 .controller('HomeController', function($scope) {
+    $scope.gameLinks = [
+        {
+            game: 'Moins de 10',
+            link: '#/lessthanten'
+        },
+        {
+            game: 'Président',
+            link: "#/president"
+        },
+        {
+            game: 'Scopa',
+            link: "#/scopa"
+        },
+    ];
 })
 
 .controller('LessthantenController', function($scope,$window,lessthantenService) {

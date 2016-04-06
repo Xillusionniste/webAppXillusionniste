@@ -3,22 +3,24 @@
         <h2>Accueil</h2>
     </header>
 </div>
-<div layout="column" flex-sm="100" flex="33">
-	Jeux
-	<md-menu md-offset="0 -7">
-		<md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
-			<md-icon md-menu-origin md-svg-icon="app/web/img/icons/ic_games_black_24px.svg"></md-icon>
-		</md-button>
-		<md-menu-content width="4">
-			<md-menu-item>
-			  <md-button href="#/lessthanten" ng-click="ctrl.announceClick($index)">Moins de 10</md-button>
-			</md-menu-item>
-			<md-menu-item>
-			  <md-button href="#/president" ng-click="ctrl.announceClick($index)">Président</md-button>
-			</md-menu-item>
-			<md-menu-item>
-			  <md-button href="#/scopa" ng-click="ctrl.announceClick($index)">Scopa</md-button>
-			</md-menu-item>
-		</md-menu-content>
-	</md-menu>
+<!--<div layout="column" flex-sm="100" flex="33">-->
+	<b>Jeux</b>
+<div class="menus"  layout-wrap layout="row" layout-fill layout-align="space-between center">
+	<div layout="column" flex="33" flex-sm="100">
+		<md-menu>
+          <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+            <md-icon md-menu-origin md-svg-icon="app/web/img/icons/ic_games_black_24px.svg"></md-icon>
+          </md-button>
+          <md-menu-content width="3">
+            <md-menu-item ng-repeat="item in gameLinks">
+              <md-button>
+              	<a class="normalText" ng-href="{{item.link}}">
+	              	<md-icon md-menu-align-target></md-icon>
+	                {{item.game}}
+                </a>
+              </md-button>
+            </md-menu-item>
+          </md-menu-content>
+        </md-menu>
+	</div>
 </div>
