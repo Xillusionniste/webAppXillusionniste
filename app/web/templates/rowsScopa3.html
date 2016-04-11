@@ -1,4 +1,7 @@
 <tr>
+    <td style="vertical-align: middle; text-align: center; font-weight: bold;">
+        Scopa
+    </td>
     <td style="vertical-align: middle;">
         <div>
             <md-button class="md-icon-button md-primary" aria-label="Add Scopa"
@@ -11,9 +14,6 @@
                 <md-icon md-svg-src="app/web/img/icons/ic_indeterminate_check_box_black_24px.svg"></md-icon>
             </md-button><br>
         </div>
-    </td>
-    <td style="vertical-align: middle; text-align: center; font-weight: bold;">
-        Scopa
     </td>
     <td  style="vertical-align: middle;">
         <div>
@@ -28,16 +28,29 @@
             </md-button><br>
         </div>
     </td>
+    <td  style="vertical-align: middle;">
+        <div>
+            <md-button class="md-icon-button md-primary" aria-label="Add Scopa"
+                ng-click="addScopa(2)">
+                <md-icon md-svg-src="app/web/img/icons/ic_add_box_black_18px.svg"></md-icon>
+            </md-button><br>
+            <span style="font-weight: bolder; padding-left: 20px;">{{goals2[4]}}</span><br>
+            <md-button class="md-icon-button md-primary" aria-label="Remove Scopa"
+                ng-click="removeScopa(2)">
+                <md-icon md-svg-src="app/web/img/icons/ic_indeterminate_check_box_black_24px.svg"></md-icon>
+            </md-button><br>
+        </div>
+    </td>
 </tr>
 <tr>
+    <td style="vertical-align: middle; text-align: center; font-weight: bold;">
+        Cartes
+    </td>
     <td style="vertical-align: middle;">
         <div flex-xs flex="50">
             <md-checkbox md-no-ink ng-model="goals0[0]" class="md-align-middle" ng-click="updateValidateEnabled(0,0)" aria-label="Checkbox">
             </md-checkbox>
         </div>
-    </td>
-    <td style="vertical-align: middle; text-align: center; font-weight: bold;">
-        Cartes
     </td>
     <td  style="vertical-align: middle;">
         <div flex-xs flex="50">
@@ -45,16 +58,22 @@
             </md-checkbox>
         </div>
     </td>
+    <td  style="vertical-align: middle;">
+        <div flex-xs flex="50">
+            <md-checkbox md-no-ink ng-model="goals2[0]" class="md-align-middle" ng-click="updateValidateEnabled(2,0)" aria-label="Checkbox">
+            </md-checkbox>
+        </div>
+    </td>
 </tr>
 <tr>
+    <td style="vertical-align: middle; text-align: center; font-weight: bold;">
+        Deniers
+    </td>
     <td style="vertical-align: middle;">
         <div flex-xs flex="50">
             <md-checkbox md-no-ink ng-model="goals0[3]" class="md-align-middle" ng-click="updateValidateEnabled(0,3)" aria-label="Checkbox">
             </md-checkbox>
         </div>
-    </td>
-    <td style="vertical-align: middle; text-align: center; font-weight: bold;">
-        Deniers
     </td>
     <td  style="vertical-align: middle;">
         <div flex-xs flex="50">
@@ -62,16 +81,22 @@
             </md-checkbox>
         </div>
     </td>
+    <td  style="vertical-align: middle;">
+        <div flex-xs flex="50">
+            <md-checkbox md-no-ink ng-model="goals2[3]" class="md-align-middle" ng-click="updateValidateEnabled(2,3)" aria-label="Checkbox">
+            </md-checkbox>
+        </div>
+    </td>
 </tr>
 <tr>
+    <td style="vertical-align: middle; text-align: center; font-weight: bold;">
+        Settebello
+    </td>
     <td style="vertical-align: middle;">
         <div flex-xs flex="50">
             <md-checkbox md-no-ink ng-model="goals0[2]" class="md-align-middle" ng-click="updateValidateEnabled(0,2)" aria-label="Checkbox">
             </md-checkbox>
         </div>
-    </td>
-    <td style="vertical-align: middle; text-align: center; font-weight: bold;">
-        Settebello
     </td>
     <td  style="vertical-align: middle;">
         <div flex-xs flex="50">
@@ -79,21 +104,33 @@
             </md-checkbox>
         </div>
     </td>
+    <td  style="vertical-align: middle;">
+        <div flex-xs flex="50">
+            <md-checkbox md-no-ink ng-model="goals2[2]" class="md-align-middle" ng-click="updateValidateEnabled(2,2)" aria-label="Checkbox">
+            </md-checkbox>
+        </div>
+    </td>
 </tr>
 
 <tr>
+    <td style="vertical-align: middle; text-align: center; font-weight: bold;">
+        Primeria
+    </td>
     <td style="vertical-align: middle;">
         <div flex-xs flex="50">
             <md-checkbox md-no-ink ng-model="goals0[1]" class="md-align-middle" ng-click="updateValidateEnabled(0,1)" aria-label="Checkbox">
             </md-checkbox>
         </div>
     </td>
-    <td style="vertical-align: middle; text-align: center; font-weight: bold;">
-        Primeria
-    </td>
     <td  style="vertical-align: middle;">
         <div flex-xs flex="50">
             <md-checkbox md-no-ink ng-model="goals1[1]" class="md-align-middle" ng-click="updateValidateEnabled(1,1)" aria-label="Checkbox">
+            </md-checkbox>
+        </div>
+    </td>
+    <td  style="vertical-align: middle;">
+        <div flex-xs flex="50">
+            <md-checkbox md-no-ink ng-model="goals2[1]" class="md-align-middle" ng-click="updateValidateEnabled(2,1)" aria-label="Checkbox">
             </md-checkbox>
         </div>
     </td>
@@ -103,21 +140,6 @@
 
 
 <tr style="background-color: #E0F7FA;">
-    <td style="vertical-align: middle; text-align: center;">
-        <span style="color: #AFB42B; text-shadow: 0 0 3px #D4E157; font-weight: bolder; font-size: 18px;" ng-show="display0Won">
-                GAGN&Eacute;<br>
-                <md-button class="md-fab md-mini" ng-disabled="true" aria-label="dummy button">
-                    <md-icon md-svg-src="app/web/img/icons/ic_mood_black_24px.svg"></md-icon>
-                </md-button>
-        </span>
-        <span style="color: #D50000; text-shadow: 0 0 3px #FF1744; font-weight: bolder; font-size: 18px;" ng-show="display1Won">
-                PERDU<br>
-                <md-button class="md-fab md-mini" ng-disabled="true" aria-label="dummy button">
-                    <md-icon md-svg-src="app/web/img/icons/ic_sentiment_very_dissatisfied_black_24px.svg"></md-icon>
-                </md-button>
-        </span>
-    </td>
-
     <td style="text-align: center;">
         <md-button ng-if="validateEnabled" class="md-raised md-primary" ng-click="validate()">Valider</md-button>
         <md-button ng-if="!validateEnabled" class="md-raised md-primary" ng-disabled="true">Valider</md-button>
@@ -127,13 +149,43 @@
     </td>
 
     <td style="vertical-align: middle; text-align: center;">
+        <span style="color: #AFB42B; text-shadow: 0 0 3px #D4E157; font-weight: bolder; font-size: 18px;" ng-show="display0Won">
+                GAGN&Eacute;<br>
+                <md-button class="md-fab md-mini" ng-disabled="true" aria-label="dummy button">
+                    <md-icon md-svg-src="app/web/img/icons/ic_mood_black_24px.svg"></md-icon>
+                </md-button>
+        </span>
+        <span style="color: #D50000; text-shadow: 0 0 3px #FF1744; font-weight: bolder; font-size: 18px;" ng-show="display1Won || display2Won">
+                PERDU<br>
+                <md-button class="md-fab md-mini" ng-disabled="true" aria-label="dummy button">
+                    <md-icon md-svg-src="app/web/img/icons/ic_sentiment_very_dissatisfied_black_24px.svg"></md-icon>
+                </md-button>
+        </span>
+    </td>
+
+    <td style="vertical-align: middle; text-align: center;">
         <span style="color: #AFB42B; text-shadow: 0 0 3px #D4E157; font-weight: bolder; font-size: 18px;" ng-show="display1Won">
                 GAGN&Eacute;<br>
                 <md-button class="md-fab md-mini" ng-disabled="true" aria-label="dummy button">
                     <md-icon md-svg-src="app/web/img/icons/ic_mood_black_24px.svg"></md-icon>
                 </md-button>
         </span>
-        <span style="color: #D50000; text-shadow: 0 0 3px #FF1744; font-weight: bolder; font-size: 18px;" ng-show="display0Won">
+        <span style="color: #D50000; text-shadow: 0 0 3px #FF1744; font-weight: bolder; font-size: 18px;" ng-show="display0Won || display2Won">
+                PERDU<br>
+                <md-button class="md-fab md-mini" ng-disabled="true" aria-label="dummy button">
+                    <md-icon md-svg-src="app/web/img/icons/ic_sentiment_very_dissatisfied_black_24px.svg"></md-icon>
+                </md-button>
+        </span>
+    </td>
+
+    <td style="vertical-align: middle; text-align: center;">
+        <span style="color: #AFB42B; text-shadow: 0 0 3px #D4E157; font-weight: bolder; font-size: 18px;" ng-show="display2Won">
+                GAGN&Eacute;<br>
+                <md-button class="md-fab md-mini" ng-disabled="true" aria-label="dummy button">
+                    <md-icon md-svg-src="app/web/img/icons/ic_mood_black_24px.svg"></md-icon>
+                </md-button>
+        </span>
+        <span style="color: #D50000; text-shadow: 0 0 3px #FF1744; font-weight: bolder; font-size: 18px;" ng-show="display0Won || display1Won">
                 PERDU<br>
                 <md-button class="md-fab md-mini" ng-disabled="true" aria-label="dummy button">
                     <md-icon md-svg-src="app/web/img/icons/ic_sentiment_very_dissatisfied_black_24px.svg"></md-icon>
@@ -142,52 +194,58 @@
     </td>
 </tr>
 <tr>
-    <td style="text-align: center; vertical-align: middle; font-weight: bolder; font-size: 16px;">
-        <p>{{players[0].handPoints}}</p>
-    </td>
     <td style="background-color: #E0F7FA; text-align: center; vertical-align: middle; font-weight: bolder;">
         Main<br/>
     </td>
     <td style="text-align: center; vertical-align: middle; font-weight: bolder; font-size: 16px;">
+        <p>{{players[0].handPoints}}</p>
+    </td>
+    <td style="text-align: center; vertical-align: middle; font-weight: bolder; font-size: 16px;">
         <p>{{players[1].handPoints}}</p>
+    </td>
+    <td style="text-align: center; vertical-align: middle; font-weight: bolder; font-size: 16px;">
+        <p>{{players[2].handPoints}}</p>
     </td>
 </tr>
 <tr>
-    <td style="text-align: center; vertical-align: middle;">
-        <p>{{players[0].previousPoints}}</p>
-    </td>
     <td style="background-color: #E0F7FA; text-align: center; vertical-align: middle;">
         Avant<br/>
     </td>
     <td style="text-align: center; vertical-align: middle;">
+        <p>{{players[0].previousPoints}}</p>
+    </td>
+    <td style="text-align: center; vertical-align: middle;">
         <p>{{players[1].previousPoints}}</p>
+    </td>
+    <td style="text-align: center; vertical-align: middle;">
+        <p>{{players[2].previousPoints}}</p>
     </td>
 </tr>
 <tr>
-    <td>
-        <!-- TOTAL POINTS BLUE -->
-        <span style="text-align: center; vertical-align: middle; font-weight: bold; font-size: 19px; color: #0D47A1; text-shadow: 0 0 3px #1565C0;" 
-        ng-hide="display0Won || display1Won">
-            <p>{{players[0].totalPoints}}</p>
-        </span>
-        <!-- TOTAL POINTS GREEN -->
-        <span style="text-align: center; vertical-align: middle; font-weight: bold; font-size: 19px; color: #AFB42B; text-shadow: 0 0 3px #D4E157;" 
-        ng-show="display0Won">
-            <p>{{players[0].totalPoints}}</p>
-        </span>
-        <!-- TOTAL POINTS RED -->
-        <span style="text-align: center; vertical-align: middle; font-weight: bold; font-size: 19px; color: #D50000; text-shadow: 0 0 3px #FF1744;" 
-        ng-show="display1Won">
-            <p>{{players[0].totalPoints}}</p>
-        </span>
-    </td>
     <td style="background-color: #E0F7FA; text-align: center; vertical-align: middle; font-weight: bolder;">
         <strong>TOTAL</strong>
     </td>
     <td>
         <!-- TOTAL POINTS BLUE -->
         <span style="text-align: center; vertical-align: middle; font-weight: bold; font-size: 19px; color: #0D47A1; text-shadow: 0 0 3px #1565C0;" 
-        ng-hide="display0Won || display1Won">
+        ng-hide="display0Won || display1Won || display2Won">
+            <p>{{players[0].totalPoints}}</p>
+        </span>
+        <!-- TOTAL POINTS GREEN -->
+        <span style="text-align: center; vertical-align: middle; font-weight: bold; font-size: 19px; color: #AFB42B; text-shadow: 0 0 3px #D4E157;" 
+        ng-show="display0Won">
+            <p>{{players[0].totalPoints}}</p>
+        </span>
+        <!-- TOTAL POINTS RED -->
+        <span style="text-align: center; vertical-align: middle; font-weight: bold; font-size: 19px; color: #D50000; text-shadow: 0 0 3px #FF1744;" 
+        ng-show="display1Won || display2Won">
+            <p>{{players[0].totalPoints}}</p>
+        </span>
+    </td>
+    <td>
+        <!-- TOTAL POINTS BLUE -->
+        <span style="text-align: center; vertical-align: middle; font-weight: bold; font-size: 19px; color: #0D47A1; text-shadow: 0 0 3px #1565C0;" 
+        ng-hide="display0Won || display1Won || display2Won">
             <p>{{players[1].totalPoints}}</p>
         </span>
         <!-- TOTAL POINTS GREEN -->
@@ -197,16 +255,35 @@
         </span>
         <!-- TOTAL POINTS RED -->
         <span style="text-align: center; vertical-align: middle; font-weight: bold; font-size: 19px; color: #D50000; text-shadow: 0 0 3px #FF1744;" 
-        ng-show="display0Won">
+        ng-show="display0Won || display2Won">
             <p>{{players[1].totalPoints}}</p>
+        </span>
+    </td>
+    <td>
+        <!-- TOTAL POINTS BLUE -->
+        <span style="text-align: center; vertical-align: middle; font-weight: bold; font-size: 19px; color: #0D47A1; text-shadow: 0 0 3px #1565C0;" 
+        ng-hide="display0Won || display1Won || display2Won">
+            <p>{{players[2].totalPoints}}</p>
+        </span>
+        <!-- TOTAL POINTS GREEN -->
+        <span style="text-align: center; vertical-align: middle; font-weight: bold; font-size: 19px; color: #AFB42B; text-shadow: 0 0 3px #D4E157;" 
+        ng-show="display2Won">
+            <p>{{players[2].totalPoints}}</p>
+        </span>
+        <!-- TOTAL POINTS RED -->
+        <span style="text-align: center; vertical-align: middle; font-weight: bold; font-size: 19px; color: #D50000; text-shadow: 0 0 3px #FF1744;" 
+        ng-show="display0Won || display1Won">
+            <p>{{players[2].totalPoints}}</p>
         </span>
     </td>
 </tr>
 <tr ng-show="rematchEnabled">
-    <td>
-    </td>
     <td style="background-color: #E0F7FA; text-align: center; vertical-align: middle;">
         <md-button class="md-raised md-warn" ng-click="resetGame(1)">Rejouer</md-button>
+    </td>
+    <td>
+    </td>
+    <td>
     </td>
     <td>
     </td>

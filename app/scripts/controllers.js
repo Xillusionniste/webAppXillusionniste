@@ -3,22 +3,7 @@
 var truc = angular.module('appliController', ['dataService'])
 
 .controller('HomeController', function($scope) {
-    $scope.gameLinks = [
-        {
-            game: 'Moins de 10',
-            link: '#/lessthanten'
-        },
-        {
-            game: 'Pr\351sident',
-            link: "#/president"
-        },
-        {
-            game: 'Scopa',
-            link: "#/scopa"
-        },
-    ];
 })
-
 .controller('LessthantenController', function($scope,$window,lessthantenService) {
 
     $scope.players = lessthantenService.getPlayersFromLocalSession();
@@ -184,11 +169,14 @@ var truc = angular.module('appliController', ['dataService'])
     $scope.validateEnabled =    scopaService.getValidateEnabledFromLocalSession();
     $scope.continueEnabled =    scopaService.getContinueEnabledFromLocalSession();
     $scope.rematchEnabled =     scopaService.getRematchEnabledFromLocalSession();
-    $scope.goal =               scopaService.getGoalFromLocalSession(); //false = 11 pts, else 21 pts
+    $scope.goal =               scopaService.getGoalFromLocalSession(); //11,16 or 21 pts
+    $scope.nbPlayers =          scopaService.getNbPlayersFromLocalSession(); //2 or 3
     $scope.goals0 =             scopaService.getGoals0FromLocalSession();
     $scope.goals1 =             scopaService.getGoals1FromLocalSession();
+    $scope.goals2 =             scopaService.getGoals2FromLocalSession();
     $scope.display0Won =        scopaService.getDisplay0WonFromLocalSession();
     $scope.display1Won =        scopaService.getDisplay1WonFromLocalSession();
+    $scope.display2Won =        scopaService.getDisplay2WonFromLocalSession();
     $scope.game = true;
     $scope.cards = [{card: "7",points: 21},{card: "6",points: 18},{card: "1",points: 16},{card: "5",points: 15},
     {card: "4",points: 14},{card: "3",points: 13},{card: "2",points: 12},{card: "Tetes",points: 10}];
@@ -213,7 +201,7 @@ var truc = angular.module('appliController', ['dataService'])
     };
 
     $scope.updateGoals = function() {
-        scopaService.updateGoals($scope.goals0, $scope.goals1);
+        scopaService.updateGoals($scope.goals0, $scope.goals1, $scope.goals2);
         scopaService.pushDataIntoLocalSession();
     };
 
@@ -280,12 +268,6 @@ var truc = angular.module('appliController', ['dataService'])
         }
     );
 
-    $scope.$watch(
-        function(){return scopaService.getGoals0();},
-        function(newVal){
-            $scope.goals0 = scopaService.getGoals0();
-        }
-    );
 
     $scope.$watch("goal",
         function(newValue, oldValue){
@@ -294,10 +276,40 @@ var truc = angular.module('appliController', ['dataService'])
         }
     );
 
+    $scope.$watch("nbPlayers",
+        function(newValue, oldValue){
+            scopaService.updateNbPlayers($scope.nbPlayers);
+            scopaService.pushDataIntoLocalSession();
+        }
+    );
+
+    $scope.$watchGroup(["goals0[0]","goals0[1]","goals0[2]","goals0[3]","goals0[4]",
+                        "goals1[0]","goals1[1]","goals1[2]","goals1[3]","goals1[4]",
+                        "goals2[0]","goals2[1]","goals2[2]","goals2[3]","goals2[4]"],
+        function(newValue, oldValue){
+            scopaService.updateGoals($scope.goals0, $scope.goals1, $scope.goals2);
+            scopaService.pushDataIntoLocalSession();
+        }
+    );
+
+    $scope.$watch(
+        function(){return scopaService.getGoals0();},
+        function(newVal){
+            $scope.goals0 = scopaService.getGoals0();
+        }
+    );
+
     $scope.$watch(
         function(){return scopaService.getGoals1();},
         function(newVal){
             $scope.goals1 = scopaService.getGoals1();
+        }
+    );
+
+    $scope.$watch(
+        function(){return scopaService.getGoals2();},
+        function(newVal){
+            $scope.goals2 = scopaService.getGoals2();
         }
     );
 
@@ -312,6 +324,13 @@ var truc = angular.module('appliController', ['dataService'])
         function(){return scopaService.getDisplay1Won();},
         function(newVal){
             $scope.display1Won = scopaService.getDisplay1Won();
+        }
+    );
+
+    $scope.$watch(
+        function(){return scopaService.getDisplay2Won();},
+        function(newVal){
+            $scope.display2Won = scopaService.getDisplay2Won();
         }
     );
 

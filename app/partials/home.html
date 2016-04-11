@@ -7,20 +7,14 @@
 	<b>Jeux</b>
 <div class="menus"  layout-wrap layout="row" layout-fill layout-align="space-between center">
 	<div layout="column" flex="33" flex-sm="100">
-		<md-menu>
-          <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
-            <md-icon md-menu-origin md-svg-icon="app/web/img/icons/ic_games_black_24px.svg"></md-icon>
-          </md-button>
-          <md-menu-content width="3">
-            <md-menu-item ng-repeat="item in gameLinks">
-              <md-button>
-              	<a class="normalText" ng-href="{{item.link}}">
-	              	<md-icon md-menu-align-target></md-icon>
-	                {{item.game}}
-                </a>
-              </md-button>
-            </md-menu-item>
-          </md-menu-content>
-        </md-menu>
+    <div>
+      <md-button class="md-raised md-primary" href="#/lessthanten">Moins de 10</md-button>
+    </div>
+    <div>
+      <md-button class="md-raised md-primary" href="#/president">President</md-button>
+    </div>
+    <div>
+      <md-button class="md-raised md-primary" href="#/scopa">Scopa</md-button>
+    </div>
 	</div>
 </div>

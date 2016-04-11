@@ -248,11 +248,14 @@ angular.module('dataService', [])
     var validateEnabled;
     var continueEnabled;
     var rematchEnabled;
-    var goal; //false = 11 pts, else 21 pts
+    var goal; //11,16 or 21 pts
+    var nbPlayers; //2 or 3
     var goals0;
     var goals1;
+    var goals2;
     var display0Won;
     var display1Won;
+    var display2Won;
 
     var nameExists = function (x){
         var i = 0;
@@ -285,10 +288,19 @@ angular.module('dataService', [])
                                 previousPoints: 0,
                                 handPoints: 0,
                                 totalPoints: 0
+                            },
+                            {
+                                name: 'Joueur 3',
+                                previousPoints: 0,
+                                handPoints: 0,
+                                totalPoints: 0
                             }
                         ];
             return players;
         },
+        /**********************/
+        /* GOALS 0, 1, 2      */
+        /**********************/
         getGoals0FromLocalSession : function(){
             goals0 = (localStorage.getItem('goals0.scopa')!==null) ? 
                         JSON.parse(localStorage.getItem('goals0.scopa')) : [false,false,false,false,0];
@@ -299,11 +311,29 @@ angular.module('dataService', [])
                         JSON.parse(localStorage.getItem('goals1.scopa')) : [false,false,false,false,0];
             return goals1;
         },
-        getGoalFromLocalSession : function(){
-            goals0 = (localStorage.getItem('goal.scopa')!==null) ? 
-                        JSON.parse(localStorage.getItem('goal.scopa')) : false;
-            return goals0;
+        getGoals2FromLocalSession : function(){
+            goals2 = (localStorage.getItem('goals2.scopa')!==null) ? 
+                        JSON.parse(localStorage.getItem('goals2.scopa')) : [false,false,false,false,0];
+            return goals2;
         },
+
+        /**********************/
+        /* GOAL (11/16/21pts) */
+        /**********************/
+        getGoalFromLocalSession : function(){
+            goal = (localStorage.getItem('goal.scopa')!==null) ? 
+                        JSON.parse(localStorage.getItem('goal.scopa')) : 11;
+            return goal;
+        },
+        getNbPlayersFromLocalSession : function(){
+            nbPlayers = (localStorage.getItem('nbPlayers.scopa')!==null) ? 
+                        JSON.parse(localStorage.getItem('nbPlayers.scopa')) : 2;
+            return nbPlayers;
+        },
+
+        /**********************/
+        /* DisplayWon 0,1,2   */
+        /**********************/
         getDisplay0WonFromLocalSession : function(){
             display0Won = (localStorage.getItem('display0Won.scopa')!==null) ? 
                         JSON.parse(localStorage.getItem('display0Won.scopa')) : false;
@@ -314,6 +344,12 @@ angular.module('dataService', [])
                         JSON.parse(localStorage.getItem('display1Won.scopa')) : false;
             return display1Won;
         },
+        getDisplay2WonFromLocalSession : function(){
+            display2Won = (localStorage.getItem('display2Won.scopa')!==null) ? 
+                        JSON.parse(localStorage.getItem('display2Won.scopa')) : false;
+            return display2Won;
+        },
+
         getValidateEnabledFromLocalSession : function(){
             validateEnabled = (localStorage.getItem('validateEnabled.scopa')!==null) ? 
                         JSON.parse(localStorage.getItem('validateEnabled.scopa')) : false;
@@ -333,9 +369,12 @@ angular.module('dataService', [])
             localStorage.setItem('players.scopa', JSON.stringify(players));
             localStorage.setItem('goals0.scopa', JSON.stringify(goals0));
             localStorage.setItem('goals1.scopa', JSON.stringify(goals1));
+            localStorage.setItem('goals2.scopa', JSON.stringify(goals2));
             localStorage.setItem('goal.scopa', JSON.stringify(goal));
+            localStorage.setItem('nbPlayers.scopa', JSON.stringify(nbPlayers));
             localStorage.setItem('display0Won.scopa', JSON.stringify(display0Won));
             localStorage.setItem('display1Won.scopa', JSON.stringify(display1Won));
+            localStorage.setItem('display2Won.scopa', JSON.stringify(display2Won));
             localStorage.setItem('validateEnabled.scopa', JSON.stringify(validateEnabled));
             localStorage.setItem('continueEnabled.scopa', JSON.stringify(continueEnabled));
             localStorage.setItem('rematchEnabled.scopa', JSON.stringify(rematchEnabled));
@@ -345,28 +384,20 @@ angular.module('dataService', [])
                 players[index].name = newPlayer;
             } else alert(newPlayer.toUpperCase() + " existe deja !");
         },
-        resetGame : function(){
-            if($window.confirm('Reset le jeu ?')) {
-                for (var i = 0; i<players.length; i++) {
-                    players[i].role = 3;
-                    players[i].showButtons = false;
-                    players[i].trend = 0;
-                    players[i].evolution = '+0';
-                }
-            }
-        },
         checkForEnd : function() {
-            var goalPoints;
-            if (!goal) {goalPoints = 11;}
-            else goalPoints = 21;
 
-            if ((players[0].totalPoints >= goalPoints) && (players[0].totalPoints > players[1].totalPoints)) {
+            if ((players[0].totalPoints >= goal) && ((players[0].totalPoints > players[1].totalPoints) && (players[0].totalPoints > players[2].totalPoints))) {
                 display0Won = true;
                 rematchEnabled = true;
                 continueEnabled = false;
             }
-            if ((players[1].totalPoints >= goalPoints) && (players[1].totalPoints > players[0].totalPoints)) {
+            if ((players[1].totalPoints >= goal) && ((players[1].totalPoints > players[0].totalPoints) && (players[1].totalPoints > players[2].totalPoints))) {
                 display1Won = true;
+                rematchEnabled = true;
+                continueEnabled = false;
+            }
+            if ((players[2].totalPoints >= goal) && ((players[2].totalPoints > players[0].totalPoints) && (players[2].totalPoints > players[1].totalPoints))) {
+                display2Won = true;
                 rematchEnabled = true;
                 continueEnabled = false;
             }
@@ -375,6 +406,7 @@ angular.module('dataService', [])
             validateEnabled = false;
             var handPoints0 = 0;
             var handPoints1 = 0;
+            var handPoints2 = 0;
             
             //Calcul des points pour Joueur 0
             if (goals0[0]) {handPoints0++;}
@@ -396,31 +428,41 @@ angular.module('dataService', [])
             players[1].handPoints = handPoints1;
             players[1].totalPoints = players[1].totalPoints + players[1].handPoints;
 
+            //Calcul des points pour Joueur 2
+            if (goals2[0]) {handPoints2++;}
+            if (goals2[1]) {handPoints2++;}
+            if (goals2[2]) {handPoints2++;}
+            if (goals2[3]) {handPoints2++;}
+            handPoints2 = handPoints2 + goals2[4];
+            players[2].previousPoints = players[2].totalPoints;
+            players[2].handPoints = handPoints2;
+            players[2].totalPoints = players[2].totalPoints + players[2].handPoints;
+
             continueEnabled = true;
 
         },
         continue : function(){
             continueEnabled = false;
             for (var i = 0; i < 4; i++) {
-                goals0[i] = goals1[i] = false;
+                goals0[i] = goals1[i] = goals2[i] = false;
             }
-            goals0[4] = goals1[4] = 0;
+            goals0[4] = goals1[4] = goals2[4] = 0;
         },
         resetGame : function(mode){
-            console.log(mode);
             var sentence = ["Reset le jeu ?", "Rejouer ?"];
             if($window.confirm(sentence[mode])) {
                 for (var i = 0; i<players.length; i++) {
                     players[i].previousPoints = players[i].handPoints = players[i].totalPoints = 0;
                 }
                 for (var i = 0; i < 4; i++) {
-                    goals0[i] = goals1[i] = false;
+                    goals0[i] = goals1[i] = goals2[i] = false;
                 }
-                goals0[4] = goals1[4] = 0;
+                goals0[4] = goals1[4] = goals2[4] = 0;
                 continueEnabled = false;
                 validateEnabled = false;
                 display0Won = false;
                 display1Won = false;
+                display2Won = false;
                 rematchEnabled = false;
             }
 
@@ -434,7 +476,11 @@ angular.module('dataService', [])
                 else if (index == 1) {
                     goals1[4]++;
                     validateEnabled = true;
-                }    
+                }
+                else if (index == 2) {
+                    goals2[4]++;
+                    validateEnabled = true;
+                }
             } else {
                 alert("Cliquer sur Continuer !");
             }
@@ -449,6 +495,10 @@ angular.module('dataService', [])
                     goals1[4]--;
                     validateEnabled = true;
                 } 
+                else if (index == 2) {
+                    goals2[4]--;
+                    validateEnabled = true;
+                } 
             } else {
                 alert("Cliquer sur Continuer !");
             }
@@ -457,13 +507,18 @@ angular.module('dataService', [])
             if (!continueEnabled) {
                 validateEnabled = true;
                 if (player_index == 0) {
-                    if (!goals0[goal_item] && goals1[goal_item]) {
-                        goals1[goal_item] = false;
+                    if (!goals0[goal_item] && (goals1[goal_item] || goals2[goal_item])) {
+                        goals1[goal_item] = goals2[goal_item] = false;
                     }
                 }
-                if (player_index == 1) {
-                    if (!goals1[goal_item] && goals0[goal_item]) {
-                        goals0[goal_item] = false;
+                else if (player_index == 1) {
+                    if (!goals1[goal_item] && (goals0[goal_item] || goals2[goal_item])) {
+                        goals0[goal_item] = goals2[goal_item] = false;
+                    }
+                }
+                else if (player_index == 2) {
+                    if (!goals2[goal_item] && (goals0[goal_item] || goals1[goal_item])) {
+                        goals0[goal_item] = goals1[goal_item] = false;
                     }
                 }
             } else {
@@ -473,6 +528,9 @@ angular.module('dataService', [])
                 }
                 else if (player_index == 1){
                     goals1[goal_item] = !goals1[goal_item];
+                }
+                else if (player_index == 2){
+                    goals2[goal_item] = !goals2[goal_item];
                 }
             }
         },
@@ -497,20 +555,30 @@ angular.module('dataService', [])
         getGoals1 : function(){
             return goals1;
         },
+        getGoals2 : function(){
+            return goals2;
+        },
         getDisplay0Won : function(){
             return display0Won;
         },
         getDisplay1Won : function(){
             return display1Won;
         },
-        updateGoals : function(goals0_values, goals1_values){
+        getDisplay2Won : function(){
+            return display2Won;
+        },
+        updateGoals : function(goals0_values, goals1_values, goals2_values){
             for (var i = 0; i < goals0.length; i++) {
                 goals0[i] = goals0_values[i];
                 goals1[i] = goals1_values[i];
+                goals2[i] = goals2_values[i];
             }
         },
         updateGoal : function(value){
             goal = value;
+        },
+        updateNbPlayers : function(value){
+            nbPlayers = value;
         }
     }
 });

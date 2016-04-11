@@ -19,15 +19,31 @@
             href="#/scopaprimera">
             <md-icon md-svg-src="app/web/img/icons/ic_keyboard_white_18px.svg"></md-icon>
         </md-button><br/>
-        <md-switch-container>
-            <md-switch ng-model="goal" aria-label="Switch">
-                <span style="font-weight: bolder; font-size: 15px;" ng-show="!goal">11pts</span><span ng-show="goal">11pts</span> / <span style="font-weight: bolder; font-size: 15px;" ng-show="goal">21pts</span><span ng-show="!goal">21pts</span>   
-            </md-switch>
-        </md-switch-container>
+        <md-input-container style="margin-right: 10px;">
+            <span style="color: #0D47A1;">Nombre de points</span>
+            <md-select ng-model="goal" aria-label="Selection de points">
+                <md-optgroup label="Points">
+                    <md-option value="11">11 points     </md-option>
+                    <md-option value="16">16 points     </md-option>
+                    <md-option value="21">21 points     </md-option>
+                </md-optgroup>
+            </md-select>
+        </md-input-container>
+        <md-input-container style="margin-right: 10px;">
+            <span style="color: #0D47A1;">Nombre de joueurs</span>
+            <md-select ng-model="nbPlayers" aria-label="Nombre de joueurs">
+                <md-optgroup label="Nb Joueurs">
+                    <md-option value="2">2 joueurs     </md-option>
+                    <md-option value="3">3 joueurs     </md-option>
+                </md-optgroup>
+            </md-select>
+        </md-input-container>
 
     <table class="table table-bordered">
         <thead>
             <tr>
+                <th ng-hide="nbPlayers==2" style="vertical-align: middle; background-color: #B2EBF2;" class="bold">
+                </th>
                 <th style="vertical-align: middle; background-color: #E0F7FA; text-align: center;" class="bold">
                     <md-button class="md-fab md-primary md-mini" aria-label="Edit Player"
                         ng-click="editPlayer(0)">
@@ -35,7 +51,7 @@
                     </md-button><br/>
                     {{players[0].name}}
                 </th>
-                <th style="vertical-align: middle; background-color: #B2EBF2;" class="bold">
+                <th ng-show="nbPlayers==2" style="vertical-align: middle; background-color: #B2EBF2;" class="bold">
                 </th>
                 <th style="vertical-align: middle; background-color: #E0F7FA; text-align: center;" class="bold">
                     <md-button class="md-fab md-primary md-mini" aria-label="Edit Player"
@@ -44,9 +60,18 @@
                     </md-button><br/>
                     {{players[1].name}}
                 </th>
+                <th ng-hide="nbPlayers==2" style="vertical-align: middle; background-color: #E0F7FA; text-align: center;" class="bold">
+                    <md-button class="md-fab md-primary md-mini" aria-label="Edit Player"
+                        ng-click="editPlayer(2)">
+                        <md-icon md-svg-src="app/web/img/icons/ic_mode_edit_white_18px.svg"></md-icon>
+                    </md-button><br/>
+                    {{players[2].name}}
+                </th>
             </tr>
         </thead>
-        <tbody data-rows-scopa>
+        <tbody ng-show="nbPlayers==2" data-rows-scopa>
+        </tbody>
+        <tbody ng-show="nbPlayers==3" data-rows-scopa-3>
         </tbody>
     </table>
 </div>

@@ -163,10 +163,37 @@ angular.module('buttonDirectives', [])
 .directive("rowsScopa", function(scopaService) {
     return {
         restrict : 'A',
-        templateUrl : "app/web/templates/rowsScopa.html",
-        controller: function($scope){
-
-            $scope.denari0 = $scope.denari1 = false;
-        }
+        templateUrl : "app/web/templates/rowsScopa.html"
+    }
+})
+.directive("rowsScopa3", function(scopaService) {
+    return {
+        restrict : 'A',
+        templateUrl : "app/web/templates/rowsScopa3.html"
+    }
+})
+.directive("scopaCardsRow", function(scopaService) {
+    return {
+        templateUrl : "app/web/templates/scopaCardsRow.html"
+    }
+})
+.directive("scopaDineroRow", function(scopaService) {
+    return {
+        templateUrl : "app/web/templates/scopaDineroRow.html"
+    }
+})
+.directive("scopaPrimeriaRow", function(scopaService) {
+    return {
+        templateUrl : "app/web/templates/scopaPrimeriaRow.html"
+    }
+})
+.directive("scopaScopaRow", function(scopaService) {
+    return {
+        templateUrl : "app/web/templates/scopaScopaRow.html"
+    }
+})
+.directive("scopaSettebelloRow", function(scopaService) {
+    return {
+        templateUrl : "app/web/templates/scopaSettebelloRow.html"
     }
 });
